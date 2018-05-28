@@ -1,0 +1,151 @@
+//
+//  PrefixHeader.pch
+//  666
+//
+//  Created by xiaofan on 2017/9/29.
+//  Copyright © 2017年 xiaofan. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+/////////////三方库/////////////
+#import <SDCycleScrollView.h>
+#import <YYKit.h>
+#import <RACSignal.h>
+#import <UIControl+RACSignalSupport.h>
+#import <AFNetworking.h>
+#import <MJExtension.h>
+#import <SVProgressHUD.h>
+#import <SDAutoLayout.h>
+#import <Masonry.h>
+#import <MBProgressHUD.h>
+#import <UIButton+WebCache.h>
+#import <UIImageView+WebCache.h>
+#import <TZImagePickerController.h>
+//////////////////百度地图//////////////////////////
+#import <BaiduMapAPI_Map/BMKMapView.h>
+#import <BaiduMapAPI_Location/BMKLocationService.h>
+///////////////////////友盟分享/////////////////////
+#import <UMSocialCore/UMSocialCore.h>
+///////////////////////支付宝支付/////////////////////
+#import <AlipaySDK/AlipaySDK.h>
+///////////////////////微信支付/////////////////////
+#import <WXApi.h>
+
+
+
+///////////通用类////////////////
+#import "XFTool.h"
+#import "XFWebViewController.h"
+#import "XFAlertView.h"
+#import "AppDelegate.h"
+#import "XFLoginInfoModel.h"
+#import "XFButton.h"
+#import "UIButton+ImageTitleSpacing.h"
+
+
+//////////////代码宏//////////////
+/**颜色*/
+#define RGBCOLOR( r , g , b ) [UIColor colorWithRed:( r )/255.f green:( g )/255.f blue:( b )/255.f alpha:1.0]
+#define RGBCOLORe( n ) [UIColor colorWithRed:( n )/255.f green:( n )/255.f blue:( n )/255.f alpha:1.0]
+#define RGBACOLOR( r , g , b , a ) [UIColor colorWithRed:( r )/255.f green:( g )/255.f blue:( b )/255.f alpha:( a )]
+#define RGBACOLORe( n , a ) [UIColor colorWithRed:( n )/255.f green:( n )/255.f blue:( n )/255.f alpha:( a )]
+
+#define HEXCOLOR(a) [UIColor colorWithHexString:a]
+
+#define WHITECOLOR [UIColor whiteColor]
+#define BLACKCOLOR [UIColor blackColor]
+#define REDCOLOR [UIColor redColor]
+#define GRAYCOLOR [UIColor grayColor]
+#define YELLOWCOLOR RGBCOLOR(229, 169, 27)
+#define PURPLECOLOR [UIColor purpleColor]
+#define GREENCOLOR [UIColor greenColor]
+#define CLEARCOLOR [UIColor clearColor]
+#define BlACKTEXT HEXCOLOR(@"#2c2c2c")
+#define GRAYTEXT HEXCOLOR(@"#999999")
+#define GRAYBACKGROUND HEXCOLOR(@"#eeeeee")
+
+#define random(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:(a)/255.0]
+
+#define randomColor random(arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256), arc4random_uniform(256))
+
+#define MAINGREEN [UIColor colorWithRed:79/255.0 green:190/255.0 blue:99/255.0 alpha:1.0]
+
+//获得RGB颜色
+#define LYColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]
+
+#define LMColor2(r, g, b, a) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:a]
+
+
+/**字体*/
+#define XFont(a) [UIFont systemFontOfSize:a]
+#define XBFont(a) [UIFont boldSystemFontOfSize:a]
+/**图片*/
+#define IMAGENAME(a) [UIImage imageNamed:a]
+/**屏幕尺寸*/
+#define SCREENW [UIScreen mainScreen].bounds.size.width
+#define SCREENH [UIScreen mainScreen].bounds.size.height
+
+/**屏幕缩放比例*/
+#define SCALE_WIDTH [UIScreen mainScreen].bounds.size.width / 640.f
+#define SCALE_HEIGHT [UIScreen mainScreen].bounds.size.height / 1136.f
+
+/**AppDelegate*/
+#define APPLication [UIApplication sharedApplication]
+
+/**NSUserDefault*/
+#define USERDEFAULT [NSUserDefaults standardUserDefaults]
+
+/**document路径*/
+#define DOC_PATH [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
+
+#define LoginModel_Doc_path [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:@"loginInfoModel.archiver"]
+
+#define StrISEMPTY(str) (str == nil || [str isEqual:[NSNull null]] || str.length <= 0)
+#define WeakSelf __weak typeof(self) weakSelf = self;
+
+
+#ifdef DEBUG
+#    define NSLog(...) NSLog(__VA_ARGS__)
+#else
+#    define NSLog(...) {}
+#endif
+
+#define APP_checkUp @"http://itunes.apple.com/cn/lookup?"
+#define MY_APPID @"1163445276"
+
+
+/////////////////API//////////////
+//#define BASE_URL @"http://test.360guanggu.com/car/api.php" //测试(废弃)
+//#define BASE_URL @"http://66car.btten.com/car/api.php" // 正式
+
+//#define BASE_URL @"http://120.26.221.32:8081/api.php" //32测试服务器
+//#define SHARE_BASE_URL @"http://120.26.221.32:8081" //32分享地址
+
+//#define BASE_URL @"http://120.79.35.22/car/api.php" //22测试服务器
+//#define SHARE_BASE_URL @"http://w.66zuche.net/car" //22分享地址
+//
+#define BASE_URL @"http://101.200.40.2/car/api.php" //2018_4_25测试服务器
+#define SHARE_BASE_URL @"http://w.66zuche.net/car" //2018_4_25分享地址
+
+
+//#define BASE_URL @"http://139.224.43.168/car/api.php" //客户正式服务器地址
+//#define SHARE_BASE_URL @"http://wap.66zuche.net/car" //正式分享地址
+
+
+
+
+#define ServerError @"网络异常或服务器异常"
+
+
+////////////////const/////////////
+#import "GlobalConst.h"
+#import "MJRefresh.h"
+#import "DXPopover.h"
+#import "CDZPicker.h"
+#import "HMSegmentedControl.h"
+#import "IQKeyboardManager.h"
+#import "RegularHelperUtil.h"
+
+#endif /* PrefixHeader_pch */

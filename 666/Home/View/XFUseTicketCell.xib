@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="useTicketCell" id="KGk-i7-Jjw" customClass="XFUseTicketCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="youhuiquan-quan" translatesAutoresizingMaskIntoConstraints="NO" id="BHY-rF-1ba">
+                        <rect key="frame" x="253" y="0.0" width="67" height="43.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="67" id="vrT-Ol-xS1"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="满减券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mMS-mh-cLX">
+                        <rect key="frame" x="10" y="0.0" width="243" height="43.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="BHY-rF-1ba" firstAttribute="leading" secondItem="mMS-mh-cLX" secondAttribute="trailing" id="9R4-fE-Hb7"/>
+                    <constraint firstItem="BHY-rF-1ba" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Iug-ov-2sL"/>
+                    <constraint firstAttribute="bottom" secondItem="mMS-mh-cLX" secondAttribute="bottom" id="NjL-4Q-4sL"/>
+                    <constraint firstItem="mMS-mh-cLX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="aZ4-By-EoM"/>
+                    <constraint firstItem="mMS-mh-cLX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="bEO-K1-juV"/>
+                    <constraint firstAttribute="bottom" secondItem="BHY-rF-1ba" secondAttribute="bottom" id="vee-Sd-ZDx"/>
+                    <constraint firstAttribute="trailing" secondItem="BHY-rF-1ba" secondAttribute="trailing" id="xBg-qe-Ac5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="ticketNameLbl" destination="mMS-mh-cLX" id="4Xb-DL-sZ7"/>
+            </connections>
+            <point key="canvasLocation" x="-101" y="4"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="youhuiquan-quan" width="95" height="54"/>
+    </resources>
+</document>

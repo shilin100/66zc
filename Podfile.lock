@@ -1,0 +1,133 @@
+PODS:
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - BaiduMapKit (3.3.4)
+  - Bugly (2.5.0)
+  - DXPopover (0.1.1)
+  - HMSegmentedControl (1.5.4)
+  - IQKeyboardManager (4.0.13)
+  - KVOController (1.2.0)
+  - Masonry (1.0.2)
+  - MBProgressHUD (1.0.0)
+  - MJExtension (3.0.13)
+  - MJRefresh (3.1.15.3)
+  - NinaPagerView (1.6.2)
+  - ReactiveObjC (3.0.0)
+  - SDAutoLayout (2.1.9)
+  - SDCycleScrollView (1.75):
+    - SDWebImage (>= 4.0.0)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
+  - SVProgressHUD (2.1.2)
+  - TZImagePickerController (2.1.1)
+  - UMengUShare/Core (6.4.8.2):
+    - UMengUShare/Network
+  - UMengUShare/Network (6.4.8.2)
+  - UMengUShare/Social/ReducedQQ (6.4.8.2):
+    - UMengUShare/Core
+  - UMengUShare/Social/ReducedWeChat (6.4.8.2):
+    - UMengUShare/Core
+  - UMengUShare/UI (6.4.8.2):
+    - UMengUShare/Core
+  - WechatOpenSDK (1.7.9)
+  - YYKit (1.0.9):
+    - YYKit/no-arc (= 1.0.9)
+  - YYKit/no-arc (1.0.9)
+  - ZWLimitCounter (0.0.4)
+  - ZWPlaceHolder (0.0.2)
+
+DEPENDENCIES:
+  - AFNetworking (~> 3.1.0)
+  - BaiduMapKit (~> 3.3.0)
+  - Bugly
+  - DXPopover
+  - HMSegmentedControl
+  - IQKeyboardManager (~> 4.0.9)
+  - KVOController
+  - Masonry (~> 1.0.2)
+  - MBProgressHUD (~> 1.0.0)
+  - MJExtension (~> 3.0.13)
+  - MJRefresh (~> 3.1.12)
+  - NinaPagerView
+  - ReactiveObjC (~> 3.0.0)
+  - SDAutoLayout (~> 2.1.8)
+  - SDCycleScrollView (~> 1.66)
+  - SDWebImage (~> 4.0.0)
+  - SVProgressHUD (~> 2.1.2)
+  - TZImagePickerController
+  - UMengUShare/Social/ReducedQQ
+  - UMengUShare/Social/ReducedWeChat
+  - UMengUShare/UI
+  - WechatOpenSDK (~> 1.7.7)
+  - YYKit (~> 1.0.9)
+  - ZWLimitCounter
+  - ZWPlaceHolder
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - AFNetworking
+    - BaiduMapKit
+    - Bugly
+    - DXPopover
+    - HMSegmentedControl
+    - IQKeyboardManager
+    - KVOController
+    - Masonry
+    - MBProgressHUD
+    - MJExtension
+    - MJRefresh
+    - NinaPagerView
+    - ReactiveObjC
+    - SDAutoLayout
+    - SDCycleScrollView
+    - SDWebImage
+    - SVProgressHUD
+    - TZImagePickerController
+    - UMengUShare
+    - WechatOpenSDK
+    - YYKit
+    - ZWLimitCounter
+    - ZWPlaceHolder
+
+SPEC CHECKSUMS:
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  BaiduMapKit: 6f2d76a04b72e9af938afb5ca0f97d4417bbf9c0
+  Bugly: 3ca9f255c01025582df26f9222893b383c7e4b4e
+  DXPopover: 13e6bbd1a0da4e62b2190de51f43a94850769e0f
+  HMSegmentedControl: b25bc4ec44766e073d62c473188fb354ee244b76
+  IQKeyboardManager: 8eab4d8111418414619d1df8e4779ce5d0f8d7e2
+  KVOController: d72ace34afea42468329623b3379ab3cd1d286b6
+  Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  MJRefresh: b48380ae2b927b46c4ef000de9adb8dc748e1df7
+  NinaPagerView: d197b579cb5a9beb5c3cb45c027a7463de52e64f
+  ReactiveObjC: ce79989e8684b9086b5f8d0c74bc7b81a8729c9e
+  SDAutoLayout: 6b6f4db0d009dfc46cef14ef710dbb164e86616c
+  SDCycleScrollView: 884b88f0266dd4708a0e1934975c69cb971707b1
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
+  TZImagePickerController: 788184b04158006b25ffdbccbb550bfc193e9d9c
+  UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
+  WechatOpenSDK: 1fe7e3b07db860d6a936c3ff4a5aba6b890958d9
+  YYKit: 7cda43304a8dc3696c449041e2cb3107b4e236e7
+  ZWLimitCounter: 382d8a4f063980f18022749672b89e0558087007
+  ZWPlaceHolder: d55cce10c9930b48c31bf48e7f4748974a31f7e0
+
+PODFILE CHECKSUM: 5e56f35eec085f03c993fbcd12245d1ba71731c9
+
+COCOAPODS: 1.5.0
