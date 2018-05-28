@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XFMyLearnDriveController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e98-XH-5QA">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wxQRCode" translatesAutoresizingMaskIntoConstraints="NO" id="Bd0-EF-pPI">
+                            <rect key="frame" x="86.5" y="107" width="147.5" height="147.5"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="147.5" id="M8r-Lg-Lmq"/>
+                                <constraint firstAttribute="width" constant="147.5" id="nGY-Vt-AB7"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="扫一扫关注公众号" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVW-aK-Ubw">
+                            <rect key="frame" x="0.0" y="269.5" width="320" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="即可报名学车" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ko-0h-uw4">
+                            <rect key="frame" x="0.0" y="301.5" width="320" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dibu" translatesAutoresizingMaskIntoConstraints="NO" id="WPe-yK-O4R">
+                            <rect key="frame" x="0.0" y="498" width="320" height="70"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="70" id="bQK-zb-1Nc"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信公众号：六六租车    微信号：liuliuzuche66" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="275-fF-GcY">
+                            <rect key="frame" x="0.0" y="464.5" width="320" height="17"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.019607843137254902" green="0.74509803921568629" blue="0.49803921568627452" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="6ko-0h-uw4" firstAttribute="leading" secondItem="e98-XH-5QA" secondAttribute="leading" id="3WP-tA-oGg"/>
+                        <constraint firstAttribute="trailing" secondItem="WPe-yK-O4R" secondAttribute="trailing" id="EpD-ja-iZ5"/>
+                        <constraint firstItem="275-fF-GcY" firstAttribute="leading" secondItem="e98-XH-5QA" secondAttribute="leading" id="ISe-Mn-CJB"/>
+                        <constraint firstItem="Bd0-EF-pPI" firstAttribute="centerX" secondItem="e98-XH-5QA" secondAttribute="centerX" id="PVR-l1-qSV"/>
+                        <constraint firstItem="Bd0-EF-pPI" firstAttribute="top" secondItem="e98-XH-5QA" secondAttribute="top" constant="107" id="Pfb-Hn-8u4"/>
+                        <constraint firstItem="TVW-aK-Ubw" firstAttribute="top" secondItem="Bd0-EF-pPI" secondAttribute="bottom" constant="15" id="Rww-rR-WHw"/>
+                        <constraint firstAttribute="trailing" secondItem="TVW-aK-Ubw" secondAttribute="trailing" id="doW-gB-RZW"/>
+                        <constraint firstAttribute="trailing" secondItem="6ko-0h-uw4" secondAttribute="trailing" id="dyl-Ra-Tlu"/>
+                        <constraint firstAttribute="trailing" secondItem="275-fF-GcY" secondAttribute="trailing" id="hE9-Jt-xg1"/>
+                        <constraint firstItem="WPe-yK-O4R" firstAttribute="leading" secondItem="e98-XH-5QA" secondAttribute="leading" id="he1-RD-cAz"/>
+                        <constraint firstAttribute="bottom" secondItem="WPe-yK-O4R" secondAttribute="bottom" id="iK9-Fx-Vff"/>
+                        <constraint firstItem="TVW-aK-Ubw" firstAttribute="leading" secondItem="e98-XH-5QA" secondAttribute="leading" id="lXz-8s-Rtm"/>
+                        <constraint firstItem="6ko-0h-uw4" firstAttribute="top" secondItem="TVW-aK-Ubw" secondAttribute="bottom" constant="15" id="u5I-el-g4U"/>
+                        <constraint firstItem="WPe-yK-O4R" firstAttribute="top" secondItem="275-fF-GcY" secondAttribute="bottom" constant="16.5" id="uSd-Jg-kko"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="e98-XH-5QA" secondAttribute="bottom" id="KSb-AM-sym"/>
+                <constraint firstAttribute="trailing" secondItem="e98-XH-5QA" secondAttribute="trailing" id="LAq-3A-dKd"/>
+                <constraint firstItem="e98-XH-5QA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="W9r-wE-tHB"/>
+                <constraint firstItem="e98-XH-5QA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zJD-2E-c3H"/>
+            </constraints>
+            <point key="canvasLocation" x="-128" y="33"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="dibu" width="320" height="73"/>
+        <image name="wxQRCode" width="215" height="215"/>
+    </resources>
+</document>

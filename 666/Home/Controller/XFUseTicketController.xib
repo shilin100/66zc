@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="XFUseTicketController">
+            <connections>
+                <outlet property="tableView" destination="S4x-5O-jQR" id="MPP-VA-v5j"/>
+                <outlet property="useTicketBtn" destination="TOT-gd-Zso" id="tOJ-n1-Jdd"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sNc-tR-v2F">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="不使用优惠券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xjd-Ez-PUY">
+                            <rect key="frame" x="10" y="0.0" width="268" height="44"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TOT-gd-Zso">
+                            <rect key="frame" x="278" y="0.0" width="42" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="42" id="QSw-QW-tVw"/>
+                            </constraints>
+                            <state key="normal" image="xingbie-meixuanzhong"/>
+                            <state key="selected" image="gouxuan"/>
+                            <connections>
+                                <action selector="unuseBtnClick:" destination="-1" eventType="touchUpInside" id="OnR-h1-P7Z"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="xjd-Ez-PUY" secondAttribute="bottom" id="25s-Gc-xBs"/>
+                        <constraint firstAttribute="bottom" secondItem="TOT-gd-Zso" secondAttribute="bottom" id="HxN-wq-zhM"/>
+                        <constraint firstItem="TOT-gd-Zso" firstAttribute="top" secondItem="sNc-tR-v2F" secondAttribute="top" id="P3s-A0-QWP"/>
+                        <constraint firstAttribute="height" constant="44" id="R4O-cQ-2xd"/>
+                        <constraint firstItem="xjd-Ez-PUY" firstAttribute="top" secondItem="sNc-tR-v2F" secondAttribute="top" id="RO8-Ix-zcx"/>
+                        <constraint firstItem="xjd-Ez-PUY" firstAttribute="leading" secondItem="sNc-tR-v2F" secondAttribute="leading" constant="10" id="SGV-e6-aa7"/>
+                        <constraint firstAttribute="trailing" secondItem="TOT-gd-Zso" secondAttribute="trailing" id="St0-OX-Neu"/>
+                        <constraint firstItem="TOT-gd-Zso" firstAttribute="leading" secondItem="xjd-Ez-PUY" secondAttribute="trailing" id="Ugs-3p-eGe"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择优惠券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ctT-Rk-LXg">
+                    <rect key="frame" x="10" y="54" width="300" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="GPW-tl-Fx4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="S4x-5O-jQR">
+                    <rect key="frame" x="0.0" y="86" width="320" height="482"/>
+                    <color key="backgroundColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="yXY-EI-huj"/>
+                        <outlet property="delegate" destination="-1" id="KjN-lt-MKM"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="ctT-Rk-LXg" secondAttribute="trailing" constant="10" id="2AF-al-p45"/>
+                <constraint firstItem="ctT-Rk-LXg" firstAttribute="top" secondItem="sNc-tR-v2F" secondAttribute="bottom" constant="10" id="D0l-Cv-zD5"/>
+                <constraint firstItem="sNc-tR-v2F" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="JoA-wF-etT"/>
+                <constraint firstAttribute="trailing" secondItem="sNc-tR-v2F" secondAttribute="trailing" id="QAY-il-7C1"/>
+                <constraint firstItem="S4x-5O-jQR" firstAttribute="top" secondItem="ctT-Rk-LXg" secondAttribute="bottom" id="S72-WO-Leq"/>
+                <constraint firstAttribute="bottom" secondItem="S4x-5O-jQR" secondAttribute="bottom" id="YDG-m3-Aj9"/>
+                <constraint firstItem="S4x-5O-jQR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="dAR-uC-so1"/>
+                <constraint firstAttribute="trailing" secondItem="S4x-5O-jQR" secondAttribute="trailing" id="mQ7-kg-q7o"/>
+                <constraint firstItem="sNc-tR-v2F" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ub3-9r-Fdc"/>
+                <constraint firstItem="ctT-Rk-LXg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="vFl-8R-FSD"/>
+            </constraints>
+            <point key="canvasLocation" x="-280" y="13"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="gouxuan" width="19" height="19"/>
+        <image name="xingbie-meixuanzhong" width="15" height="15"/>
+    </resources>
+</document>
