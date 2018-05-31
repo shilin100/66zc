@@ -118,15 +118,14 @@
     _areaLabel2.text=model.area;
     if([model.status_zh isEqualToString:@"空闲"])
     {
-        [_stateBtn setTitle:@"空闲" forState:UIControlStateNormal];
         _stateBtn.backgroundColor=LYColor(246, 193, 30);
     }
     else
     {
-        [_stateBtn setTitle:@"已约" forState:UIControlStateNormal];
         _stateBtn.backgroundColor=LYColor(165, 170, 190);
     }
-    
+    [_stateBtn setTitle:model.status_zh forState:UIControlStateNormal];
+
 }
 
 

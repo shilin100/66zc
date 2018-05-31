@@ -292,8 +292,12 @@
 
     else
     {
-        XFAlertView *alert = [[XFAlertView alloc] initWithTitle:@"提示" message:@"兑换码填写不完整" sureBtn:@"确定" cancleBtn:nil];
-        [alert showAlertView];
+        ExchangeType type = ExchangeFail;
+        XFExchangePopView * alert = [[XFExchangePopView alloc]initWithTitle:@"提示" Msg:@"兑换码填写不完整" ExchangType:type];
+        [alert show];
+
+//        XFAlertView *alert = [[XFAlertView alloc] initWithTitle:@"提示" message:@"兑换码填写不完整" sureBtn:@"确定" cancleBtn:nil];
+//        [alert showAlertView];
     }
 
 }

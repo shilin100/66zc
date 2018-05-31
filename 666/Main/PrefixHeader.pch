@@ -125,13 +125,13 @@
 
 //#define BASE_URL @"http://120.79.35.22/car/api.php" //22测试服务器
 //#define SHARE_BASE_URL @"http://w.66zuche.net/car" //22分享地址
-//
-#define BASE_URL @"http://101.200.40.2/car/api.php" //2018_4_25测试服务器
-#define SHARE_BASE_URL @"http://w.66zuche.net/car" //2018_4_25分享地址
+
+//#define BASE_URL @"http://101.200.40.2/car/api.php" //2018_4_25测试服务器
+//#define SHARE_BASE_URL @"http://w.66zuche.net/car" //2018_4_25分享地址
 
 
-//#define BASE_URL @"http://139.224.43.168/car/api.php" //客户正式服务器地址
-//#define SHARE_BASE_URL @"http://wap.66zuche.net/car" //正式分享地址
+#define BASE_URL @"http://139.224.43.168/car/api.php" //客户正式服务器地址
+#define SHARE_BASE_URL @"http://wap.66zuche.net/car" //正式分享地址
 
 
 

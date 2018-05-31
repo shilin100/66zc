@@ -75,7 +75,7 @@
     
     self.area = @"全部";
     self.state = 0;
-    self.stateArray = [NSMutableArray arrayWithArray:@[@"全部",@"空闲",@"已约"]];
+    self.stateArray = [NSMutableArray arrayWithArray:@[@"全部",@"空闲",@"已约",@"停止接单"]];
     [self setupSubViews];
     
 }

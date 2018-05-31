@@ -104,7 +104,8 @@
     [mapView setTrafficEnabled:NO];
     mapView.userTrackingMode = BMKUserTrackingModeFollow;
     mapView.showsUserLocation = YES;
-    mapView.zoomLevel = 16;
+    mapView.zoomLevel = 12;
+    [mapView setCenterCoordinate:CLLocationCoordinate2DMake(30.505398, 114.414145)];
     mapView.overlookEnabled = NO;
     mapView.rotateEnabled = NO;
     mapView.showMapScaleBar = YES;
@@ -308,26 +309,28 @@
 }
 
 -(void) showTableView {
-    UIView *cover = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    cover.backgroundColor = [UIColor colorWithWhite:0.f alpha:0.5];
-    self.cover = cover;
-    [APPLication.delegate.window addSubview:cover];
-    UITapGestureRecognizer *coverTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(coverTap)];
-    coverTap.delegate=self;
-    [cover addGestureRecognizer:coverTap];
-    
-    XFSelectHCPointView *bottomView = [[XFSelectHCPointView alloc] initWithFrame:CGRectMake(0, SCREENH, SCREENW, 300)];
-    bottomView.backgroundColor=WHITECOLOR;
-    bottomView.alpha = 1.0;
-    bottomView.delegate = self;
-    [cover addSubview:bottomView];
-    self.bottomView = bottomView;
+    if (!self.cover) {
+        UIView *cover = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        cover.backgroundColor = [UIColor colorWithWhite:0.f alpha:0.5];
+        self.cover = cover;
+        [APPLication.delegate.window addSubview:cover];
+        UITapGestureRecognizer *coverTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(coverTap)];
+        coverTap.delegate=self;
+        [cover addGestureRecognizer:coverTap];
+    }
+    self.cover.alpha = 1;
+        XFSelectHCPointView *bottomView = [[XFSelectHCPointView alloc] initWithFrame:CGRectMake(0, SCREENH, SCREENW, 300)];
+        bottomView.backgroundColor=WHITECOLOR;
+        bottomView.alpha = 1.0;
+        bottomView.delegate = self;
+        [self.cover addSubview:bottomView];
+        self.bottomView = bottomView;
     self.bottomView.SelectHCPointModelArr=_SelectHCPointModel;
     [UIView animateWithDuration:0.3 animations:^{
-        bottomView.top = SCREENH-300;
+        self.bottomView.top = SCREENH-300;
     }];
-    
-    
+
+
     if (_selectedHCPointModel) {
         NSInteger row=-1;
         for (XFSelectHCPointModel *model in _SelectHCPointModel) {
@@ -342,23 +345,25 @@
         }
         NSLog(@"row===%ld",row);
         NSIndexPath *indexPath=[NSIndexPath indexPathForRow:row inSection:0];
-        [self.bottomView.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionTop];
+        [self.bottomView.tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
         self.bottomView.show=YES;
         self.bottomView.indexPath=indexPath;
 
         XFSelectHCPointModel *model = _SelectHCPointModel[row];
         [self SelectHCPointView:self.bottomView didSelectedCell:[NSString stringWithFormat:@"%@%@",model.address,model.details_address]];
     }
+
 }
 
 - (void) coverTap {
     [UIView animateWithDuration:0.3 animations:^{
         self.bottomView.top = SCREENH;
-        self.cover.backgroundColor = [UIColor colorWithWhite:0.f alpha:0.001];
+        self.cover.alpha = 0;
     } completion:^(BOOL finished) {
-        self.cover.hidden = YES;
-        [self.cover removeFromSuperview];
+//        self.cover.hidden = YES;
+//        [self.cover removeFromSuperview];
         self.bottomView.delegate = nil;
+        [self.bottomView removeFromSuperview];
     }];
     
 }
@@ -381,27 +386,13 @@
 #pragma mark ----  XFSelectHCPointViewDelegate delegate
 - (void)SelectHCPointView:(XFSelectHCPointView *)view didSelectedCancelBtn:(UIButton *)sender
 {
-    [UIView animateWithDuration:0.3 animations:^{
-        self.bottomView.top = SCREENH;
-        self.cover.backgroundColor = [UIColor colorWithWhite:0.f alpha:0.001];
-    } completion:^(BOOL finished) {
-        self.cover.hidden = YES;
-        [self.cover removeFromSuperview];
-        self.bottomView.delegate = nil;
-    }];
+    [self coverTap];
 }
 - (void)SelectHCPointView:(XFSelectHCPointView *)view didSelectedSureBtn:(UIButton *)sender
 {
 
-    [UIView animateWithDuration:0.3 animations:^{
-        self.bottomView.top = SCREENH;
-        self.cover.backgroundColor = [UIColor colorWithWhite:0.f alpha:0.001];
-    } completion:^(BOOL finished) {
-        self.cover.hidden = YES;
-        [self.cover removeFromSuperview];
-        self.bottomView.delegate = nil;
-    }];
-    
+    [self coverTap];
+
     //暂时去掉回调功能
 //    if(_isSelectCell)
 //    {

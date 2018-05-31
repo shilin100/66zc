@@ -270,7 +270,7 @@
     [params setObject:model.token forKey:@"token"];
     [params setObject:[NSString stringWithFormat:@"%d",_page] forKey:@"page"];
     [params setObject:self.school forKey:@"d_name"];
-    [params setObject:self.area forKey:@"adress"];
+    [params setObject:self.area forKey:@"area"];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager POST:[NSString stringWithFormat:@"%@/StudyCar/index",BASE_URL] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
@@ -293,7 +293,7 @@
                 _noDataLabel.hidden=YES;
             }
             if (!self.areaArray) {
-                NSArray * temp = [NSArray arrayWithArray:[responseObject[@"data"] valueForKeyPath:@"address"]];
+                NSArray * temp = [NSArray arrayWithArray:[responseObject[@"data"] valueForKeyPath:@"area"]];
                 NSSet *set = [NSSet setWithArray:temp];
                 self.areaArray = [NSMutableArray arrayWithArray:[set allObjects]];
                 [self.areaArray insertObject:@"全部区域" atIndex:0];
@@ -330,7 +330,7 @@
     [params setObject:model.token forKey:@"token"];
     [params setObject:[NSString stringWithFormat:@"%d",_page] forKey:@"page"];
     [params setObject:self.school forKey:@"d_name"];
-    [params setObject:self.area forKey:@"adress"];
+    [params setObject:self.area forKey:@"area"];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager POST:[NSString stringWithFormat:@"%@/StudyCar/index",BASE_URL] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {

@@ -324,10 +324,11 @@
     [mapView setTrafficEnabled:NO];
     mapView.userTrackingMode = BMKUserTrackingModeFollow;
     mapView.showsUserLocation = YES;
-    mapView.zoomLevel = 16;
+    mapView.zoomLevel = 12;
     mapView.overlookEnabled = NO;
     mapView.rotateEnabled = NO;
     mapView.showMapScaleBar = YES;
+    [mapView setCenterCoordinate:CLLocationCoordinate2DMake(30.505398, 114.414145)];
     
     [self.view addSubview:mapView];
     self.mapView = mapView;
@@ -1892,36 +1893,48 @@
                 if (model.image != nil) {
                     [arr addObject:[NSURL URLWithString:model.image]];
                 }
-                [dataArr addObject:model.describe];
+//                overdue_info=1;//活动进行中
+//                overdue_info =0;//活动已过期
+                if (![model.overdue_info isEqualToString:@"0"]) {
+                    [dataArr addObject:model.describe];
+                }
             }
             
-            
-            
-            VierticalScrollView *scroView = [[VierticalScrollView alloc] initWithHtmlTitleArray:dataArr AndFrame:CGRectMake(30, 0, self.adView.bounds.size.width - 40, self.adView.bounds.size.height)];
-            scroView.delegate = self;
-            scroView.isHtmlTitle = YES;
-            [self.adView addSubview:scroView];
+            if (dataArr.count) {
+                VierticalScrollView *scroView = [[VierticalScrollView alloc] initWithHtmlTitleArray:dataArr AndFrame:CGRectMake(30, 0, self.adView.bounds.size.width - 40, self.adView.bounds.size.height)];
+                scroView.delegate = self;
+                scroView.isHtmlTitle = YES;
+                [self.adView addSubview:scroView];
 
+            }else{
+                [self.adView removeFromSuperview];
+            }
+            
             if([arr count])
             {
-                XFADChooseView *view=[[XFADChooseView alloc] initWithImageArray:arr];
                 
-                view.topBlock = ^(NSIndexPath *index) {
-                    
-                    NSLog(@"广告详情");
-                    XFWebViewController* webViewController = [UIStoryboard storyboardWithName:@"XFWebViewController" bundle:nil].instantiateInitialViewController;
-                    webViewController.urlString = self.ActiveListModels[index.item].link;
-                    webViewController.webTitle  = self.ActiveListModels[index.item].title;
-                    [self.navigationController pushViewController:webViewController animated:YES];
-                    
-                };
-                
-                [view show];
+//===================弹窗广告====================
+//                XFADChooseView *view=[[XFADChooseView alloc] initWithImageArray:arr];
+//
+//                view.topBlock = ^(NSIndexPath *index) {
+//
+//                    NSLog(@"广告详情");
+//                    if (self.ActiveListModels[index.item].link.length <=0) {
+//                        return ;
+//                    }
+//                    XFWebViewController* webViewController = [UIStoryboard storyboardWithName:@"XFWebViewController" bundle:nil].instantiateInitialViewController;
+//                    webViewController.urlString = self.ActiveListModels[index.item].link;
+//                    webViewController.webTitle  = self.ActiveListModels[index.item].title;
+//                    [self.navigationController pushViewController:webViewController animated:YES];
+//
+//                };
+//
+//                [view show];
             }
             
         }else{
             
-            //
+            [self.adView removeFromSuperview];
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

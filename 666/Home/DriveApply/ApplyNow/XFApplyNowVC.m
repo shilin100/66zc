@@ -34,36 +34,6 @@
 
 }
 -(void)setupUI{
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, -30, SCREENW, 44*4+136+54+2*3+30 + 10) style:UITableViewStyleGrouped];
-    tableView.backgroundColor = HEXCOLOR(@"#eeeeee");
-    tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    [tableView registerClass:[XFDriveApplyTableViewCell class] forCellReuseIdentifier:@"XFApplyNowCellSchool"];
-    [tableView registerClass:[XFAppluNowCell class] forCellReuseIdentifier:@"XFApplyOrderCellText"];
-
-    [self.view addSubview:tableView];
-    self.tableView = tableView;
-    tableView.scrollEnabled = NO;
-    
-    NSString * totalStr = @"我已阅读并同意《六六租车用户协议》";
-    NSString * str = @"《六六租车用户协议》";
-    NSMutableAttributedString *attributeString = [self differentColor:REDCOLOR string:str inString:totalStr];
-
-    UIButton *stateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    stateBtn.titleLabel.font=XFont(14);
-    [stateBtn setAttributedTitle:attributeString forState:UIControlStateNormal];
-    [stateBtn setImage:IMAGENAME(@"tik") forState:UIControlStateNormal];
-    stateBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [stateBtn addTarget:self action:@selector(requestDelegateUrl) forControlEvents:UIControlEventTouchUpInside];
-    
-    [self.view addSubview:stateBtn];
-    stateBtn.sd_layout
-    .rightSpaceToView(self.view, 10)
-    .topSpaceToView(tableView, 2)
-    .leftSpaceToView(self.view, 10)
-    .heightIs(30);
 
     UIView * bottomView = [[UIView alloc]init];
     bottomView.backgroundColor = WHITECOLOR;
@@ -100,7 +70,44 @@
     .rightSpaceToView(reportOrderBtn, 10)
     .bottomSpaceToView(bottomView, 0);
 
+    NSString * totalStr = @"我已阅读并同意《六六租车用户协议》";
+    NSString * str = @"《六六租车用户协议》";
+    NSMutableAttributedString *attributeString = [self differentColor:REDCOLOR string:str inString:totalStr];
     
+    UIButton *stateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    stateBtn.titleLabel.font=XFont(14);
+    [stateBtn setAttributedTitle:attributeString forState:UIControlStateNormal];
+    [stateBtn setImage:IMAGENAME(@"tik") forState:UIControlStateNormal];
+    stateBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [stateBtn addTarget:self action:@selector(requestDelegateUrl) forControlEvents:UIControlEventTouchUpInside];
+    stateBtn.backgroundColor = WHITECOLOR;
+    
+    [self.view addSubview:stateBtn];
+    stateBtn.sd_layout
+    .rightSpaceToView(self.view, 0)
+    .bottomSpaceToView(bottomView, 2)
+    .leftSpaceToView(self.view, 0)
+    .heightIs(30);
+
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, -30, SCREENW, 44*4+136+54+2*3+30 + 10) style:UITableViewStyleGrouped];
+    tableView.backgroundColor = HEXCOLOR(@"#eeeeee");
+    tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    [tableView registerClass:[XFDriveApplyTableViewCell class] forCellReuseIdentifier:@"XFApplyNowCellSchool"];
+    [tableView registerClass:[XFAppluNowCell class] forCellReuseIdentifier:@"XFApplyOrderCellText"];
+    
+    [self.view addSubview:tableView];
+    self.tableView = tableView;
+    tableView.scrollEnabled = YES;
+    
+    tableView.sd_layout
+    .rightSpaceToView(self.view, 0)
+    .bottomSpaceToView(stateBtn, 2)
+    .leftSpaceToView(self.view, 0)
+    .topSpaceToView(self.view, -30);
+
 }
 
 -(void)reportOrderBtnAction{
@@ -309,7 +316,7 @@
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 0;
+    return 0.1;
 }
 
 @end

@@ -277,14 +277,14 @@
     UILabel *ruleDetailLabel = [[UILabel alloc] init];
     ruleDetailLabel.font = XFont(12);
     ruleDetailLabel.numberOfLines = 0;
-    ruleDetailLabel.text = @"1、用户每次签到可获取1积分，累计3次可获取1次抽奖机会。\n2、用户在抽奖期间获取的奖品自激活日起生效。\n3、用户可在自己的卡包查看获取的优惠卡等信息。";
+    ruleDetailLabel.text = @"1、用户每次签到可获取1积分，累计3次可获取1次抽奖机会。中奖几率为为100%。\n2、用户在抽奖期间获取的奖品自激活日起生效。\n3、用户可在自己的卡包查看获取的优惠卡等信息。\n4、本活动与苹果公司无关。";
     ruleDetailLabel.textAlignment = NSTextAlignmentLeft;
     ruleDetailLabel.textColor = BlACKTEXT;
     [self.view addSubview:ruleDetailLabel];
     ruleDetailLabel.sd_layout
     .topSpaceToView(ruleLabel, 0)
     .rightEqualToView(drawBg)
-    .heightIs(70)
+    .heightIs(90)
     .leftEqualToView(drawBg);
 
     
@@ -433,7 +433,7 @@
     self.signInCountLabel.attributedText = attributeString;
     self.signCountView.signtimes = (int)model.signtimes.integerValue;
     if (model.scrapnumber != 0) {
-        self.disableDrawLabel.text = @"刮开涂层赢大奖";
+        self.disableDrawLabel.text = @"刮开涂层百分百赢大奖";
         self.scratchImageView.userInteractionEnabled = YES;
     }else{
         self.scratchImageView.userInteractionEnabled = NO;
