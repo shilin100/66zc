@@ -213,6 +213,7 @@
 		7BF12FEA1FD638A200220173 /* XFFaPiaoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF12FE91FD638A200220173 /* XFFaPiaoModel.m */; };
 		7BF7A358201C97D600882328 /* XFSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF7A357201C97D600882328 /* XFSettingCell.m */; };
 		9D13DA5020917A760057DD20 /* XFCarTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D13DA4F20917A760057DD20 /* XFCarTypeModel.m */; };
+		9D1613F620C1228700CC58B5 /* XFQRCodePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1613F520C1228700CC58B5 /* XFQRCodePopView.m */; };
 		9D1B87DE20B00C7900115E9F /* XFCustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B87DD20B00C7900115E9F /* XFCustomAnnotationView.m */; };
 		9D1BEE2720930B3C00D84E54 /* XFGuildServicePointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1BEE2620930B3C00D84E54 /* XFGuildServicePointViewController.m */; };
 		9D1BEE2A2093255F00D84E54 /* JXButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1BEE292093255F00D84E54 /* JXButton.m */; };
@@ -707,6 +708,8 @@
 		9AEC6CD10C9BE7C583E993FF /* Pods-666.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-666.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-666/Pods-666.adhoc.xcconfig"; sourceTree = "<group>"; };
 		9D13DA4E20917A760057DD20 /* XFCarTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFCarTypeModel.h; sourceTree = "<group>"; };
 		9D13DA4F20917A760057DD20 /* XFCarTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFCarTypeModel.m; sourceTree = "<group>"; };
+		9D1613F420C1228700CC58B5 /* XFQRCodePopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFQRCodePopView.h; sourceTree = "<group>"; };
+		9D1613F520C1228700CC58B5 /* XFQRCodePopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFQRCodePopView.m; sourceTree = "<group>"; };
 		9D1B87DC20B00C7900115E9F /* XFCustomAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFCustomAnnotationView.h; sourceTree = "<group>"; };
 		9D1B87DD20B00C7900115E9F /* XFCustomAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFCustomAnnotationView.m; sourceTree = "<group>"; };
 		9D1BEE2520930B3C00D84E54 /* XFGuildServicePointViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFGuildServicePointViewController.h; sourceTree = "<group>"; };
@@ -1334,6 +1337,8 @@
 				9DF0BCCF20AD6AE400C052AC /* XFExchangePopView.m */,
 				9D1B87DC20B00C7900115E9F /* XFCustomAnnotationView.h */,
 				9D1B87DD20B00C7900115E9F /* XFCustomAnnotationView.m */,
+				9D1613F420C1228700CC58B5 /* XFQRCodePopView.h */,
+				9D1613F520C1228700CC58B5 /* XFQRCodePopView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1962,6 +1967,7 @@
 				9D2550212099B70A0007175E /* XFDriveApplyTableViewCell.m in Sources */,
 				7B2A5F5A1FE4F8FE0060D956 /* XFAlertViewTwo.m in Sources */,
 				7B6063E61FD02C0900AA9B40 /* XFGetMyCarUseModel.m in Sources */,
+				9D1613F620C1228700CC58B5 /* XFQRCodePopView.m in Sources */,
 				9D7D66BF20A96E0900A3F92A /* XFPrizeListCell.m in Sources */,
 				9D25505F20A67E970007175E /* VierticalScrollView.m in Sources */,
 				024DEC5E1F7E4277008A4D80 /* XFForgetPWDController.m in Sources */,

@@ -14,6 +14,7 @@
 #import "XFMySaleTicketController.h"
 #import "XFSignInVC.h"
 #import "XFWarnView.h"
+#import "XFQRCodePopView.h"
 
 @interface XFMySaleController ()
 @property (weak, nonatomic) IBOutlet UILabel *moneyLbl;
@@ -42,6 +43,11 @@
     [super viewDidLoad];
     
     self.navigationItem.title = @"我的分销";
+    
+    
+    UIImage *rightImage = [[UIImage imageNamed:@"qrcode_navigationItem"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.navigationItem.rightBarButtonItem=[[UIBarButtonItem alloc] initWithImage:rightImage style:UIBarButtonItemStylePlain target:self action:@selector(qrcodeAction)];
+
     
     self.inviteBtn.layer.cornerRadius = self.inviteBtn.height * 0.5;
     self.inviteBtn.clipsToBounds = YES;
@@ -90,6 +96,34 @@
     }];
 }
 
+- (void)qrcodeAction{
+//    NSMutableDictionary *params = [XFTool getBaseRequestParams];
+//
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    [manager GET:[NSString stringWithFormat:@"%@/User/qrcode",BASE_URL] parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
+//
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        [SVProgressHUD dismiss];
+//        NSLog(@"success:%@",responseObject);
+//        if ([responseObject[@"status"] intValue] == 1) {
+//
+//
+//        }
+//        else
+//        {
+//            [SVProgressHUD showErrorWithStatus:responseObject[@"info"]];
+//            [SVProgressHUD dismissWithDelay:1.2];
+//        }
+//
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        [SVProgressHUD showErrorWithStatus:ServerError];
+//        [SVProgressHUD dismissWithDelay:1.2];
+//
+//    }];
+
+    XFQRCodePopView * pop = [[XFQRCodePopView alloc]initQRCodePopView];
+    [pop show];
+}
 
 - (IBAction)moneyBtnClick {
     XFMySaleMoneyController *vc = [[XFMySaleMoneyController alloc] init];

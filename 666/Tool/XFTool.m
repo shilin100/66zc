@@ -18,6 +18,26 @@
 #define IP_ADDR_IPv6    @"ipv6"
 
 @implementation XFTool
+
+
+/**
+ get controller by view
+
+ @param currentView
+ @return controller of view
+ */
++(UIViewController *)getCurrentVCWithCurrentView:(UIView *)currentView
+{
+    for (UIView *next = currentView ; next ; next = next.superview) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
+}
+
+
 + (BOOL)validateCellPhoneNumber:(NSString *)cellNum{
     /**
      * 手机号码

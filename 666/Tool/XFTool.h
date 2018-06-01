@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface XFTool : NSObject
 /**判断手机号合法性*/
@@ -22,4 +23,8 @@
 
 /**请求基本参数*/
 +(NSMutableDictionary *)getBaseRequestParams;
+
+//获取视图所属的控制器
++(UIViewController *)getCurrentVCWithCurrentView:(UIView *)currentView;
+
 @end
