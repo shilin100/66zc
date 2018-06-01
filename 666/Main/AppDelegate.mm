@@ -95,8 +95,11 @@
         
         // 没有网络的更多操作
         // 实现类似接到电话效果   self.window.frame = CGRectMake(0, 40, __width, __height-40);
-        XFAlertView *alertView = [[XFAlertView alloc] initWithTitle:@"提示" message:@"您的网络连接中断或未打开网络使用权限" sureBtn:@"确定" cancleBtn:nil];
-        [alertView showAlertView];
+        static XFAlertView *alertReachabilityView;
+        if (alertReachabilityView == nil) {
+            alertReachabilityView = [[XFAlertView alloc] initWithTitle:@"提示" message:@"您的网络连接中断或未打开网络使用权限" sureBtn:@"确定" cancleBtn:nil];
+        }
+        [alertReachabilityView showAlertView];
 
     } else if (status == ReachableViaWiFi) {
         NSLog(@"Wifi");

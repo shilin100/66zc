@@ -218,6 +218,7 @@
         self.resultIndex(sender.tag);
     }
     [self removeFromSuperview];
+
 }
 
 -(UILabel *)GetAdaptiveLable:(CGRect)rect AndText:(NSString *)contentStr andIsTitle:(BOOL)isTitle
