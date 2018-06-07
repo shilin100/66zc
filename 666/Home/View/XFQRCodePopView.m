@@ -14,6 +14,7 @@
 @implementation XFQRCodePopView
 {
     UIImage * tempQRImg;
+    UIView * shotView;
 }
 
 -(instancetype)initQRCodePopView{
@@ -69,10 +70,23 @@
 
         }];
 
+        UIView * tempView = [UIView new];
+        tempView.backgroundColor = WHITECOLOR;
+        tempView.layer.cornerRadius = 5;
+        tempView.clipsToBounds = YES;
+        [self addSubview:tempView];
+        [tempView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.equalTo(content.mas_left).with.offset(10);
+            make.right.equalTo(content.mas_right).with.offset(-10);
+            make.top.equalTo(msgLabel.mas_bottom).with.offset(0);
+            make.height.equalTo(tempView.mas_width);
+        }];
+        shotView = tempView;
+        
         UIImageView * qrImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
         qrImage.contentMode = UIViewContentModeScaleAspectFit;
         qrImage.image = [self creatQRImage];
-        [self addSubview:qrImage];
+        [tempView addSubview:qrImage];
         [qrImage mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(content.mas_left).with.offset(10);
             make.right.equalTo(content.mas_right).with.offset(-10);
@@ -80,6 +94,16 @@
             make.height.equalTo(qrImage.mas_width);
         }];
         tempQRImg = qrImage.image;
+        
+        UIImageView * iconImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"LIULIU"]];
+        iconImage.contentMode = UIViewContentModeScaleAspectFit;
+        [qrImage addSubview:iconImage];
+        [iconImage mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.center.equalTo(qrImage);
+            make.height.mas_equalTo(@40);
+            make.height.equalTo(iconImage.mas_width);
+        }];
+
         
         UIButton * shareBtn = [[UIButton alloc]init];
         shareBtn.backgroundColor = WHITECOLOR;
@@ -151,7 +175,7 @@
 
 
 -(void)downloadBtnAction{
-    [self loadImageFinished:tempQRImg];
+    [self loadImageFinished:[self makeImageWithView:shotView withSize:CGSizeMake(220, 220)]];
 }
 
 - (void)loadImageFinished:(UIImage *)image
@@ -222,6 +246,17 @@
     return [UIImage imageWithCGImage:scaledImage];
 }
 
+- (UIImage *)makeImageWithView:(UIView *)view withSize:(CGSize)size
+{
+    
+    // 下面方法，第一个参数表示区域大小。第二个参数表示是否是非透明的。如果需要显示半透明效果，需要传NO，否则传YES。第三个参数就是屏幕密度了，关键就是第三个参数 [UIScreen mainScreen].scale。
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+    
+}
 
 
 - (void)show

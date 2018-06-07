@@ -251,7 +251,7 @@
 -(void)creatImgGroup{
     CGFloat padding = 20;
     CGFloat width = SCREENW/2 - padding*2;
-    CGFloat height = width/0.6;
+    CGFloat height = width*0.75;
     UIScrollView * scrollView = [[UIScrollView alloc]init];
     [self.view addSubview:scrollView];
     scrollView.sd_layout
@@ -269,6 +269,7 @@
         UIImageView * imgView = [[UIImageView alloc]init];
         [imgView sd_setImageWithURL:[NSURL URLWithString:str]];
         [scrollView addSubview:imgView];
+//        imgView.contentMode = UIViewContentModeScaleAspectFill;
         imgView.sd_layout
         .topSpaceToView(scrollView,padding + (height+padding)*row)
         .leftSpaceToView(scrollView, padding + cross*SCREENW/2)

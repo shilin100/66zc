@@ -929,13 +929,13 @@
         case 8:
             [self myBreakRules];
             break;
+//        case 9:
+//            [self contactUs];
+//            break;
+//        case 10:
+//            [self help];
+//            break;
         case 9:
-            [self contactUs];
-            break;
-        case 10:
-            [self help];
-            break;
-        case 11:
             [self setting];
             break;
             
@@ -971,9 +971,9 @@
         case leftViewSubTypeContact:
             [self contactUs];
             break;
-        case leftViewSubTypeHelp:
-            [self help];
-            break;
+//        case leftViewSubTypeHelp:
+//            [self help];
+//            break;
         case leftViewSubTypeSetting:
             [self setting];
             break;
@@ -1103,8 +1103,11 @@
     
 }
 - (void) myWallet {
-    
-    [self verifyUserInfo];
+    [self coverTap:nil];
+    XFMyWalletController *vc = [[XFMyWalletController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+
+//    [self verifyUserInfo];
 }
 
 - (void)didUpdateUserHeading:(BMKUserLocation *)userLocation

@@ -42,6 +42,7 @@
             make.size.mas_equalTo(CGSizeMake(40, 40));
             make.centerX.equalTo(content);
         }];
+        self.coinImg = coinImg;
         
         UILabel * creditsLabel  = [UILabel new];
         creditsLabel.text = @"";
@@ -79,6 +80,20 @@
 {
     UIWindow *rootWindow = [UIApplication sharedApplication].keyWindow;
     [rootWindow addSubview:self];
+}
+
+-(void)showWithoutImg{
+    [self.coinImg mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(@0);
+    }];
+    [self.titleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(@60);
+    }];
+    self.titleLabel.numberOfLines = 0;
+    
+    UIWindow *rootWindow = [UIApplication sharedApplication].keyWindow;
+    [rootWindow addSubview:self];
+
 }
 
 -(void)enterBtnAction{

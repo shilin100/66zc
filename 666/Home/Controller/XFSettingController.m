@@ -11,8 +11,12 @@
 #import "XFLoginNaviController.h"
 #import "XFForgetPWDController.h"
 #import "XFSettingCell.h"
+#import "XFHelpController.h"
 
-@interface XFSettingController () <UITableViewDelegate,UITableViewDataSource>
+
+@interface XFSettingController () <UITableViewDelegate,UITableViewDataSource>{
+    NSArray * titlesArr;
+}
 @property (nonatomic, weak) UITableView *tableView;
 
 @property (nonatomic,copy) NSString *trackViewUrl1;
@@ -28,6 +32,8 @@
     
     self.navigationItem.title = @"设置";
     
+    titlesArr = @[@"当前版本",@"用户指南",@"重置密码"];
+    
     UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -38,12 +44,12 @@
     self.tableView = tableView;
     
     UIButton *logoutBtn = [[UIButton alloc] init];
-    logoutBtn.hidden=YES;
+//    logoutBtn.hidden=YES;
     logoutBtn.backgroundColor = MAINGREEN;
-    [logoutBtn setTitle:@"注销账号" forState:UIControlStateNormal];
+    [logoutBtn setTitle:@"退出登陆" forState:UIControlStateNormal];
     [logoutBtn setTitleColor:WHITECOLOR forState:UIControlStateNormal];
     logoutBtn.titleLabel.font = XFont(13);
-    logoutBtn.layer.cornerRadius = 44*SCALE_HEIGHT;
+    logoutBtn.layer.cornerRadius = 22;
     logoutBtn.clipsToBounds = YES;
     [self.view insertSubview:logoutBtn aboveSubview:self.tableView];
     [[logoutBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
@@ -66,9 +72,9 @@
     
     logoutBtn.sd_layout
     .bottomSpaceToView(self.view, 50*SCALE_HEIGHT)
-    .leftSpaceToView(self.view, 50*SCALE_WIDTH)
-    .rightSpaceToView(self.view, 50*SCALE_WIDTH)
-    .heightIs(88*SCALE_HEIGHT);
+    .centerXEqualToView(self.view)
+    .widthIs(200)
+    .heightIs(44);
 }
 - (void) doLogout {
     NSMutableDictionary *params = [XFTool baseParams];
@@ -107,47 +113,66 @@
     
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 2;
+    return titlesArr.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if(indexPath.row==0)
     {
-        static NSString *ID = @"settingCell";
-        XFSettingCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
+        static NSString *SettingCellTypeVersion = @"settingCell";
+        XFSettingCell *cell = [tableView dequeueReusableCellWithIdentifier:SettingCellTypeVersion];
         if (!cell) {
-            cell = [[XFSettingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+            cell = [[XFSettingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SettingCellTypeVersion];
         }
         
-        cell.icon.image = IMAGENAME(@"banbenhao");
-        cell.titleLbl.text = @"当前版本";
+//        cell.icon.image = IMAGENAME(@"banbenhao");
+        cell.titleLbl.text = titlesArr[indexPath.row];
         NSDictionary *dicInfo = [[NSBundle mainBundle] infoDictionary];
         NSString *verStr= [dicInfo objectForKey:@"CFBundleShortVersionString"];
         cell.titleLbl2.text=[NSString stringWithFormat:@"v%@",verStr];
+        
         
         return cell;
     }
     else
     {
-        static NSString *ID = @"settingCellTwo";
-        XFContactUsCell *cellTwo = [tableView dequeueReusableCellWithIdentifier:ID];
+        static NSString *SettingCellTypeDefault = @"settingCellTwo";
+        
+//        XFContactUsCell *cellTwo = [tableView dequeueReusableCellWithIdentifier:SettingCellTypeDefault];
+//        if (!cellTwo) {
+//            cellTwo = [[XFContactUsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+//        }
+
+        
+        UITableViewCell *cellTwo = [tableView dequeueReusableCellWithIdentifier:SettingCellTypeDefault];
         if (!cellTwo) {
-            cellTwo = [[XFContactUsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+            cellTwo = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SettingCellTypeDefault];
         }
         
-        cellTwo.icon.image = IMAGENAME(@"mima");
-        cellTwo.titleLbl.text = @"重置密码";
-        
+//        cellTwo.icon.image = IMAGENAME(@"mima");
+        cellTwo.textLabel.text = titlesArr[indexPath.row];
+        cellTwo.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cellTwo.textLabel.font = XFont(12.5);
+        cellTwo.textLabel.textColor = HEXCOLOR(@"333333");
+
         return cellTwo;
     }
     
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
     if (indexPath.row == 0) {
 //        [self checkVersion];
     }
-    
     if(indexPath.row==1)
+    {
+        XFHelpController *vc = [[XFHelpController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+
+    if(indexPath.row==2)
     {
         XFForgetPWDController *vc = [UIStoryboard storyboardWithName:@"XFHomeForgetController" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:vc animated:YES];

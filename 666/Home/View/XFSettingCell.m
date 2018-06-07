@@ -46,12 +46,14 @@
 //            make.width.mas_equalTo(@(55*SCALE_WIDTH));
 //        }];
         
-        [icon mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.equalTo(self.contentView.mas_top);
-            make.left.equalTo(self.contentView.mas_left);
-            make.bottom.equalTo(self.contentView.mas_bottom);
-            make.width.mas_equalTo(@(78*SCALE_WIDTH));
-        }];
+        
+        
+//        [icon mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.top.equalTo(self.contentView.mas_top);
+//            make.left.equalTo(self.contentView.mas_left);
+//            make.bottom.equalTo(self.contentView.mas_bottom);
+//            make.width.mas_equalTo(@(78*SCALE_WIDTH));
+//        }];
         
         [titleLbl2 mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentView.mas_top);
@@ -62,7 +64,7 @@
         
         [titleLbl mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(self.contentView.mas_top);
-            make.left.equalTo(icon.mas_right);
+            make.left.equalTo(self.contentView.mas_left).with.offset(16);
             make.bottom.equalTo(self.contentView.mas_bottom);
             make.right.equalTo(titleLbl2.mas_left);
         }];

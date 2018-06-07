@@ -91,21 +91,24 @@
         
         
         UIButton *logoutBtn = [[UIButton alloc] init];
-        logoutBtn.tag = leftViewSubTypeLogout;
+        logoutBtn.tag = leftViewSubTypeContact;
         logoutBtn.titleLabel.font = XFont(13);
-        [logoutBtn setTitle:@"退出" forState:UIControlStateNormal];
+        [logoutBtn setTitle:@"联系我们" forState:UIControlStateNormal];
         [logoutBtn setTitleColor:MAINGREEN forState:UIControlStateNormal];
-        [logoutBtn setBackgroundColor:HEXCOLOR(@"ccf3e6")];
-        logoutBtn.layer.cornerRadius = 34*SCALE_HEIGHT;
-        logoutBtn.clipsToBounds = YES;
+        [logoutBtn setImage:[UIImage imageNamed:@"connectus_icon"] forState:UIControlStateNormal];
+        [logoutBtn setBackgroundColor:WHITECOLOR];
+//        [logoutBtn setBackgroundColor:HEXCOLOR(@"ccf3e6")];
+//        logoutBtn.layer.cornerRadius = 34*SCALE_HEIGHT;
+//        logoutBtn.clipsToBounds = YES;
         [logoutBtn addTarget:self action:@selector(didClickSub:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:logoutBtn];
         self.logoutBtn = logoutBtn;
         
         [logoutBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.bottom.equalTo(self.mas_bottom).offset(-60*SCALE_HEIGHT);
+            make.bottom.equalTo(self.mas_bottom);//.offset(-60*SCALE_HEIGHT);
             make.height.mas_equalTo(@(68*SCALE_HEIGHT));
-            make.width.mas_equalTo(@(220*SCALE_WIDTH));
+//            make.width.mas_equalTo(@(220*SCALE_WIDTH));
+            make.left.mas_equalTo(@0);
             make.centerX.equalTo(self.mas_centerX);
         }];
         
@@ -191,7 +194,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 12;
+    return 12-2;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -204,8 +207,10 @@
         cell=[[XFHomeLeftViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cell_id];
     }
     
-    NSArray *icons = @[@"dingdan",@"qianbao",@"youhuiquan",@"huodong1",@"fenxiao",@"xueche",@"peilian1",@"songche1",@"weizhang",@"lianxiwomen",@"bangzhu",@"shezhi"];
-    NSArray *titles = @[@"我的订单",@"我的钱包",@"我的卡券",@"活动中心",@"我的分销",@"我要学车",@"我要陪练",@"送车服务",@"我的违章",@"联系我们",@"帮助",@"设置"];
+//    ,@"lianxiwomen",@"bangzhu"
+    NSArray *icons = @[@"dingdan",@"qianbao",@"youhuiquan",@"huodong1",@"fenxiao",@"xueche",@"peilian1",@"songche1",@"weizhang",@"shezhi"];
+//    @"联系我们",@"帮助"
+    NSArray *titles = @[@"我的订单",@"我的钱包",@"我的卡券",@"活动中心",@"我的分销",@"我要学车",@"我要陪练",@"送车服务",@"我的违章",@"设置"];
    
     cell.icon.image = IMAGENAME(icons[indexPath.row]);
     cell.titleLbl.text = titles[indexPath.row];

@@ -10,7 +10,9 @@
 
 @interface XFWarnView : UIView
 @property(nonatomic,weak)UILabel * titleLabel;
+@property(nonatomic,weak)UIImageView * coinImg;
 
 -(void)show;
+-(void)showWithoutImg;
 
 @end

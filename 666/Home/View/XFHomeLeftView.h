@@ -16,10 +16,11 @@ typedef enum : NSUInteger {
     leftViewSubTypeSales,
     leftViewSubTypeStudy,
     leftViewSubTypeBreakRules,
-    leftViewSubTypeContact,
-    leftViewSubTypeHelp,
+//    leftViewSubTypeHelp,
     leftViewSubTypeSetting,
     leftViewSubTypeLogout,
+    leftViewSubTypeContact,
+
 } leftViewSubType;
 
 @class XFHomeLeftView;

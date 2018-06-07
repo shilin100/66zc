@@ -8,6 +8,8 @@
 
 #import "XFMySaleMoneyGetController.h"
 #import "XFMySaleMoneyGetView.h"
+#import "XFWarnView.h"
+
 
 @interface XFMySaleMoneyGetController ()<XFMySaleMoneyGetViewDelegate>
 
@@ -144,7 +146,11 @@
         }
         else
         {
-            [SVProgressHUD showErrorWithStatus:responseObject[@"info"]];
+            XFWarnView * view = [XFWarnView new];
+            view.titleLabel.text = responseObject[@"info"];
+            [view showWithoutImg];
+
+//            [SVProgressHUD showErrorWithStatus:responseObject[@"info"]];
         }
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {

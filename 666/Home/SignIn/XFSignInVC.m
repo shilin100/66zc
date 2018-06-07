@@ -176,7 +176,7 @@
     .rightSpaceToView(self.view, 25)
     .heightIs(100);
 
-    UIImageView * drawGreenBg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"draw_green_bg"]];
+    UIImageView * drawGreenBg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"draw_bg"]];
     drawGreenBg.contentMode = UIViewContentModeScaleToFill;
     [drawBg addSubview:drawGreenBg];
     
@@ -187,9 +187,9 @@
     .bottomSpaceToView(drawBg, 10);
 
     UILabel *resultLabel = [[UILabel alloc] init];
-    resultLabel.font = [UIFont fontWithName:@"FZSEJW--GB1-0" size:14.f];
+    resultLabel.font = [UIFont boldSystemFontOfSize:14];
     resultLabel.textAlignment = NSTextAlignmentCenter;
-    resultLabel.textColor = YELLOWCOLOR;
+    resultLabel.textColor = HEXCOLOR(@"#b00e16");
     resultLabel.numberOfLines = 2;
     [drawBg addSubview:resultLabel];
     resultLabel.sd_layout
@@ -201,7 +201,7 @@
 //    resultLabel.text = @"恭喜你\r\n你抽到积分+1";
     
     MDScratchImageView *scratchImageView = [[MDScratchImageView alloc] initWithFrame:drawGreenBg.frame];
-    UIImage *bluredImage = [UIImage imageNamed:@"icon_temp"];
+    UIImage *bluredImage = [UIImage imageNamed:@"draw_cover"];
     scratchImageView.image = bluredImage;
     scratchImageView.delegate = self;
     [drawBg addSubview:scratchImageView];
@@ -215,9 +215,9 @@
     drawBg.userInteractionEnabled = YES;
     
     UILabel *disableDrawLabel = [[UILabel alloc] init];
-    disableDrawLabel.font = [UIFont fontWithName:@"FZSEJW--GB1-0" size:14.f];
+    disableDrawLabel.font = [UIFont boldSystemFontOfSize:14];
     disableDrawLabel.textAlignment = NSTextAlignmentCenter;
-    disableDrawLabel.textColor = YELLOWCOLOR;
+    disableDrawLabel.textColor = HEXCOLOR(@"#034f12");
     disableDrawLabel.numberOfLines = 2;
     [drawBg addSubview:disableDrawLabel];
     disableDrawLabel.sd_layout
@@ -294,7 +294,7 @@
 //    [self requestToDraw];
     
     self.isDraw = NO;
-    UIImage *bluredImage = [UIImage imageNamed:@"icon_temp"];
+    UIImage *bluredImage = [UIImage imageNamed:@"draw_cover"];
     self.scratchImageView.image = bluredImage;
     self.scratchImageView.alpha = 1;
     self.scratchImageView.userInteractionEnabled = YES;
