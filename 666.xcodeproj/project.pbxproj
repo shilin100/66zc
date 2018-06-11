@@ -236,6 +236,7 @@
 		9D25507A20A6DFD80007175E /* fzse.OTF in Resources */ = {isa = PBXBuildFile; fileRef = 9D25507920A6DFD70007175E /* fzse.OTF */; };
 		9D25508220A6F7190007175E /* MDScratchImageView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9D25507E20A6F7170007175E /* MDScratchImageView.mm */; };
 		9D25508320A6F7190007175E /* MDMatrix.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D25508120A6F7190007175E /* MDMatrix.m */; };
+		9D32240A20CE5DCB001ADF13 /* XFUserInCarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D32240920CE5DCB001ADF13 /* XFUserInCarView.m */; };
 		9D7D66B920A963FC00A3F92A /* XFPrizeListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D66B820A963FC00A3F92A /* XFPrizeListVC.m */; };
 		9D7D66BC20A96CBF00A3F92A /* XFPrizeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D66BB20A96CBF00A3F92A /* XFPrizeListModel.m */; };
 		9D7D66BF20A96E0900A3F92A /* XFPrizeListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D7D66BE20A96E0900A3F92A /* XFPrizeListCell.m */; };
@@ -753,6 +754,8 @@
 		9D25507F20A6F7180007175E /* MDMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDMatrix.h; sourceTree = "<group>"; };
 		9D25508020A6F7180007175E /* MDScratchImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MDScratchImageView.h; sourceTree = "<group>"; };
 		9D25508120A6F7190007175E /* MDMatrix.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MDMatrix.m; sourceTree = "<group>"; };
+		9D32240820CE5DCB001ADF13 /* XFUserInCarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFUserInCarView.h; sourceTree = "<group>"; };
+		9D32240920CE5DCB001ADF13 /* XFUserInCarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFUserInCarView.m; sourceTree = "<group>"; };
 		9D7D66B720A963FC00A3F92A /* XFPrizeListVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFPrizeListVC.h; sourceTree = "<group>"; };
 		9D7D66B820A963FC00A3F92A /* XFPrizeListVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFPrizeListVC.m; sourceTree = "<group>"; };
 		9D7D66BA20A96CBF00A3F92A /* XFPrizeListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFPrizeListModel.h; sourceTree = "<group>"; };
@@ -861,7 +864,7 @@
 				7B564C641FDC08040089BC3C /* Assets.xcassets */,
 				02D741181FA45A8E0046E070 /* alipay */,
 				024DEC481F7E22D7008A4D80 /* Login&Register */,
-				02058E671F7CED4100E994C3 /* Home */,
+				9D32240720CE1FF9001ADF13 /* Sections */,
 				02058E661F7CED4100E994C3 /* Category */,
 				02058E681F7CED4100E994C3 /* Libs */,
 				02058E691F7CED4100E994C3 /* Main */,
@@ -923,9 +926,6 @@
 				02A18EB71F7F64EE00CE9490 /* Model */,
 				02A18EB81F7F64EE00CE9490 /* Other */,
 				02A18EB91F7F64EE00CE9490 /* View */,
-				9D1BEE2420930AF300D84E54 /* GuildServicePoint */,
-				9D2550162099A4000007175E /* DriveApply */,
-				9D25504F20A535D00007175E /* SignIn */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1339,6 +1339,8 @@
 				9D1B87DD20B00C7900115E9F /* XFCustomAnnotationView.m */,
 				9D1613F420C1228700CC58B5 /* XFQRCodePopView.h */,
 				9D1613F520C1228700CC58B5 /* XFQRCodePopView.m */,
+				9D32240820CE5DCB001ADF13 /* XFUserInCarView.h */,
+				9D32240920CE5DCB001ADF13 /* XFUserInCarView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1640,6 +1642,17 @@
 				9D25507E20A6F7170007175E /* MDScratchImageView.mm */,
 			);
 			path = MDScratchImageView;
+			sourceTree = "<group>";
+		};
+		9D32240720CE1FF9001ADF13 /* Sections */ = {
+			isa = PBXGroup;
+			children = (
+				02058E671F7CED4100E994C3 /* Home */,
+				9D1BEE2420930AF300D84E54 /* GuildServicePoint */,
+				9D2550162099A4000007175E /* DriveApply */,
+				9D25504F20A535D00007175E /* SignIn */,
+			);
+			path = Sections;
 			sourceTree = "<group>";
 		};
 		9D7D66B620A963C400A3F92A /* PirzeList */ = {
@@ -1978,6 +1991,7 @@
 				7B12EF3F1FC93D6C0047C9DB /* XFMyBreakRulesDetailView.m in Sources */,
 				9D13DA5020917A760057DD20 /* XFCarTypeModel.m in Sources */,
 				7B4A16071FC3C99F003927DE /* XFSelectHCPointModel.m in Sources */,
+				9D32240A20CE5DCB001ADF13 /* XFUserInCarView.m in Sources */,
 				7BD6F1FB1FC3FD9B00778D71 /* XFSelectHCPointTableViewCell.m in Sources */,
 				02A18EC31F7F657800CE9490 /* XFHomeController.mm in Sources */,
 				9D7D66BC20A96CBF00A3F92A /* XFPrizeListModel.m in Sources */,

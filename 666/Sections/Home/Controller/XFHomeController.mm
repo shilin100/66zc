@@ -61,6 +61,9 @@
 #import "XFDriveApplyVC.h"
 #import "XFCarStateView.h"
 #import "XFCustomAnnotationView.h"
+#import "XFUserInCarView.h"
+
+
 
 @interface XFHomeController () <XFHomeLeftViewDelegate,BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,BMKRouteSearchDelegate,UIGestureRecognizerDelegate,XFHomeUseCarInfoViewDelegate,XFSelectHCPointViewPassValueDelegate,VierticalScrollViewDelegate>
 
@@ -125,9 +128,19 @@
 @property (nonatomic, copy)  NSString  *localVersion;
 @property (nonatomic,copy) NSString *releaseNotesStr;
 
+@property (nonatomic,weak) XFUserInCarView * userInCarView;
+
+
+
+
 @end
 
-@implementation XFHomeController
+@implementation XFHomeController{
+    NSTimer * usingCarTimer;
+}
+
+
+
 -(NSMutableArray<XFCarModel *> *)carModels{
     if (!_carModels) {
         _carModels = [NSMutableArray array];
@@ -249,7 +262,7 @@
                 [NSKeyedArchiver archiveRootObject:[XFLoginInfoModel mj_objectWithKeyValues:responseObject] toFile:LoginModel_Doc_path];
                 [USERDEFAULT setBool:YES forKey:@"isLogin"];
                 
-                [self getCarData];
+//                [self getCarData];
             
             }else{
                 
@@ -880,18 +893,36 @@
 }
 - (void) setupAnnotations:(NSMutableArray *)array{
     NSMutableArray *annos = [NSMutableArray array];
-
+    
+    BOOL isUsingCar = NO;
+    
     for (XFCarModel *model in array) {
         XFBMKPointAnnotation *anno = [[XFBMKPointAnnotation alloc] init];
         anno.carModel = model;
         anno.title = @"";
         [annos addObject:anno];
+        if (model.status != 0 && model.userstatus==2) {
+            isUsingCar = YES;
+        }
+        
     }
     XFBMKPointAnnotation *anno = [[XFBMKPointAnnotation alloc] init];
     [annos insertObject:anno atIndex:0];
     
     [self.mapView removeAnnotations:self.mapView.annotations];
     [self.mapView addAnnotations:annos];
+    
+    [usingCarTimer invalidate];
+    usingCarTimer = nil;
+    if (isUsingCar) {
+        usingCarTimer = [NSTimer scheduledTimerWithTimeInterval:60.0 block:^(NSTimer * _Nonnull timer) {
+            [self requestUseInCar];
+        } repeats:YES];
+
+    }else{
+        [self.userInCarView removeFromSuperview];
+        self.userInCarView = nil;
+    }
     
 }
 
@@ -1161,6 +1192,7 @@
     }else{
         if (model.userstatus==2) {
             annotationView.customImg.image = IMAGENAME(@"min_marker_using_car");
+            [self requestUseInCar];
         }else{
             annotationView.customImg.image = IMAGENAME(@"min_marker_maintain_car");
         }
@@ -1620,6 +1652,47 @@
     }];
 }
 
+
+-(void)requestUseInCar{
+        NSMutableDictionary *params = [XFTool getBaseRequestParams];
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    [manager POST:[NSString stringWithFormat:@"%@/car/useIncar",BASE_URL] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        [SVProgressHUD dismiss];
+        NSLog(@"success:%@",responseObject);
+        if ([responseObject[@"status"] intValue] == 1) {
+            if (!_userInCarView) {
+                XFUserInCarView * view = [[XFUserInCarView alloc]init];
+                [self.view addSubview:view];
+                [view mas_updateConstraints:^(MASConstraintMaker *make) {
+                    make.size.mas_equalTo(CGSizeMake(SCREENW, 63));
+                    make.top.mas_equalTo(@0);
+                    make.left.mas_equalTo(@0);
+                }];
+                
+                _userInCarView = view;
+            }
+            
+            NSDictionary * dic = responseObject[@"data"];
+            
+            double time = [dic doubleValueForKey:@"start_time" default:0.0];
+            
+            [_userInCarView setUseTime:time Distance:responseObject[@"data"][@"distance"] Cost:responseObject[@"data"][@"pay_money"]];
+            
+        }else{
+            
+            [SVProgressHUD showErrorWithStatus:responseObject[@"info"]];
+            
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        [SVProgressHUD dismiss];
+        NSLog(@"error:%@",error);
+        [SVProgressHUD showErrorWithStatus:ServerError];
+    }];
+
+}
 
 #pragma mark ----  XFHomeUseCarInfoView delegate
 

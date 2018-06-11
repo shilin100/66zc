@@ -33,8 +33,6 @@
     self.navigationItem.title = @"服务点周边";
     [self setupUI];
     [self requestData];
-    
-    
 }
 
 -(void)setupUI{

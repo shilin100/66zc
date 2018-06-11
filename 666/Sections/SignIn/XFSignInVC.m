@@ -201,7 +201,7 @@
 //    resultLabel.text = @"恭喜你\r\n你抽到积分+1";
     
     MDScratchImageView *scratchImageView = [[MDScratchImageView alloc] initWithFrame:drawGreenBg.frame];
-    UIImage *bluredImage = [UIImage imageNamed:@"draw_cover"];
+    UIImage *bluredImage = [UIImage imageNamed:@"start_draw"];
     scratchImageView.image = bluredImage;
     scratchImageView.delegate = self;
     [drawBg addSubview:scratchImageView];
@@ -214,19 +214,19 @@
     .bottomSpaceToView(drawBg, 10);
     drawBg.userInteractionEnabled = YES;
     
-    UILabel *disableDrawLabel = [[UILabel alloc] init];
-    disableDrawLabel.font = [UIFont boldSystemFontOfSize:14];
-    disableDrawLabel.textAlignment = NSTextAlignmentCenter;
-    disableDrawLabel.textColor = HEXCOLOR(@"#034f12");
-    disableDrawLabel.numberOfLines = 2;
-    [drawBg addSubview:disableDrawLabel];
-    disableDrawLabel.sd_layout
-    .centerYEqualToView(drawBg)
-    .leftSpaceToView(drawBg, 0)
-    .rightSpaceToView(drawBg, 0)
-    .heightIs(44);
-    self.disableDrawLabel = disableDrawLabel;
-    disableDrawLabel.text = @"很遗憾\r\n您的签到次数不够";
+//    UILabel *disableDrawLabel = [[UILabel alloc] init];
+//    disableDrawLabel.font = [UIFont boldSystemFontOfSize:14];
+//    disableDrawLabel.textAlignment = NSTextAlignmentCenter;
+//    disableDrawLabel.textColor = HEXCOLOR(@"#034f12");
+//    disableDrawLabel.numberOfLines = 2;
+//    [drawBg addSubview:disableDrawLabel];
+//    disableDrawLabel.sd_layout
+//    .centerYEqualToView(drawBg)
+//    .leftSpaceToView(drawBg, 0)
+//    .rightSpaceToView(drawBg, 0)
+//    .heightIs(44);
+//    self.disableDrawLabel = disableDrawLabel;
+//    disableDrawLabel.text = @"很遗憾\r\n您的签到次数不够";
 
     
     UIButton * myCardBagBtn = [[UIButton alloc]init];
@@ -433,9 +433,11 @@
     self.signInCountLabel.attributedText = attributeString;
     self.signCountView.signtimes = (int)model.signtimes.integerValue;
     if (model.scrapnumber != 0) {
-        self.disableDrawLabel.text = @"刮开涂层百分百赢大奖";
+//        self.disableDrawLabel.text = @"刮开涂层百分百赢大奖";
+        self.scratchImageView.image = [UIImage imageNamed:@"start_draw"];
         self.scratchImageView.userInteractionEnabled = YES;
     }else{
+        self.scratchImageView.image = [UIImage imageNamed:@"disable_draw"];
         self.scratchImageView.userInteractionEnabled = NO;
     }
     
@@ -460,7 +462,7 @@
 
 - (void)mdScratchImageView:(MDScratchImageView *)scratchImageView didChangeMaskingProgress:(CGFloat)maskingProgress {
     NSLog(@"%s %p progress == %.2f", __PRETTY_FUNCTION__, scratchImageView, maskingProgress);
-    [self.disableDrawLabel removeFromSuperview];
+//    [self.disableDrawLabel removeFromSuperview];
     if (!self.isDraw) {
         [self requestToDraw];
         self.isDraw = YES;

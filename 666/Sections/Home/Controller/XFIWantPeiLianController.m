@@ -259,7 +259,7 @@
 -(void)callClick
 {
     NSLog(@"打电话");
-    NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",@"02785865669"];
+    NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",@"02759762081"];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 }
 
