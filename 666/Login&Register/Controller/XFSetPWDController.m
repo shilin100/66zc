@@ -81,7 +81,7 @@
             [params setObject:self.inviteCode forKey:@"r_id"];
         }
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        [manager POST:[NSString stringWithFormat:@"%@%@",BASE_URL,@"/Login/Register?"] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        [manager POST:[NSString stringWithFormat:@"%@%@",BASE_URL,@"/Index/Register?"] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
             /*

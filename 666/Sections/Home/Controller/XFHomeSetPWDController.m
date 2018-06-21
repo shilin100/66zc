@@ -51,7 +51,7 @@
         [params setObject:[[pwd md5String] substringWithRange:NSMakeRange(8, 16)] forKey:@"newpwd"];
         
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        [manager POST:[NSString stringWithFormat:@"%@%@",BASE_URL,@"/Login/Forgetpwd?"] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        [manager POST:[NSString stringWithFormat:@"%@%@",BASE_URL,@"/Index/Forgetpwd?"] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
 

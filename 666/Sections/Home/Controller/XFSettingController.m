@@ -12,6 +12,7 @@
 #import "XFForgetPWDController.h"
 #import "XFSettingCell.h"
 #import "XFHelpController.h"
+#import "XFSuggestViewController.h"
 
 
 @interface XFSettingController () <UITableViewDelegate,UITableViewDataSource>{
@@ -32,14 +33,14 @@
     
     self.navigationItem.title = @"设置";
     
-    titlesArr = @[@"当前版本",@"用户指南",@"重置密码"];
+    titlesArr = @[@"当前版本",@"用户指南",@"意见反馈",@"重置密码",@"清除缓存"];
     
     UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
     tableView.delegate = self;
     tableView.dataSource = self;
     tableView.backgroundColor = HEXCOLOR(@"eeeeee");
     tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    tableView.rowHeight = 88*SCALE_HEIGHT;
+    tableView.rowHeight = 47;
     [self.view addSubview:tableView];
     self.tableView = tableView;
     
@@ -133,20 +134,41 @@
         
         
         return cell;
-    }
-    else
-    {
+    }else if (indexPath.row == 4) {
+        static NSString *SettingCellTypeDefault = @"settingCellCache";
+        
+        UITableViewCell *cellCache = [tableView dequeueReusableCellWithIdentifier:SettingCellTypeDefault];
+        if (!cellCache) {
+            cellCache = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:SettingCellTypeDefault];
+            
+        }
+
+        float tmpSize = [SDImageCache.sharedImageCache getSize];
+        
+        NSString * str = tmpSize/10240 >= 1 ? [NSString stringWithFormat:@"%.1fM",tmpSize/10240] : [NSString stringWithFormat:@"%.1fK",tmpSize];
+        NSLog(@"%@",str);
+        cellCache.selectionStyle = UITableViewCellStyleValue1;
+        cellCache.detailTextLabel.text = str;
+        cellCache.detailTextLabel.font = XFont(12.5);
+        cellCache.detailTextLabel.textColor = GRAYTEXT;
+        
+        cellCache.textLabel.text = titlesArr[indexPath.row];
+        cellCache.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cellCache.textLabel.font = XFont(12.5);
+        cellCache.textLabel.textColor = HEXCOLOR(@"333333");
+
+        return cellCache;
+
+    }else{
+    
         static NSString *SettingCellTypeDefault = @"settingCellTwo";
         
-//        XFContactUsCell *cellTwo = [tableView dequeueReusableCellWithIdentifier:SettingCellTypeDefault];
-//        if (!cellTwo) {
-//            cellTwo = [[XFContactUsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
-//        }
 
         
         UITableViewCell *cellTwo = [tableView dequeueReusableCellWithIdentifier:SettingCellTypeDefault];
         if (!cellTwo) {
             cellTwo = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:SettingCellTypeDefault];
+
         }
         
 //        cellTwo.icon.image = IMAGENAME(@"mima");
@@ -154,7 +176,9 @@
         cellTwo.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cellTwo.textLabel.font = XFont(12.5);
         cellTwo.textLabel.textColor = HEXCOLOR(@"333333");
-
+        
+        
+        
         return cellTwo;
     }
     
@@ -171,13 +195,28 @@
         XFHelpController *vc = [[XFHelpController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }
-
     if(indexPath.row==2)
+    {
+        XFSuggestViewController *vc = [[XFSuggestViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+
+    if(indexPath.row==3)
     {
         XFForgetPWDController *vc = [UIStoryboard storyboardWithName:@"XFHomeForgetController" bundle:nil].instantiateInitialViewController;
         [self.navigationController pushViewController:vc animated:YES];
     }
-    
+    if(indexPath.row==4)
+    {
+        [SVProgressHUD showWithStatus:@"清除中"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(-.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [SDImageCache.sharedImageCache clearDiskOnCompletion:^{
+                [SVProgressHUD showSuccessWithStatus:@"清除成功"];
+                [self.tableView reloadData];
+            }];
+        });
+        
+    }
 }
 
 -(void)checkVersion{

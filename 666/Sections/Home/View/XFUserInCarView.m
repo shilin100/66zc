@@ -156,9 +156,9 @@
     int minute = (timeInt % 3600) / 60;
     int second = timeInt % 60 ;
     
-    if (minute <= 0) {
+    if (minute <= 0 && hour <= 0 && day <= 0) {
         return [NSString stringWithFormat:@"%02d",second];
-    }else if(hour <= 0){
+    }else if(hour <= 0 && day <= 0){
         return [NSString stringWithFormat:@"%02d:%02d",minute,second];
     }else if(day <= 0){
         return [NSString stringWithFormat:@"%02d:%02d:%02d",hour,minute,second];

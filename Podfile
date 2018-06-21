@@ -22,7 +22,10 @@ target '666' do
  pod 'ZWLimitCounter'
  pod 'KVOController'
  pod 'Bugly'
-
+ pod 'JPush'
+ pod 'UICKeyChainStore'
+ 
+ 
  pod 'WechatOpenSDK', '~> 1.7.7'
 
  pod 'UMengUShare/UI’

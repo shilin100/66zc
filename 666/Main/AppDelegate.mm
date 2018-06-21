@@ -19,7 +19,7 @@
 
 #define UMeng_APPKEY @"57f710b567e58edee7004937"//UMeng appkey
 
-@interface AppDelegate ()<WXApiDelegate>
+@interface AppDelegate ()<WXApiDelegate,JPUSHRegisterDelegate>
 @property (nonatomic, strong) Reachability *reach;
 @end
 
@@ -31,6 +31,23 @@
     
     [Bugly startWithAppId:@"70a1c24235"];
 
+    
+    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+    entity.types = JPAuthorizationOptionAlert|JPAuthorizationOptionBadge|JPAuthorizationOptionSound;
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        // 可以添加自定义categories
+        // NSSet<UNNotificationCategory *> *categories for iOS10 or later
+        // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
+    }
+    [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+
+    
+    [JPUSHService setupWithOption:launchOptions appKey:@"28e3b952cdc37e0e5ade677d"
+                          channel:@"0"
+                 apsForProduction:NO
+            advertisingIdentifier:nil];
+
+    
     // 百度地图
     _mapManager = [[BMKMapManager alloc] init];
     BOOL ret = [_mapManager start:@"CHabmpfzjWzUGSagD1GhluhgGTVqRMxx" generalDelegate:nil];
@@ -107,6 +124,57 @@
         NSLog(@"3G/4G/5G");
     }
 }
+
+#pragma mark - JPush
+
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    
+    /// Required - 注册 DeviceToken
+    [JPUSHService registerDeviceToken:deviceToken];
+}
+
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    //Optional
+    NSLog(@"did Fail To Register For Remote Notifications With Error: %@", error);
+}
+
+#pragma mark- JPUSHRegisterDelegate
+
+// iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(NSInteger))completionHandler {
+    // Required
+    NSDictionary * userInfo = notification.request.content.userInfo;
+    if([notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+    }
+    completionHandler(UNNotificationPresentationOptionAlert); // 需要执行这个方法，选择是否提醒用户，有Badge、Sound、Alert三种类型可以选择设置
+}
+
+// iOS 10 Support
+- (void)jpushNotificationCenter:(UNUserNotificationCenter *)center didReceiveNotificationResponse:(UNNotificationResponse *)response withCompletionHandler:(void (^)())completionHandler {
+    // Required
+    NSDictionary * userInfo = response.notification.request.content.userInfo;
+    if([response.notification.request.trigger isKindOfClass:[UNPushNotificationTrigger class]]) {
+        [JPUSHService handleRemoteNotification:userInfo];
+    }
+    completionHandler();  // 系统要求执行这个方法
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    
+    // Required, iOS 7 Support
+    [JPUSHService handleRemoteNotification:userInfo];
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    // Required,For systems with less than or equal to iOS6
+    [JPUSHService handleRemoteNotification:userInfo];
+}
+
 
 #pragma mark - UMeng
 /**配置分享平台*/

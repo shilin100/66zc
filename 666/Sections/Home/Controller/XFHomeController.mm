@@ -246,7 +246,7 @@
         [params setObject:[USERDEFAULT valueForKey:@"account"] forKey:@"name"];
         [params setObject:[[NSString alloc] initWithData:[USERDEFAULT valueForKeyPath:@"MD5PWD"] encoding:NSUTF8StringEncoding] forKey:@"pwd"];
         AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-        [manager POST:[NSString stringWithFormat:@"%@%@",BASE_URL,@"/Login/Login"] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+        [manager POST:[NSString stringWithFormat:@"%@%@",BASE_URL,@"/Index/Login"] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
             
         } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
             if ([responseObject[@"status"] intValue] == 1) {
@@ -1971,9 +1971,9 @@
                 }
 //                overdue_info=1;//活动进行中
 //                overdue_info =0;//活动已过期
-                if (![model.overdue_info isEqualToString:@"0"]) {
-                    [dataArr addObject:model.describe];
-                }
+//                if (![model.overdue_info isEqualToString:@"0"]) {
+//                    [dataArr addObject:model.describe];
+//                }
             }
             
             if (dataArr.count) {

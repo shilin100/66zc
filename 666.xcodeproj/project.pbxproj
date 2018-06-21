@@ -214,6 +214,7 @@
 		7BF7A358201C97D600882328 /* XFSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF7A357201C97D600882328 /* XFSettingCell.m */; };
 		9D13DA5020917A760057DD20 /* XFCarTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D13DA4F20917A760057DD20 /* XFCarTypeModel.m */; };
 		9D1613F620C1228700CC58B5 /* XFQRCodePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1613F520C1228700CC58B5 /* XFQRCodePopView.m */; };
+		9D1AAE7620DA5A97006F5A06 /* XFSuggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1AAE7520DA5A97006F5A06 /* XFSuggestViewController.m */; };
 		9D1B87DE20B00C7900115E9F /* XFCustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B87DD20B00C7900115E9F /* XFCustomAnnotationView.m */; };
 		9D1BEE2720930B3C00D84E54 /* XFGuildServicePointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1BEE2620930B3C00D84E54 /* XFGuildServicePointViewController.m */; };
 		9D1BEE2A2093255F00D84E54 /* JXButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1BEE292093255F00D84E54 /* JXButton.m */; };
@@ -711,6 +712,9 @@
 		9D13DA4F20917A760057DD20 /* XFCarTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFCarTypeModel.m; sourceTree = "<group>"; };
 		9D1613F420C1228700CC58B5 /* XFQRCodePopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFQRCodePopView.h; sourceTree = "<group>"; };
 		9D1613F520C1228700CC58B5 /* XFQRCodePopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFQRCodePopView.m; sourceTree = "<group>"; };
+		9D1AAE6A20DA2C09006F5A06 /* 666.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = 666.entitlements; sourceTree = "<group>"; };
+		9D1AAE7420DA5A97006F5A06 /* XFSuggestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFSuggestViewController.h; sourceTree = "<group>"; };
+		9D1AAE7520DA5A97006F5A06 /* XFSuggestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFSuggestViewController.m; sourceTree = "<group>"; };
 		9D1B87DC20B00C7900115E9F /* XFCustomAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFCustomAnnotationView.h; sourceTree = "<group>"; };
 		9D1B87DD20B00C7900115E9F /* XFCustomAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFCustomAnnotationView.m; sourceTree = "<group>"; };
 		9D1BEE2520930B3C00D84E54 /* XFGuildServicePointViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFGuildServicePointViewController.h; sourceTree = "<group>"; };
@@ -861,6 +865,7 @@
 		02058E321F7CE5E300E994C3 /* 666 */ = {
 			isa = PBXGroup;
 			children = (
+				9D1AAE6A20DA2C09006F5A06 /* 666.entitlements */,
 				7B564C641FDC08040089BC3C /* Assets.xcassets */,
 				02D741181FA45A8E0046E070 /* alipay */,
 				024DEC481F7E22D7008A4D80 /* Login&Register */,
@@ -926,6 +931,7 @@
 				02A18EB71F7F64EE00CE9490 /* Model */,
 				02A18EB81F7F64EE00CE9490 /* Other */,
 				02A18EB91F7F64EE00CE9490 /* View */,
+				9D1AAE6B20DA3B06006F5A06 /* Suggest */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -1537,6 +1543,15 @@
 			path = dateSelect;
 			sourceTree = "<group>";
 		};
+		9D1AAE6B20DA3B06006F5A06 /* Suggest */ = {
+			isa = PBXGroup;
+			children = (
+				9D1AAE7420DA5A97006F5A06 /* XFSuggestViewController.h */,
+				9D1AAE7520DA5A97006F5A06 /* XFSuggestViewController.m */,
+			);
+			path = Suggest;
+			sourceTree = "<group>";
+		};
 		9D1BEE2420930AF300D84E54 /* GuildServicePoint */ = {
 			isa = PBXGroup;
 			children = (
@@ -1801,6 +1816,9 @@
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
+							com.apple.Push = {
+								enabled = 1;
+							};
 						};
 					};
 					02058E481F7CE5E300E994C3 = {
@@ -2004,6 +2022,7 @@
 				9D25504020A041430007175E /* XFApplyOrderModel.m in Sources */,
 				02D741781FA45A8E0046E070 /* RSADataSigner.m in Sources */,
 				02CA2E441F8281FA00C7D3C1 /* XFHomeLeftView.m in Sources */,
+				9D1AAE7620DA5A97006F5A06 /* XFSuggestViewController.m in Sources */,
 				7B3C28951FD1446A0051117B /* XFCar_endModel.m in Sources */,
 				023350B21FA6C35F002E496C /* GlobalConst.m in Sources */,
 				7BA6B7AB1FCD778E00E914A4 /* XFSCFWAlertView.m in Sources */,
@@ -2280,6 +2299,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = 666/666.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -2315,6 +2335,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = 666/666.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -2443,6 +2464,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = 666/666.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;

@@ -10,6 +10,8 @@
 #import <ifaddrs.h>
 #import <arpa/inet.h>
 #import <net/if.h>
+#import "UICKeyChainStore.h"
+
 
 #define IOS_CELLULAR    @"pdp_ip0"
 #define IOS_WIFI        @"en0"
@@ -95,7 +97,17 @@
     // app版本
     [dict setObject:@3 forKey:@"version"];
     // imei
-    [dict setObject:[[[UIDevice currentDevice] identifierForVendor] UUIDString] forKey:@"imei"];
+    
+    UICKeyChainStore *keychain = [UICKeyChainStore keyChainStoreWithService:@"com.66zc"];
+    if ([keychain stringForKey:@"imeiKeyChain"] != nil) {
+        NSString *token = [keychain stringForKey:@"imeiKeyChain"];
+        [dict setObject:token forKey:@"imei"];
+    }else {
+        NSString *token = [[[UIDevice currentDevice] identifierForVendor] UUIDString] ;
+        [dict setObject:token forKey:@"imei"];
+        keychain[@"imeiKeyChain"] = token;
+    }
+    
 //    [dict setObject:[XFTool getNetworkIPAddress ] forKey:@"getIP"];
 
     return dict;
