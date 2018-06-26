@@ -212,9 +212,20 @@
 		7BDB54161FCFEA5A0002D536 /* XFVerifyUserInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BDB54151FCFEA5A0002D536 /* XFVerifyUserInfoModel.m */; };
 		7BF12FEA1FD638A200220173 /* XFFaPiaoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF12FE91FD638A200220173 /* XFFaPiaoModel.m */; };
 		7BF7A358201C97D600882328 /* XFSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BF7A357201C97D600882328 /* XFSettingCell.m */; };
+		9D0069D120E0997700CF9415 /* XFMyRankView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0069D020E0997700CF9415 /* XFMyRankView.m */; };
+		9D0069D420E0C64400CF9415 /* XFSuggestHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0069D320E0C64400CF9415 /* XFSuggestHistoryViewController.m */; };
+		9D0069D720E0D39C00CF9415 /* XFSuggestHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0069D620E0D39C00CF9415 /* XFSuggestHistoryTableViewCell.m */; };
+		9D0069DA20E0D42400CF9415 /* XFSuggestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0069D920E0D42400CF9415 /* XFSuggestModel.m */; };
+		9D0069DE20E21A3800CF9415 /* XFRecommendIconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0069DD20E21A3800CF9415 /* XFRecommendIconViewController.m */; };
+		9D0069E120E22F0400CF9415 /* XFRecommendIconCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0069E020E22F0400CF9415 /* XFRecommendIconCollectionViewCell.m */; };
 		9D13DA5020917A760057DD20 /* XFCarTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D13DA4F20917A760057DD20 /* XFCarTypeModel.m */; };
 		9D1613F620C1228700CC58B5 /* XFQRCodePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1613F520C1228700CC58B5 /* XFQRCodePopView.m */; };
 		9D1AAE7620DA5A97006F5A06 /* XFSuggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1AAE7520DA5A97006F5A06 /* XFSuggestViewController.m */; };
+		9D1AAE7A20DCD3E9006F5A06 /* XFRefundCashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1AAE7920DCD3E9006F5A06 /* XFRefundCashViewController.m */; };
+		9D1AAE7D20DE210A006F5A06 /* XFRefundCashTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1AAE7C20DE210A006F5A06 /* XFRefundCashTableViewCell.m */; };
+		9D1AAE8020DE3F88006F5A06 /* XFDisclaimerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1AAE7F20DE3F88006F5A06 /* XFDisclaimerView.m */; };
+		9D1AAE8520DE47A7006F5A06 /* XFRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1AAE8420DE47A7006F5A06 /* XFRankViewController.m */; };
+		9D1AAE8820DE4AA0006F5A06 /* XFRankTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1AAE8720DE4AA0006F5A06 /* XFRankTableViewCell.m */; };
 		9D1B87DE20B00C7900115E9F /* XFCustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1B87DD20B00C7900115E9F /* XFCustomAnnotationView.m */; };
 		9D1BEE2720930B3C00D84E54 /* XFGuildServicePointViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1BEE2620930B3C00D84E54 /* XFGuildServicePointViewController.m */; };
 		9D1BEE2A2093255F00D84E54 /* JXButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1BEE292093255F00D84E54 /* JXButton.m */; };
@@ -708,6 +719,18 @@
 		7BF7A357201C97D600882328 /* XFSettingCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFSettingCell.m; sourceTree = "<group>"; };
 		973CD1C9CAEC9543D7920766 /* libPods-666.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-666.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AEC6CD10C9BE7C583E993FF /* Pods-666.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-666.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-666/Pods-666.adhoc.xcconfig"; sourceTree = "<group>"; };
+		9D0069CF20E0997700CF9415 /* XFMyRankView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFMyRankView.h; sourceTree = "<group>"; };
+		9D0069D020E0997700CF9415 /* XFMyRankView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFMyRankView.m; sourceTree = "<group>"; };
+		9D0069D220E0C64400CF9415 /* XFSuggestHistoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = XFSuggestHistoryViewController.h; path = 666/Sections/Home/XFSuggestHistoryViewController.h; sourceTree = SOURCE_ROOT; };
+		9D0069D320E0C64400CF9415 /* XFSuggestHistoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = XFSuggestHistoryViewController.m; path = 666/Sections/Home/XFSuggestHistoryViewController.m; sourceTree = SOURCE_ROOT; };
+		9D0069D520E0D39C00CF9415 /* XFSuggestHistoryTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFSuggestHistoryTableViewCell.h; sourceTree = "<group>"; };
+		9D0069D620E0D39C00CF9415 /* XFSuggestHistoryTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFSuggestHistoryTableViewCell.m; sourceTree = "<group>"; };
+		9D0069D820E0D42400CF9415 /* XFSuggestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFSuggestModel.h; sourceTree = "<group>"; };
+		9D0069D920E0D42400CF9415 /* XFSuggestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFSuggestModel.m; sourceTree = "<group>"; };
+		9D0069DC20E21A3800CF9415 /* XFRecommendIconViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFRecommendIconViewController.h; sourceTree = "<group>"; };
+		9D0069DD20E21A3800CF9415 /* XFRecommendIconViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFRecommendIconViewController.m; sourceTree = "<group>"; };
+		9D0069DF20E22F0400CF9415 /* XFRecommendIconCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFRecommendIconCollectionViewCell.h; sourceTree = "<group>"; };
+		9D0069E020E22F0400CF9415 /* XFRecommendIconCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFRecommendIconCollectionViewCell.m; sourceTree = "<group>"; };
 		9D13DA4E20917A760057DD20 /* XFCarTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFCarTypeModel.h; sourceTree = "<group>"; };
 		9D13DA4F20917A760057DD20 /* XFCarTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFCarTypeModel.m; sourceTree = "<group>"; };
 		9D1613F420C1228700CC58B5 /* XFQRCodePopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFQRCodePopView.h; sourceTree = "<group>"; };
@@ -715,6 +738,16 @@
 		9D1AAE6A20DA2C09006F5A06 /* 666.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = 666.entitlements; sourceTree = "<group>"; };
 		9D1AAE7420DA5A97006F5A06 /* XFSuggestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFSuggestViewController.h; sourceTree = "<group>"; };
 		9D1AAE7520DA5A97006F5A06 /* XFSuggestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFSuggestViewController.m; sourceTree = "<group>"; };
+		9D1AAE7820DCD3E9006F5A06 /* XFRefundCashViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFRefundCashViewController.h; sourceTree = "<group>"; };
+		9D1AAE7920DCD3E9006F5A06 /* XFRefundCashViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFRefundCashViewController.m; sourceTree = "<group>"; };
+		9D1AAE7B20DE210A006F5A06 /* XFRefundCashTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFRefundCashTableViewCell.h; sourceTree = "<group>"; };
+		9D1AAE7C20DE210A006F5A06 /* XFRefundCashTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFRefundCashTableViewCell.m; sourceTree = "<group>"; };
+		9D1AAE7E20DE3F88006F5A06 /* XFDisclaimerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFDisclaimerView.h; sourceTree = "<group>"; };
+		9D1AAE7F20DE3F88006F5A06 /* XFDisclaimerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFDisclaimerView.m; sourceTree = "<group>"; };
+		9D1AAE8320DE47A7006F5A06 /* XFRankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFRankViewController.h; sourceTree = "<group>"; };
+		9D1AAE8420DE47A7006F5A06 /* XFRankViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFRankViewController.m; sourceTree = "<group>"; };
+		9D1AAE8620DE4AA0006F5A06 /* XFRankTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFRankTableViewCell.h; sourceTree = "<group>"; };
+		9D1AAE8720DE4AA0006F5A06 /* XFRankTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFRankTableViewCell.m; sourceTree = "<group>"; };
 		9D1B87DC20B00C7900115E9F /* XFCustomAnnotationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFCustomAnnotationView.h; sourceTree = "<group>"; };
 		9D1B87DD20B00C7900115E9F /* XFCustomAnnotationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFCustomAnnotationView.m; sourceTree = "<group>"; };
 		9D1BEE2520930B3C00D84E54 /* XFGuildServicePointViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFGuildServicePointViewController.h; sourceTree = "<group>"; };
@@ -931,6 +964,8 @@
 				02A18EB71F7F64EE00CE9490 /* Model */,
 				02A18EB81F7F64EE00CE9490 /* Other */,
 				02A18EB91F7F64EE00CE9490 /* View */,
+				9D1AAE7720DCD3B9006F5A06 /* RefundCash */,
+				9D0069DB20E219F500CF9415 /* RecommendIcon */,
 				9D1AAE6B20DA3B06006F5A06 /* Suggest */,
 			);
 			path = Home;
@@ -1543,13 +1578,64 @@
 			path = dateSelect;
 			sourceTree = "<group>";
 		};
+		9D0069DB20E219F500CF9415 /* RecommendIcon */ = {
+			isa = PBXGroup;
+			children = (
+				9D0069DC20E21A3800CF9415 /* XFRecommendIconViewController.h */,
+				9D0069DD20E21A3800CF9415 /* XFRecommendIconViewController.m */,
+				9D0069DF20E22F0400CF9415 /* XFRecommendIconCollectionViewCell.h */,
+				9D0069E020E22F0400CF9415 /* XFRecommendIconCollectionViewCell.m */,
+			);
+			path = RecommendIcon;
+			sourceTree = "<group>";
+		};
 		9D1AAE6B20DA3B06006F5A06 /* Suggest */ = {
 			isa = PBXGroup;
 			children = (
 				9D1AAE7420DA5A97006F5A06 /* XFSuggestViewController.h */,
 				9D1AAE7520DA5A97006F5A06 /* XFSuggestViewController.m */,
+				9D0069D220E0C64400CF9415 /* XFSuggestHistoryViewController.h */,
+				9D0069D320E0C64400CF9415 /* XFSuggestHistoryViewController.m */,
+				9D0069D520E0D39C00CF9415 /* XFSuggestHistoryTableViewCell.h */,
+				9D0069D620E0D39C00CF9415 /* XFSuggestHistoryTableViewCell.m */,
+				9D0069D820E0D42400CF9415 /* XFSuggestModel.h */,
+				9D0069D920E0D42400CF9415 /* XFSuggestModel.m */,
 			);
 			path = Suggest;
+			sourceTree = "<group>";
+		};
+		9D1AAE7720DCD3B9006F5A06 /* RefundCash */ = {
+			isa = PBXGroup;
+			children = (
+				9D1AAE7820DCD3E9006F5A06 /* XFRefundCashViewController.h */,
+				9D1AAE7920DCD3E9006F5A06 /* XFRefundCashViewController.m */,
+				9D1AAE7B20DE210A006F5A06 /* XFRefundCashTableViewCell.h */,
+				9D1AAE7C20DE210A006F5A06 /* XFRefundCashTableViewCell.m */,
+				9D1AAE7E20DE3F88006F5A06 /* XFDisclaimerView.h */,
+				9D1AAE7F20DE3F88006F5A06 /* XFDisclaimerView.m */,
+			);
+			path = RefundCash;
+			sourceTree = "<group>";
+		};
+		9D1AAE8120DE476B006F5A06 /* PersonCenter */ = {
+			isa = PBXGroup;
+			children = (
+				9D1AAE8220DE4780006F5A06 /* Rank */,
+			);
+			path = PersonCenter;
+			sourceTree = "<group>";
+		};
+		9D1AAE8220DE4780006F5A06 /* Rank */ = {
+			isa = PBXGroup;
+			children = (
+				9D1AAE8320DE47A7006F5A06 /* XFRankViewController.h */,
+				9D1AAE8420DE47A7006F5A06 /* XFRankViewController.m */,
+				9D1AAE8620DE4AA0006F5A06 /* XFRankTableViewCell.h */,
+				9D1AAE8720DE4AA0006F5A06 /* XFRankTableViewCell.m */,
+				9D0069CF20E0997700CF9415 /* XFMyRankView.h */,
+				9D0069D020E0997700CF9415 /* XFMyRankView.m */,
+			);
+			path = Rank;
 			sourceTree = "<group>";
 		};
 		9D1BEE2420930AF300D84E54 /* GuildServicePoint */ = {
@@ -1662,6 +1748,7 @@
 		9D32240720CE1FF9001ADF13 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				9D1AAE8120DE476B006F5A06 /* PersonCenter */,
 				02058E671F7CED4100E994C3 /* Home */,
 				9D1BEE2420930AF300D84E54 /* GuildServicePoint */,
 				9D2550162099A4000007175E /* DriveApply */,
@@ -1966,6 +2053,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D0069DA20E0D42400CF9415 /* XFSuggestModel.m in Sources */,
 				9D25505820A586F30007175E /* XFSignCountView.m in Sources */,
 				02A18E891F7F20AA00CE9490 /* XFSetPWDController.m in Sources */,
 				02CA2E3E1F82385800C7D3C1 /* XFLoginInfoModel.m in Sources */,
@@ -1979,11 +2067,13 @@
 				0297BF961F94861E00886369 /* XFHelpInfoModel.m in Sources */,
 				022A11E51F97251300482E7A /* XFSaleFriendCell.m in Sources */,
 				02A18EC71F7F661F00CE9490 /* XFTool.m in Sources */,
+				9D0069E120E22F0400CF9415 /* XFRecommendIconCollectionViewCell.m in Sources */,
 				02FAE9A61F961D730048900F /* XFScoreDetailController.m in Sources */,
 				7BD6F1F81FC3F62B00778D71 /* XFSelectHCPointView.m in Sources */,
 				02A86EB11FB00E38006CFAF8 /* XFChooseView.m in Sources */,
 				02B2D59F1F9DF20900F221FF /* UILabel+XFExtension.m in Sources */,
 				02733FAA1FA878BA001CB675 /* XFEndCarLoadImageController.m in Sources */,
+				9D0069DE20E21A3800CF9415 /* XFRecommendIconViewController.m in Sources */,
 				0297BF931F947E8100886369 /* XFHelpController.m in Sources */,
 				02058E701F7CED4100E994C3 /* main.m in Sources */,
 				7B9D4A1F1FD52DCA0007E90D /* XFFaPiaoViewCell.m in Sources */,
@@ -1994,6 +2084,7 @@
 				7B298F861FCBB886002E9D21 /* XFGiveCarServiceCell.m in Sources */,
 				022A11DE1F9701AD00482E7A /* XFMySaleMoneyController.m in Sources */,
 				0255857F1F9B7901007061A7 /* XFMyWalletRechargeController.m in Sources */,
+				9D0069D420E0C64400CF9415 /* XFSuggestHistoryViewController.m in Sources */,
 				7BD7AA971FC6BAE2009F32C5 /* XFActiveCenterViewController.m in Sources */,
 				9D2550212099B70A0007175E /* XFDriveApplyTableViewCell.m in Sources */,
 				7B2A5F5A1FE4F8FE0060D956 /* XFAlertViewTwo.m in Sources */,
@@ -2011,6 +2102,7 @@
 				7B4A16071FC3C99F003927DE /* XFSelectHCPointModel.m in Sources */,
 				9D32240A20CE5DCB001ADF13 /* XFUserInCarView.m in Sources */,
 				7BD6F1FB1FC3FD9B00778D71 /* XFSelectHCPointTableViewCell.m in Sources */,
+				9D0069D720E0D39C00CF9415 /* XFSuggestHistoryTableViewCell.m in Sources */,
 				02A18EC31F7F657800CE9490 /* XFHomeController.mm in Sources */,
 				9D7D66BC20A96CBF00A3F92A /* XFPrizeListModel.m in Sources */,
 				02FD55301F8B654100A65D98 /* Foundation+Log.m in Sources */,
@@ -2026,6 +2118,7 @@
 				7B3C28951FD1446A0051117B /* XFCar_endModel.m in Sources */,
 				023350B21FA6C35F002E496C /* GlobalConst.m in Sources */,
 				7BA6B7AB1FCD778E00E914A4 /* XFSCFWAlertView.m in Sources */,
+				9D0069D120E0997700CF9415 /* XFMyRankView.m in Sources */,
 				7B12EF481FC959470047C9DB /* XFBreakRuleDetailModel.m in Sources */,
 				9D7FCD9E20BBEC9400F45F79 /* Reachability.m in Sources */,
 				7B4A16041FC3B564003927DE /* XFSelectHCPointViewController.m in Sources */,
@@ -2039,6 +2132,7 @@
 				023350B51FA6D851002E496C /* XFWXPayReqModel.m in Sources */,
 				02ABDDFA1F9DCF2700F4197F /* XFUserInfoModel.m in Sources */,
 				7BD7AA9D1FC6BE56009F32C5 /* XFActiveCenterCell.m in Sources */,
+				9D1AAE8020DE3F88006F5A06 /* XFDisclaimerView.m in Sources */,
 				02D1E9851F9D80CC0076196D /* XFTobeFixController.m in Sources */,
 				02A18F111F7F82D900CE9490 /* XFWebViewController.m in Sources */,
 				7BD7AA941FC6AAEF009F32C5 /* XFADChooseView.m in Sources */,
@@ -2102,6 +2196,7 @@
 				9DF0BCD320AD8C0900C052AC /* RegularHelperUtil.m in Sources */,
 				02D741771FA45A8E0046E070 /* openssl_wrapper.m in Sources */,
 				0297BF9C1F949BAF00886369 /* XFHomeForgetController.m in Sources */,
+				9D1AAE8520DE47A7006F5A06 /* XFRankViewController.m in Sources */,
 				7B298F951FCC26F5002E9D21 /* XFIWantPeiLianController.m in Sources */,
 				02D7417C1FA45CA00046E070 /* Order.m in Sources */,
 				7B9D4A1C1FD51A630007E90D /* XFFaPiaoView.m in Sources */,
@@ -2109,6 +2204,7 @@
 				7B2CB1791FD7E835002DD8B1 /* XFMemberModel.m in Sources */,
 				7B2A66291FC56AC200B7CA4F /* XFMyWalletDetailModel.m in Sources */,
 				02FAE9971F95FD910048900F /* XFMySaleController.m in Sources */,
+				9D1AAE7A20DCD3E9006F5A06 /* XFRefundCashViewController.m in Sources */,
 				0227C5101FA087A700B1A38D /* XFUseTicketCell.m in Sources */,
 				7BCC2C581FD2A8ED0057D4D7 /* XFMyOrdersDetailController.m in Sources */,
 				7B6063E31FD026EA00AA9B40 /* XFGetCarPriceModel.m in Sources */,
@@ -2124,6 +2220,7 @@
 				9D25508320A6F7190007175E /* MDMatrix.m in Sources */,
 				9D1BEE2720930B3C00D84E54 /* XFGuildServicePointViewController.m in Sources */,
 				0233F85F1FAB120A0078AE28 /* UIControl+XF.m in Sources */,
+				9D1AAE7D20DE210A006F5A06 /* XFRefundCashTableViewCell.m in Sources */,
 				9D2550192099A4490007175E /* XFDriveApplyVC.m in Sources */,
 				024DEC581F7E29FF008A4D80 /* XFDoLoginController.m in Sources */,
 				7B82A76920467DFC00B41ACA /* XFMyInviteListModel.m in Sources */,
@@ -2135,6 +2232,7 @@
 				7B12EF421FC9479A0047C9DB /* XFMyBreakRulesDetailCompletedController.m in Sources */,
 				7B298F921FCBFEF8002E9D21 /* XFGiveCarServiceYCView.m in Sources */,
 				022A11ED1F97307E00482E7A /* XFMySaleTicketController.m in Sources */,
+				9D1AAE8820DE4AA0006F5A06 /* XFRankTableViewCell.m in Sources */,
 				7B2CB1761FD7E2D6002DD8B1 /* XFMyYJDetailModel.m in Sources */,
 				9D25503A20A007F40007175E /* XFCarStateView.m in Sources */,
 				9DF0BCC820ABE49000C052AC /* XFWarnView.m in Sources */,

@@ -23,7 +23,7 @@
     self.icons = @[@"qq",@"lianxidianhua",@"guanwang",@"dizhi",@"youxiang"];
     self.titles = @[@"官方QQ群",@"027-59762081",@"www.66zuche.net",@"武汉洪山区中南民族大学北区3A-14",@"sanyouminsheng@yeah.net"];
     
-    self.navigationItem.title = @"联系我们";
+    self.navigationItem.title = @"联系客服";
     
     [self setupSubs];
 }

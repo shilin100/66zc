@@ -15,6 +15,9 @@
 #import "XFSignInVC.h"
 #import "XFWarnView.h"
 #import "XFQRCodePopView.h"
+#import "XFRankViewController.h"
+#import "XFMySaleTicketController.h"
+
 
 @interface XFMySaleController ()
 @property (weak, nonatomic) IBOutlet UILabel *moneyLbl;
@@ -42,7 +45,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"我的分销";
+    self.navigationItem.title = @"个人中心";
     
     
     UIImage *rightImage = [[UIImage imageNamed:@"qrcode_navigationItem"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -124,6 +127,20 @@
     XFQRCodePopView * pop = [[XFQRCodePopView alloc]initQRCodePopView];
     [pop show];
 }
+
+- (IBAction)rankBtnAction:(id)sender {
+    
+    XFRankViewController * vc = [XFRankViewController new];
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
+
+- (IBAction)myTicketsAction:(id)sender {
+    XFMySaleTicketController * vc = [XFMySaleTicketController new];
+    [self.navigationController pushViewController:vc animated:YES];
+
+}
+
 
 - (IBAction)moneyBtnClick {
     XFMySaleMoneyController *vc = [[XFMySaleMoneyController alloc] init];

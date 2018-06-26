@@ -22,10 +22,12 @@
 @implementation XFTool
 
 
+
+
 /**
  get controller by view
 
- @param currentView
+ param currentView
  @return controller of view
  */
 +(UIViewController *)getCurrentVCWithCurrentView:(UIView *)currentView
@@ -260,6 +262,123 @@
         freeifaddrs(interfaces);
     }
     return [addresses count] ? addresses : nil;
+}
+
+static AFHTTPSessionManager * sharedManager ;
++ (AFHTTPSessionManager *)sharedHTTPSessionManager {
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedManager = [AFHTTPSessionManager manager];
+        sharedManager.requestSerializer.timeoutInterval = 15;
+    });
+    return sharedManager;
+}
+
+#pragma mark -基本的GET 和POST请求
+
+//*************************************基本的GET 和POST请求
+
+
++ (void)GetRequestWithUrlString:(NSString *)urlString withDic:(NSDictionary *)dic Succeed:(Succeed)succeed andFaild:(Failed)falid
+{
+    NSMutableDictionary * params = [XFTool getBaseRequestParams];
+    [params addEntriesFromDictionary:dic];
+    
+    //    MMLog(@"GET请求链接 == %@ ",urlString);
+    AFHTTPSessionManager *manager = [XFTool sharedHTTPSessionManager];
+    [manager.securityPolicy setAllowInvalidCertificates:YES];
+    manager.securityPolicy.validatesDomainName = NO;
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", @"text/json", @"text/javascript",@"text/plan",@"text/plain", nil];
+    [manager GET:urlString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        succeed(responseObject);
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        falid(error);
+    }];
+    
+}
+
+
++ (void)GetRequestWithUrlString:(NSString *)urlString Succeed:(Succeed)succeed andFaild:(Failed)falid
+{
+    
+    //    MMLog(@"GET请求链接 == %@ ",urlString);
+    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    AFHTTPSessionManager *manager = [XFTool sharedHTTPSessionManager];
+    [manager.securityPolicy setAllowInvalidCertificates:YES];
+    manager.securityPolicy.validatesDomainName = NO;
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", @"text/json", @"text/javascript",@"text/plan",@"text/plain", nil];
+    
+    [manager GET:urlString parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        succeed(responseObject);
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        falid(error);
+    }];
+}
+
++ (NSURLSessionDataTask *)PostRequestWithUrlString:(NSString *)urlString withDic:(NSDictionary *)dic Succeed:(Succeed)succeed andFaild:(Failed)falid
+{
+    
+    NSMutableDictionary * params = [XFTool getBaseRequestParams];
+    [params addEntriesFromDictionary:dic];
+
+    //    MMLog(@"POST请求链接 == %@  %@",urlString,dic);
+    AFHTTPSessionManager *manager = [XFTool sharedHTTPSessionManager];
+    [manager.securityPolicy setAllowInvalidCertificates:YES];
+    manager.securityPolicy.validatesDomainName = NO;
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", @"text/json", @"text/javascript",@"text/plan",@"text/plain", nil];
+    NSURLSessionDataTask *urlSessionDataTask = [manager POST:urlString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        succeed(responseObject);
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        falid(error);
+        [SVProgressHUD showErrorWithStatus:ServerError];
+    }];
+    
+    return urlSessionDataTask;
+}
+#pragma mark - 下载文件
++ (NSURLSessionTask *)downloadWithURL:(NSString *)URL
+                              fileDir:(NSString *)fileDir
+                             progress:(Progress)progress
+                              success:(DownloadSucceed)success
+                              failure:(Failed)failure {
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:URL]];
+    AFHTTPSessionManager *sessionManager = [XFTool sharedHTTPSessionManager];
+    __block NSURLSessionDownloadTask *downloadTask = [sessionManager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
+        //下载进度
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            progress ? progress(downloadProgress) : nil;
+        });
+    } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
+        //拼接缓存目录
+        NSString *downloadDir = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:fileDir ? fileDir : @"Download"];
+        //打开文件管理器
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        //创建Download目录
+        [fileManager createDirectoryAtPath:downloadDir withIntermediateDirectories:YES attributes:nil error:nil];
+        //拼接文件路径
+        NSString *filePath = [downloadDir stringByAppendingPathComponent:response.suggestedFilename];
+        //        返回文件位置的URL路径
+        success(filePath);
+        //保存的文件路径
+        return [NSURL fileURLWithPath:filePath];
+        
+        
+    } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
+        
+        if(failure && error) {failure(error) ; return ;};
+        success ? success(filePath.absoluteString /** NSURL->NSString*/) : nil;
+        
+    }];
+    //开始下载
+    [downloadTask resume];
+    // 添加sessionTask到数组
+    
+    return downloadTask;
 }
 
 

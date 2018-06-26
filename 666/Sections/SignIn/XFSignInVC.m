@@ -382,7 +382,7 @@
         NSLog(@"responseObject==%@",responseObject);
         
         if ([responseObject[@"status"] intValue] == 1) {
-            XFUserInfoModel *userModel = [XFUserInfoModel mj_objectWithKeyValues:responseObject];
+            XFUserInfoModel *userModel = [XFUserInfoModel mj_objectWithKeyValues:responseObject[@"data"]];
             [self.icon sd_setImageWithURL:[NSURL URLWithString:userModel.img] placeholderImage:IMAGENAME(@"morentouxiang")];
             self.titleLabel.text = userModel.username != nil ? userModel.username : @"";
         }else{

@@ -9,6 +9,7 @@
 #import "XFUserInfoScroolView.h"
 #import "UILabel+XFExtension.h"
 #import "XFUserInfoModel.h"
+#import "XFRecommendIconViewController.h"
 
 @interface XFUserInfoScroolView() <UIScrollViewDelegate,UITextFieldDelegate>
 /***/
@@ -764,7 +765,7 @@
     // 支付宝
     self.alipayTF.text = userModel.paynumber;
     // 驾照
-    self.carCardTF.hidden = userModel.driver_number.length > 0 ? NO : YES;
+//    self.carCardTF.hidden = userModel.driver_number.length > 0 ? NO : YES;
     self.carCardTF.text = userModel.driver_number;
     if (userModel.car_card.length > 0) {
         [self.carCardImg sd_setImageWithURL:[NSURL URLWithString:userModel.car_card] completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
@@ -773,7 +774,7 @@
         }];
     }
     // 身份证
-    self.cardTF.hidden = userModel.id_card.length > 0 ? NO : YES;
+//    self.cardTF.hidden = userModel.id_card.length > 0 ? NO : YES;
     self.cardTF.text = userModel.id_card;
     NSArray *cardUrls = [userModel.card componentsSeparatedByString:@","];
     if (cardUrls.count == 2) {
@@ -798,11 +799,92 @@
 //    .widthIs(290*SCALE_HEIGHT);
 //    
 //    [self.carCardContent setupAutoHeightWithBottomViewsArray:self.carCardContent.subviews bottomMargin:20*SCALE_HEIGHT];
+    
+    if (userModel.status == 2) {
+        if (userModel.username.length == 0) {
+            
+            [self addNotify:@"(填写有误,请重新提交)" inContent:self.nameTF.superview];
+        }
+        if (userModel.paynumber.length == 0) {
+            
+            [self addNotify:@"(填写有误,请重新提交)" inContent:self.alipayTF.superview];
+        }
+        if (userModel.friend_phone.length == 0) {
+            
+            [self addNotify:@"(填写有误,请重新提交)" inContent:self.friendNumTF.superview];
+        }
+        if (userModel.driver_number.length == 0) {
+            
+            [self addNotify:@"(填写有误,请重新提交)" inContent:self.carCardTF.superview];
+        }
+        if (userModel.id_card.length == 0) {
+            
+            [self addNotify:@"(填写有误,请重新提交)" inContent:self.cardTF.superview];
+        }
+
+        if (userModel.car_card.length == 0) {
+            self.carCardImgTitle.attributedText = nil;
+            self.carCardImgTitle.text = @"上传本人手持驾照图片";
+            
+            UILabel * label = [self getNotifyLabel:@"(照片模糊无法通过审核,请重新提交)" inContent:self.carCardImgTitle.superview];
+            label.sd_layout
+            .centerYEqualToView(self.carCardImgTitle)
+            .rightSpaceToView(self.carCardImgTitle.superview, 5)
+            .heightIs(10)
+            .widthIs(170);
+
+        }
+        
+        if (userModel.card.length == 0) {
+            self.cardImgTitle.attributedText = nil;
+            self.cardImgTitle.text = @"上传手持身份证正反照";
+            
+            UILabel * label = [self getNotifyLabel:@"(照片模糊无法通过审核,请重新提交)" inContent:self.cardImgTitle.superview];
+            label.sd_layout
+            .centerYEqualToView(self.cardImgTitle)
+            .rightSpaceToView(self.cardImgTitle.superview, 5)
+            .heightIs(10)
+            .widthIs(170);
+            
+        }
+
+    }
+
 }
+
+-(void)addNotify:(NSString*)notify inContent:(UIView*)content{
+    UILabel * label = [UILabel new];
+    label.font = XFont(9);
+    label.textColor = HEXCOLOR(@"#F03C3C");
+    label.text = notify;
+    label.textAlignment = NSTextAlignmentRight;
+    [content addSubview:label];
+
+    label.sd_layout
+    .bottomSpaceToView(content, 5)
+    .rightSpaceToView(content, 5)
+    .heightIs(10)
+    .widthIs(100);
+    
+}
+
+-(UILabel*)getNotifyLabel:(NSString*)notify inContent:(UIView*)content{
+    UILabel * label = [UILabel new];
+    label.font = XFont(9);
+    label.textColor = HEXCOLOR(@"#F03C3C");
+    label.text = notify;
+    label.textAlignment = NSTextAlignmentRight;
+    [content addSubview:label];
+    
+    return label;
+}
+
+
+
 -(void)setEnableEdit:(BOOL)enableEdit{
     _enableEdit = enableEdit;
     
-    self.iconBtn.userInteractionEnabled = YES;
+//    self.iconBtn.userInteractionEnabled = enableEdit;
     self.nameTF.userInteractionEnabled = enableEdit;
     self.phoneTF.userInteractionEnabled = enableEdit;
     self.areaBtn.userInteractionEnabled = enableEdit;
@@ -838,16 +920,16 @@
 //        }
 //    }
     
-    if (enableEdit) {
-        self.cardTF.hidden = NO;
-    }else{
-        if (self.cardTF.text.length > 0) {
-            self.cardTF.hidden = NO;
-        }else{
-            self.cardTF.hidden = YES;
-        }
-        
-    }
+//    if (enableEdit) {
+//        self.cardTF.hidden = NO;
+//    }else{
+//        if (self.cardTF.text.length > 0) {
+//            self.cardTF.hidden = NO;
+//        }else{
+//            self.cardTF.hidden = YES;
+//        }
+//
+//    }
     
     self.sexManBtn.hidden = !enableEdit;
     self.sexWomanBtn.hidden = !enableEdit;

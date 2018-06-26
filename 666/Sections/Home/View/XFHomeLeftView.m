@@ -93,7 +93,7 @@
         UIButton *logoutBtn = [[UIButton alloc] init];
         logoutBtn.tag = leftViewSubTypeContact;
         logoutBtn.titleLabel.font = XFont(13);
-        [logoutBtn setTitle:@"联系我们" forState:UIControlStateNormal];
+        [logoutBtn setTitle:@"联系客服" forState:UIControlStateNormal];
         [logoutBtn setTitleColor:MAINGREEN forState:UIControlStateNormal];
         [logoutBtn setImage:[UIImage imageNamed:@"connectus_icon"] forState:UIControlStateNormal];
         [logoutBtn setBackgroundColor:WHITECOLOR];
@@ -194,7 +194,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 12-2;
+    return 12-3;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -207,10 +207,10 @@
         cell=[[XFHomeLeftViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cell_id];
     }
     
-//    ,@"lianxiwomen",@"bangzhu"
-    NSArray *icons = @[@"dingdan",@"qianbao",@"youhuiquan",@"huodong1",@"fenxiao",@"xueche",@"peilian1",@"songche1",@"weizhang",@"shezhi"];
-//    @"联系我们",@"帮助"
-    NSArray *titles = @[@"我的订单",@"我的钱包",@"我的卡券",@"活动中心",@"我的分销",@"我要学车",@"我要陪练",@"送车服务",@"我的违章",@"设置"];
+//    ,@"lianxiwomen",@"bangzhu",@"youhuiquan"
+    NSArray *icons = @[@"dingdan",@"qianbao",@"个人中心",@"消息",@"xueche",@"peilian1",@"songche1",@"weizhang",@"shezhi"];
+//    @"联系我们",@"帮助",@"我的卡券"
+    NSArray *titles = @[@"我的订单",@"我的钱包",@"个人中心",@"消息中心",@"我要学车",@"我要陪练",@"送车服务",@"我的违章",@"设置"];
    
     cell.icon.image = IMAGENAME(icons[indexPath.row]);
     cell.titleLbl.text = titles[indexPath.row];
@@ -256,7 +256,7 @@
         NSLog(@"responseObject==%@",responseObject);
         
         if ([responseObject[@"status"] intValue] == 1) {
-            XFUserInfoModel *userModel = [XFUserInfoModel mj_objectWithKeyValues:responseObject];
+            XFUserInfoModel *userModel = [XFUserInfoModel mj_objectWithKeyValues:responseObject[@"data"]];
             [self.icon sd_setImageWithURL:[NSURL URLWithString:userModel.img] forState:UIControlStateNormal placeholderImage:IMAGENAME(@"morentouxiang")];
             if(userModel.username.length)
             {

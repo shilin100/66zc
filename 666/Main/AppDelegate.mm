@@ -54,6 +54,8 @@
     if (!ret) {
         NSLog(@"启动百度地图失败");
     }
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    IQKeyboardManager.sharedManager.shouldResignOnTouchOutside = YES;
     
     /* 设置友盟appkey */
     [[UMSocialManager defaultManager] setUmSocialAppkey:UMeng_APPKEY];

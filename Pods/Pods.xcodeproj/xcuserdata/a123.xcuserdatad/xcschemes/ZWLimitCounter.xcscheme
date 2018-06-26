@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FED04E721E9CB2DED7288C5A198A9E72"
+               BlueprintIdentifier = "ED121DCC3F208852385F0875A38977C6"
                BlueprintName = "ZWLimitCounter"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libZWLimitCounter.a">

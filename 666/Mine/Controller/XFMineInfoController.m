@@ -13,6 +13,7 @@
 #import "XFUserInfoScroolView.h"
 #import "HZAreaPickerView.h"
 #import "CDZPicker.h"
+#import "XFRecommendIconViewController.h"
 
 @interface XFMineInfoController () <XFUserInfoScroolViewDelegate,HZAreaPickerDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 /**用户*/
@@ -206,16 +207,8 @@
 -(void)getUserInfoState
 {
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    NSMutableDictionary *params = [XFTool baseParams];
-    XFLoginInfoModel *user = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
-    [params setObject:user.uid forKey:@"uid"];
-    [params setObject:user.token forKey:@"token"];
     
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager POST:[NSString stringWithFormat:@"%@%@",BASE_URL,@"/User/code"] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        //        NSLog(@">>%@",responseObject);
+    [XFTool PostRequestWithUrlString:[NSString stringWithFormat:@"%@%@",BASE_URL,@"/User/code"] withDic:nil Succeed:^(NSDictionary *responseObject) {
         [hud hideAnimated:YES afterDelay:0.2];
         
         if ([responseObject[@"status"] intValue] == 1)
@@ -228,10 +221,22 @@
             }
             else
             {
-                self.isSubmit=NO;
+                if ([responseObject[@"user_state"] intValue] == 1) {
+                    [SVProgressHUD showErrorWithStatus:@"您的信息还在审核中,请等待审核后再查看"];
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [self.navigationController popViewControllerAnimated:YES];
+                        return ;
+                    });
+                }
+                
+                if ([responseObject[@"user_state"] intValue] == 3) {
+                    self.isSubmit=YES;
+                }else{
+                    self.isSubmit=NO;
+                }
                 //获取用户信息
                 [self getUserInfo];
-               
+                
             }
             
             self.contenView.enableEdit = self.isSubmit;
@@ -239,57 +244,128 @@
         else{
             
         }
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+
+    } andFaild:^(NSError *error) {
         [hud hideAnimated:YES afterDelay:0.2];
         NSLog(@"error:%@",error);
+
     }];
+    
+//    NSMutableDictionary *params = [XFTool baseParams];
+//    XFLoginInfoModel *user = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
+//    [params setObject:user.uid forKey:@"uid"];
+//    [params setObject:user.token forKey:@"token"];
+//
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    [manager POST:[NSString stringWithFormat:@"%@%@",BASE_URL,@"/User/code"] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+//
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        //        NSLog(@">>%@",responseObject);
+//        [hud hideAnimated:YES afterDelay:0.2];
+//
+//        if ([responseObject[@"status"] intValue] == 1)
+//        {
+//            if([responseObject[@"user_state"] intValue] == 0)
+//            {
+//                // 0：未提交信息1：待审核  2：审核通过
+//                //未提交可以编辑信息
+//                self.isSubmit=YES;
+//            }
+//            else
+//            {
+//                if ([responseObject[@"user_state"] intValue] == 1) {
+//                    [SVProgressHUD showErrorWithStatus:@"您的信息还在审核中,请等待审核后再查看"];
+//                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                        [self.navigationController popViewControllerAnimated:YES];
+//                        return ;
+//                    });
+//                }
+//
+//                if ([responseObject[@"user_state"] intValue] == 3) {
+//                    self.isSubmit=YES;
+//                }else{
+//                    self.isSubmit=NO;
+//                }
+//                //获取用户信息
+//                [self getUserInfo];
+//
+//            }
+//
+//            self.contenView.enableEdit = self.isSubmit;
+//        }
+//        else{
+//
+//        }
+//
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        [hud hideAnimated:YES afterDelay:0.2];
+//        NSLog(@"error:%@",error);
+//    }];
 }
 
 /**获取用户信息*/
 - (void) getUserInfo {
-    NSMutableDictionary *params = [XFTool baseParams];
     
-    XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
-    [params setObject:model.token forKey:@"token"];
-    [params setObject:model.uid forKey:@"uid"];
-    
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    [manager POST:[NSString stringWithFormat:@"%@/User/User",BASE_URL] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-    } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
-        /*
-         {
-         address = "";
-         area = "";
-         "car_card" = "";
-         card = "";
-         friend = "";
-         "friend_phone" = "";
-         id = 202;
-         img = "";
-         info = "";
-         islogin = 0;
-         paynumber = "";
-         phone = 13566665555;
-         sex = "\U5973";
-         status = 1;
-         username = Lee;
-         }
-         */
-        NSLog(@"responseObject===%@",responseObject);
+    [XFTool PostRequestWithUrlString:[NSString stringWithFormat:@"%@/User/User",BASE_URL] withDic:nil Succeed:^(NSDictionary *responseObject) {
         if ([responseObject[@"status"] intValue] == 1) {
             
-            self.userModel = [XFUserInfoModel mj_objectWithKeyValues:responseObject];
+            self.userModel = [XFUserInfoModel mj_objectWithKeyValues:responseObject[@"data"]];
             self.contenView.userModel = self.userModel;
-           
         }else{
             
         }
-        NSLog(@"succ:%@",responseObject);
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+    } andFaild:^(NSError *error) {
         NSLog(@"error:%@",error);
+        
     }];
+
+    
+//    NSMutableDictionary *params = [XFTool baseParams];
+//
+//    XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
+//    [params setObject:model.token forKey:@"token"];
+//    [params setObject:model.uid forKey:@"uid"];
+//
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+//    [manager POST:[NSString stringWithFormat:@"%@/User/User",BASE_URL] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
+//
+//    } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
+//        /*
+//         {
+//         address = "";
+//         area = "";
+//         "car_card" = "";
+//         card = "";
+//         friend = "";
+//         "friend_phone" = "";
+//         id = 202;
+//         img = "";
+//         info = "";
+//         islogin = 0;
+//         paynumber = "";
+//         phone = 13566665555;
+//         sex = "\U5973";
+//         status = 1;
+//         username = Lee;
+//         }
+//         */
+//        NSLog(@"responseObject===%@",responseObject);
+//        if ([responseObject[@"status"] intValue] == 1) {
+//
+//            self.userModel = [XFUserInfoModel mj_objectWithKeyValues:responseObject[@"data"]];
+//            self.contenView.userModel = self.userModel;
+//
+//
+//        }else{
+//
+//        }
+//
+//        NSLog(@"succ:%@",responseObject);
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        NSLog(@"error:%@",error);
+//    }];
 }
 #pragma mark - XFUserInfoScroolViewDelegate
 /**头像点击*/
@@ -311,8 +387,17 @@
         imagePicker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         [self presentViewController:imagePicker animated:YES completion:nil];
     }];
+    
+    UIAlertAction *recommend = [UIAlertAction actionWithTitle:@"选择推荐头像" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        XFRecommendIconViewController * vc = [XFRecommendIconViewController new];
+//        [contentView.iconBtn setBackgroundImage:photos[0] forState:UIControlStateNormal];
+
+        [self.navigationController pushViewController:vc animated:YES];
+    }];
+
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     
+    [alert addAction:recommend];
     [alert addAction:camera];
     [alert addAction:cancel];
     

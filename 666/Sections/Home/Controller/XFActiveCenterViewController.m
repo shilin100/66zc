@@ -43,7 +43,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.navigationItem.title = @"活动中心";
+    self.navigationItem.title = @"消息中心";
     self.view.backgroundColor = GRAYBACKGROUND;
     
     UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(10, 0, SCREENW-20, SCREENH-64)];

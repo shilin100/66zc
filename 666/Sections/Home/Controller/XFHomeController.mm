@@ -890,6 +890,11 @@
         [SVProgressHUD dismiss];
         [SVProgressHUD showErrorWithStatus:ServerError];
     }];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [SVProgressHUD dismiss];
+    });
+    
 }
 - (void) setupAnnotations:(NSMutableArray *)array{
     NSMutableArray *annos = [NSMutableArray array];
@@ -939,25 +944,26 @@
         case 1:
             [self myWallet];
             break;
+//        case 2:
+//            [self myticket];
+//            break;
         case 2:
-            [self myticket];
+            [self myInvite];
             break;
+
         case 3:
             [self activeCenter];
             break;
         case 4:
-            [self myInvite];
-            break;
-        case 5:
             [self myStudy];
             break;
-        case 6:
+        case 5:
             [self peilian];
             break;
-        case 7:
+        case 6:
             [self carService];
             break;
-        case 8:
+        case 7:
             [self myBreakRules];
             break;
 //        case 9:
@@ -966,7 +972,7 @@
 //        case 10:
 //            [self help];
 //            break;
-        case 9:
+        case 8:
             [self setting];
             break;
             

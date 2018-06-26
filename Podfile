@@ -24,7 +24,8 @@ target '666' do
  pod 'Bugly'
  pod 'JPush'
  pod 'UICKeyChainStore'
- 
+ pod 'BEMCheckBox'
+
  
  pod 'WechatOpenSDK', '~> 1.7.7'
 

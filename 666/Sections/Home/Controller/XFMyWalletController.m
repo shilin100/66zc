@@ -12,6 +12,7 @@
 #import "XFMyWalletModel.h"
 #import "XFChooseView.h"
 #import "XFMySaleMoneyGetController.h"
+#import "XFRefundCashViewController.h"
 
 @interface XFMyWalletController ()
 @property (nonatomic, weak) UILabel *cashLbl;
@@ -407,10 +408,16 @@
             [alert showAlertView];
         }
         else{
-            XFMySaleMoneyGetController *vc = [[XFMySaleMoneyGetController alloc] init];
-            vc.isCash = YES;
+//            XFMySaleMoneyGetController *vc = [[XFMySaleMoneyGetController alloc] init];
+//            vc.isCash = YES;
+//            vc.amount = [self.walletModel.money floatValue];
+//            [self.navigationController pushViewController:vc animated:YES];
+            
+            
+            XFRefundCashViewController *vc = [[XFRefundCashViewController alloc] init];
             vc.amount = [self.walletModel.money floatValue];
             [self.navigationController pushViewController:vc animated:YES];
+
         }
     };
     view.bottomBlock = ^{
