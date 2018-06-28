@@ -62,7 +62,7 @@
 #import "XFCarStateView.h"
 #import "XFCustomAnnotationView.h"
 #import "XFUserInCarView.h"
-
+#import "DHGuidePageHUD.h"
 
 
 @interface XFHomeController () <XFHomeLeftViewDelegate,BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,BMKRouteSearchDelegate,UIGestureRecognizerDelegate,XFHomeUseCarInfoViewDelegate,XFSelectHCPointViewPassValueDelegate,VierticalScrollViewDelegate>
@@ -184,6 +184,21 @@
     
     self.view.backgroundColor = WHITECOLOR;
     
+    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"ishowGuild"];
+
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ishowGuild"]) {
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ishowGuild"];
+        // 在这里写初始化图片数组和DHGuidePageHUD库引导页的代码
+        // 初始化图片数组
+        NSArray *imageArray = @[@"首页1.png",@"首页2.png",@"首页-我的3.png",@"首页-我的4.png",@"首页-我的5.png",@"首页-用车6.png"];
+        // 创建并添加引导页
+        DHGuidePageHUD *guidePage = [[DHGuidePageHUD alloc] dh_initWithFrame:self.view.frame imageNameArray:imageArray buttonIsHidden:NO];
+        UIWindow *rootWindow = [UIApplication sharedApplication].keyWindow;
+        [rootWindow addSubview:guidePage];
+    }
+
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
@@ -254,6 +269,14 @@
 //                [SVProgressHUD showSuccessWithStatus:@"登录成功"];
 //                [SVProgressHUD dismissWithDelay:1.6];
                 
+                [JPUSHService setTags:nil alias:[NSString stringWithFormat:@"jpush%@",responseObject[@"uid"]] fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+                    
+                    if (iResCode == 0) {//对应的状态码返回为0，代表成功
+                        NSLog(@"3333%@",iAlias);
+                    }
+                    
+                }];
+
                 NSFileManager *fileMgr = [NSFileManager defaultManager];
                 if ([fileMgr fileExistsAtPath:LoginModel_Doc_path]) {
                     [fileMgr removeItemAtPath:LoginModel_Doc_path error:nil];
@@ -1097,6 +1120,7 @@
 - (void) contactUs {
     [self coverTap:nil];
     XFContactUsController *vc = [[XFContactUsController alloc] init];
+    vc.userLocation = self.locService.userLocation;
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (void) doLogout {
@@ -1980,6 +2004,8 @@
 //                if (![model.overdue_info isEqualToString:@"0"]) {
 //                    [dataArr addObject:model.describe];
 //                }
+                 [dataArr addObject:model.describe];
+
             }
             
             if (dataArr.count) {

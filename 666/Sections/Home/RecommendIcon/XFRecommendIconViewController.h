@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef void(^RecommendIconBlock)(UIImage * img);
 
 @interface XFRecommendIconViewController : UIViewController
+@property (nonatomic, copy) RecommendIconBlock recommendIconBlock;
 
 @end

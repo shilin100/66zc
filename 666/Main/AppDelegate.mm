@@ -30,6 +30,7 @@
     
     
     [Bugly startWithAppId:@"70a1c24235"];
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 
     
     JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
@@ -116,7 +117,7 @@
         // 实现类似接到电话效果   self.window.frame = CGRectMake(0, 40, __width, __height-40);
         static XFAlertView *alertReachabilityView;
         if (alertReachabilityView == nil) {
-            alertReachabilityView = [[XFAlertView alloc] initWithTitle:@"提示" message:@"您的网络连接中断或未打开网络使用权限" sureBtn:@"确定" cancleBtn:nil];
+            alertReachabilityView = [[XFAlertView alloc] initWithTitle:@"提示" message:@"您的网络环境不稳定或未打开网络使用权限" sureBtn:@"确定" cancleBtn:nil];
         }
         [alertReachabilityView showAlertView];
 
@@ -269,6 +270,8 @@ didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+
 }
 
 

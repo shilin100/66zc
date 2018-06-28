@@ -218,6 +218,9 @@
 		9D0069DA20E0D42400CF9415 /* XFSuggestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0069D920E0D42400CF9415 /* XFSuggestModel.m */; };
 		9D0069DE20E21A3800CF9415 /* XFRecommendIconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0069DD20E21A3800CF9415 /* XFRecommendIconViewController.m */; };
 		9D0069E120E22F0400CF9415 /* XFRecommendIconCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0069E020E22F0400CF9415 /* XFRecommendIconCollectionViewCell.m */; };
+		9D0069E820E4D46F00CF9415 /* GuideImage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9D0069E320E4D46E00CF9415 /* GuideImage.bundle */; };
+		9D0069E920E4D46F00CF9415 /* DHGifImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0069E420E4D46E00CF9415 /* DHGifImageOperation.m */; };
+		9D0069EA20E4D46F00CF9415 /* DHGuidePageHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0069E720E4D46E00CF9415 /* DHGuidePageHUD.m */; };
 		9D13DA5020917A760057DD20 /* XFCarTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D13DA4F20917A760057DD20 /* XFCarTypeModel.m */; };
 		9D1613F620C1228700CC58B5 /* XFQRCodePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1613F520C1228700CC58B5 /* XFQRCodePopView.m */; };
 		9D1AAE7620DA5A97006F5A06 /* XFSuggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1AAE7520DA5A97006F5A06 /* XFSuggestViewController.m */; };
@@ -731,6 +734,11 @@
 		9D0069DD20E21A3800CF9415 /* XFRecommendIconViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFRecommendIconViewController.m; sourceTree = "<group>"; };
 		9D0069DF20E22F0400CF9415 /* XFRecommendIconCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFRecommendIconCollectionViewCell.h; sourceTree = "<group>"; };
 		9D0069E020E22F0400CF9415 /* XFRecommendIconCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFRecommendIconCollectionViewCell.m; sourceTree = "<group>"; };
+		9D0069E320E4D46E00CF9415 /* GuideImage.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = GuideImage.bundle; sourceTree = "<group>"; };
+		9D0069E420E4D46E00CF9415 /* DHGifImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHGifImageOperation.m; sourceTree = "<group>"; };
+		9D0069E520E4D46E00CF9415 /* DHGuidePageHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHGuidePageHUD.h; sourceTree = "<group>"; };
+		9D0069E620E4D46E00CF9415 /* DHGifImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHGifImageOperation.h; sourceTree = "<group>"; };
+		9D0069E720E4D46E00CF9415 /* DHGuidePageHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHGuidePageHUD.m; sourceTree = "<group>"; };
 		9D13DA4E20917A760057DD20 /* XFCarTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFCarTypeModel.h; sourceTree = "<group>"; };
 		9D13DA4F20917A760057DD20 /* XFCarTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFCarTypeModel.m; sourceTree = "<group>"; };
 		9D1613F420C1228700CC58B5 /* XFQRCodePopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFQRCodePopView.h; sourceTree = "<group>"; };
@@ -974,6 +982,7 @@
 		02058E681F7CED4100E994C3 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				9D0069E220E4D46E00CF9415 /* DHGuidePageHUD */,
 				9D25507320A6DAED0007175E /* MDScratchImageView */,
 				9D25505920A67E6E0007175E /* VierticalScrollView */,
 				7B2B3DAC1FCD122A00DA40FE /* dateSelect */,
@@ -1589,6 +1598,18 @@
 			path = RecommendIcon;
 			sourceTree = "<group>";
 		};
+		9D0069E220E4D46E00CF9415 /* DHGuidePageHUD */ = {
+			isa = PBXGroup;
+			children = (
+				9D0069E320E4D46E00CF9415 /* GuideImage.bundle */,
+				9D0069E420E4D46E00CF9415 /* DHGifImageOperation.m */,
+				9D0069E520E4D46E00CF9415 /* DHGuidePageHUD.h */,
+				9D0069E620E4D46E00CF9415 /* DHGifImageOperation.h */,
+				9D0069E720E4D46E00CF9415 /* DHGuidePageHUD.m */,
+			);
+			path = DHGuidePageHUD;
+			sourceTree = "<group>";
+		};
 		9D1AAE6B20DA3B06006F5A06 /* Suggest */ = {
 			isa = PBXGroup;
 			children = (
@@ -1959,6 +1980,7 @@
 				02FAE9981F95FD910048900F /* XFMySaleController.xib in Resources */,
 				02FAE99D1F9617B10048900F /* XFMyScoreController.xib in Resources */,
 				024DEC4E1F7E22F5008A4D80 /* LoginSB.storyboard in Resources */,
+				9D0069E820E4D46F00CF9415 /* GuideImage.bundle in Resources */,
 				0297BFA91F94C3E000886369 /* XFMyInviteController.xib in Resources */,
 				02D1FF841F9A1139009D6120 /* XFRecommeBuildController.xib in Resources */,
 				0297BFA31F949DF000886369 /* XFHomeSetPWDController.storyboard in Resources */,
@@ -2101,6 +2123,7 @@
 				9D13DA5020917A760057DD20 /* XFCarTypeModel.m in Sources */,
 				7B4A16071FC3C99F003927DE /* XFSelectHCPointModel.m in Sources */,
 				9D32240A20CE5DCB001ADF13 /* XFUserInCarView.m in Sources */,
+				9D0069E920E4D46F00CF9415 /* DHGifImageOperation.m in Sources */,
 				7BD6F1FB1FC3FD9B00778D71 /* XFSelectHCPointTableViewCell.m in Sources */,
 				9D0069D720E0D39C00CF9415 /* XFSuggestHistoryTableViewCell.m in Sources */,
 				02A18EC31F7F657800CE9490 /* XFHomeController.mm in Sources */,
@@ -2183,6 +2206,7 @@
 				0297BF991F948C0F00886369 /* XFSettingController.m in Sources */,
 				9D7D66C220A9847F00A3F92A /* XFCardBagModel.m in Sources */,
 				9D25504E20A41FBB0007175E /* XFApplyRefundVC.m in Sources */,
+				9D0069EA20E4D46F00CF9415 /* DHGuidePageHUD.m in Sources */,
 				02FAE99C1F9617B10048900F /* XFMyScoreController.m in Sources */,
 				0290AD921F8F3820004B7038 /* XFHomeUseCarInfoView.m in Sources */,
 				0227C4F71FA033CF00B1A38D /* XFMyOrderModel.m in Sources */,

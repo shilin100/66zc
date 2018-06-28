@@ -13,6 +13,7 @@
 @property(nonatomic,weak)UILabel * rankLabel;
 @property(nonatomic,weak)UILabel * detailLabel;
 @property(nonatomic,weak)UIImageView * icon;
+@property(nonatomic,weak)UIImageView * rankImg;
 
 -(void)setParams:(NSDictionary*)params RankType:(int)ranktype;
 

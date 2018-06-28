@@ -103,7 +103,7 @@
         jiaolianLabel.sd_layout
         .centerYEqualToView(littleImv)
         .leftSpaceToView(littleImv, 5)
-        .widthIs(60)
+        .widthIs(160)
         .heightIs(30);
         
         UIImageView *phoneImv=[[UIImageView alloc] init];
@@ -116,7 +116,7 @@
         .leftSpaceToView(jiaolianLabel, 15)
         .widthIs(20)
         .heightEqualToWidth();
-        
+        [phoneImv removeFromSuperview];//暂时不要了
         
         UILabel *phoneLabel = [[UILabel alloc] init];
         phoneLabel.font = XFont(14);
@@ -128,6 +128,7 @@
         .leftSpaceToView(phoneImv, 5)
         .rightSpaceToView(grayBg, 15)
         .heightIs(30);
+        [phoneLabel removeFromSuperview];//暂时不要了
 
         
         UILabel *areaLabel2 = [[UILabel alloc] init];

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface XFContactUsController : UIViewController
+@property(nonatomic,strong)BMKUserLocation *userLocation;
 
 @end

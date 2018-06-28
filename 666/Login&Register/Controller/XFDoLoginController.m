@@ -155,7 +155,15 @@
             [USERDEFAULT setObject:number forKey:@"account"];
             [USERDEFAULT setObject:[MD5PWD dataUsingEncoding:NSUTF8StringEncoding] forKey:@"MD5PWD"];
             
-            
+                [JPUSHService setTags:nil alias:[NSString stringWithFormat:@"jpush%@",responseObject[@"uid"]] fetchCompletionHandle:^(int iResCode, NSSet *iTags, NSString *iAlias) {
+                    
+                    if (iResCode == 0) {//对应的状态码返回为0，代表成功
+                        NSLog(@"3333%@",iAlias);
+                    }
+                    
+                }];
+
+
             // 切换窗口根控制器为homeNav
             XFHomeController *homeVC = [[XFHomeController alloc] init];
             homeVC.isFromLogin = YES;

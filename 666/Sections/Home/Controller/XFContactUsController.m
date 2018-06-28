@@ -8,6 +8,7 @@
 
 #import "XFContactUsController.h"
 #import "XFContactUsCell.h"
+#import "JZLocationConverter.h"
 
 @interface XFContactUsController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, weak) UITableView *tableView;
@@ -46,6 +47,65 @@
     
     tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
+
+
+-(void)guildToCompany{
+    CLLocation *myLocation=[[CLLocation alloc] initWithLatitude:[JZLocationConverter bd09ToGcj02:_userLocation.location.coordinate].latitude longitude:[JZLocationConverter bd09ToGcj02:_userLocation.location.coordinate].longitude];
+    
+    CLLocationCoordinate2D temp = CLLocationCoordinate2DMake(30.5010428363, 114.4017290276);
+
+    CLLocation *toLocation=[[CLLocation alloc] initWithLatitude:[JZLocationConverter bd09ToGcj02:temp].latitude longitude:[JZLocationConverter bd09ToGcj02:temp].longitude];
+
+    
+    if (myLocation.coordinate.latitude==0 ||
+        myLocation.coordinate.longitude == 0 ||
+        toLocation.coordinate.latitude==0 ||
+        toLocation.coordinate.longitude==0) {
+        UIAlertController *alter=[UIAlertController alertControllerWithTitle:@"注意！" message:@"未定位到您当前位置，无法导航！" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancel=[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:nil];
+        [alter addAction:cancel];
+        [self presentViewController:alter animated:YES completion:nil];
+        return;
+    }
+    
+    [SVProgressHUD showWithStatus: @"正在载入线路信息..."];
+    CLGeocoder* geocoder_navigation=[[CLGeocoder alloc ] init];
+    
+    [geocoder_navigation reverseGeocodeLocation:myLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+        
+        CLPlacemark *myplacemark=[[CLPlacemark alloc] initWithPlacemark:[placemarks firstObject]];
+        
+        [geocoder_navigation reverseGeocodeLocation:toLocation completionHandler:^(NSArray<CLPlacemark *> * _Nullable placemarks, NSError * _Nullable error) {
+            CLPlacemark *toPlacemark=[[CLPlacemark alloc] initWithPlacemark:[placemarks firstObject]];
+            MKMapItem *from=[[MKMapItem alloc]initWithPlacemark:[[MKPlacemark alloc] initWithPlacemark:myplacemark]];
+            MKMapItem *to=[[MKMapItem alloc]initWithPlacemark:[[MKPlacemark alloc] initWithPlacemark:toPlacemark]];
+            NSMutableDictionary *options=[NSMutableDictionary dictionary];
+            options[MKLaunchOptionsDirectionsModeKey]=MKLaunchOptionsDirectionsModeDriving;
+            options[MKLaunchOptionsShowsTrafficKey]=@NO;
+            BOOL MapItemOK=YES;
+            MapItemOK = [MKMapItem openMapsWithItems:@[from,to] launchOptions:options];
+            if (MapItemOK) {
+                
+                //                [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
+                
+                [SVProgressHUD dismiss];
+            }else{
+                
+                //                [MBProgressHUD hideAllHUDsForView:self.view animated:NO];
+                
+                [SVProgressHUD dismiss];
+                XFAlertView *alert = [[XFAlertView alloc] initWithTitle:@"注意！" message:@"未能获取到相关的线路信息，请您检查您的网络情况后再试！" sureBtn:@"确定" cancleBtn:nil];
+                [alert showAlertView];
+                
+            }
+            
+        }];
+        
+    }];
+}
+
+
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.icons.count;
 }
@@ -90,6 +150,7 @@
         case 3:
         {
             //地址
+            [self guildToCompany];
         }
             break;
         case 4:

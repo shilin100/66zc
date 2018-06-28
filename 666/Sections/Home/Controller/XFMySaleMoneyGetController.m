@@ -99,6 +99,13 @@
     {
         if(self.contentView.moneyTF.text.length)
         {
+            if([self.contentView.moneyTF.text floatValue] < 100)
+            {
+                [SVProgressHUD showInfoWithStatus:@"低于最低提现额度100元"];
+                [SVProgressHUD dismissWithDelay:1.2];
+                return;
+            }
+            
             if([self.contentView.moneyTF.text floatValue] <= self.k_servant)
             {
                 [self submitWithType:@"2" money:self.contentView.moneyTF.text];

@@ -156,14 +156,15 @@
     int minute = (timeInt % 3600) / 60;
     int second = timeInt % 60 ;
     
-    if (minute <= 0 && hour <= 0 && day <= 0) {
-        return [NSString stringWithFormat:@"%02d",second];
-    }else if(hour <= 0 && day <= 0){
-        return [NSString stringWithFormat:@"%02d:%02d",minute,second];
+//    if (minute <= 0 && hour <= 0 && day <= 0) {
+//        return [NSString stringWithFormat:@"%02d",second];
+//    }else
+    if(hour <= 0 && day <= 0){
+        return [NSString stringWithFormat:@"%02d分",minute];
     }else if(day <= 0){
-        return [NSString stringWithFormat:@"%02d:%02d:%02d",hour,minute,second];
+        return [NSString stringWithFormat:@"%02d时%02d分",hour,minute];
     }else{
-        return [NSString stringWithFormat:@"%d天%02d:%02d:%02d",day,hour,minute,second];
+        return [NSString stringWithFormat:@"%d天%02d时%02d分",day,hour,minute];
     }
     
 

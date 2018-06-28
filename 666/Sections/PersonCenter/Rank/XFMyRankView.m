@@ -34,13 +34,18 @@
         self.icon = icon;
         icon.sd_layout
         .centerYEqualToView(self)
-        .widthIs(36)
-        .leftSpaceToView(rankLabel, 6)
-        .heightIs(36);
+        .widthIs(48)
+        .leftSpaceToView(rankLabel, 0)
+        .heightIs(48);
         icon.clipsToBounds = YES;
-        icon.layer.cornerRadius = 18;
+        icon.layer.cornerRadius = 24;
 
-        
+        UIImageView * rankImg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 10, 10)];
+        rankImg.contentMode = UIViewContentModeScaleAspectFill;
+        [self addSubview:rankImg];
+        self.rankImg = rankImg;
+        rankImg.alpha = 0;
+
         
         UILabel * contentLabel = [UILabel new];
         contentLabel.font = XFont(12);
@@ -51,7 +56,7 @@
         contentLabel.sd_layout
         .centerYEqualToView(self)
         .widthIs(100)
-        .leftSpaceToView(self, 85)
+        .leftSpaceToView(self, 90)
         .heightIs(30);
         
         UILabel * detailLabel = [UILabel new];
@@ -76,9 +81,32 @@
 -(void)setParams:(NSDictionary*)params RankType:(int)ranktype{
     
     int rank = [params[@"mypaiming"] intValue];
+    int rankIndex = rank - 1;
     
+    if (rank <= 3) {
+        self.rankImg.alpha = 1;
+        self.rankImg.sd_layout
+        .topEqualToView(self.icon)
+        .widthIs(28)
+        .leftEqualToView(self.icon)
+        .heightIs(25);
+        
+        NSArray * rankImgName = @[@"NO.1",@"NO.2",@"NO.3"];
+        self.rankImg.image = [UIImage imageNamed:rankImgName[rankIndex]];
+        
+        NSArray * detailColor = @[HEXCOLOR(@"#F42424"),HEXCOLOR(@"#EB7F0B"),HEXCOLOR(@"#F0D80D")];
+        self.detailLabel.textColor = detailColor[rankIndex];
+        self.rankLabel.textColor = detailColor[rankIndex];
+
+    }else{
+        self.rankImg.alpha = 0;
+        
+        self.detailLabel.textColor = MAINGREEN;
+        self.rankLabel.textColor = BlACKTEXT;
+
+    }
+
     NSArray * ranktypes = @[@"mysingtimes",@"mysum_time",@"mydistance",@"mypay_money"];
-    
     
     self.rankLabel.text = [NSString stringWithFormat:@"%d",rank];
     self.contentLabel.text = params[@"myusername"];

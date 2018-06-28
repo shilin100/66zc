@@ -56,7 +56,7 @@
         contentLabel.sd_layout
         .centerYEqualToView(self.contentView)
         .widthIs(100)
-        .leftSpaceToView(self.contentView, 85)
+        .leftSpaceToView(self.contentView, 90)
         .heightIs(30);
 
         UILabel * detailLabel = [UILabel new];
@@ -86,10 +86,9 @@
         self.icon.sd_layout
         .centerYEqualToView(self.contentView)
         .widthIs(48)
-        .leftSpaceToView(self.contentView, 20)
+        .leftSpaceToView(self.rankLabel, 0)
         .heightIs(48);
         self.icon.layer.cornerRadius = 24;
-        self.rankLabel.alpha = 0;
         self.rankImg.alpha = 1;
         
         self.rankImg.sd_layout
@@ -102,12 +101,13 @@
         self.rankImg.image = [UIImage imageNamed:rankImgName[rankIndex]];
         
         self.contentLabel.font = XFont(16);
-        
+        self.detailLabel.font = XFont(14);
+
         NSArray * detailColor = @[HEXCOLOR(@"#F42424"),HEXCOLOR(@"#EB7F0B"),HEXCOLOR(@"#F0D80D")];
         self.detailLabel.textColor = detailColor[rankIndex];
+        self.rankLabel.textColor = detailColor[rankIndex];
 
     }else{
-        self.rankLabel.alpha = 1;
         self.rankImg.alpha = 0;
 
         self.icon.sd_layout
@@ -116,9 +116,13 @@
         .leftSpaceToView(self.rankLabel, 6)
         .heightIs(36);
         self.icon.layer.cornerRadius = 18;
+        
+        self.detailLabel.font = XFont(12);
 
         self.contentLabel.font = XFont(12);
         self.detailLabel.textColor = MAINGREEN;
+        self.rankLabel.textColor = BlACKTEXT;
+
     }
     
     NSArray * ranktypes = @[@"singtimes",@"sum_time",@"distance",@"pay_money"];

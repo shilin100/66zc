@@ -112,93 +112,99 @@
         [alert showAlertView];
         return;
     }
+    if (carCardNum.length != 12) {
+        XFAlertView *alert = [[XFAlertView alloc] initWithTitle:@"提示" message:@"请正确输入12位驾驶证档案编号" sureBtn:@"确定" cancleBtn:nil];
+        [alert showAlertView];
+        return;
+
+    }
     
     if(carCardImage == nil || cardOne == nil || cardTwo == nil)
     {
         XFAlertView *alert = [[XFAlertView alloc] initWithTitle:@"提示" message:@"驾驶证或身份证照片不能为空" sureBtn:@"确定" cancleBtn:nil];
         [alert showAlertView];
+        return;
     }
-    else
-    {
-//        && sex.length && area.length && address.length && friend.length 删去
-        if (name.length && friendNum.length && carCardNum.length && cardNum.length && payNumber.length) {
-            
-//            if (![XFTool validateMobile:friendNum])
-//            {
-//                XFAlertView *alert = [[XFAlertView alloc] initWithTitle:@"提示" message:@"手机号不正确" sureBtn:@"确定" cancleBtn:nil];
-//                [alert showAlertView];
-//                return;
-//            }
-            
-            [SVProgressHUD show];
-            NSMutableDictionary *params = [XFTool baseParams];
-            XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
-            [params setObject:model.uid forKey:@"uid"];
-            [params setObject:model.token forKey:@"token"];
-            [params setObject:name forKey:@"name"];
-//            [params setObject:sex forKey:@"sex"];
-//            [params setObject:area forKey:@"area"];
-//            [params setObject:address forKey:@"address"];
-//            [params setObject:friend forKey:@"friend"];
-            [params setObject:friendNum forKey:@"friend_phone"];
+
+    //        && sex.length && area.length && address.length && friend.length 删去
+
+    if (name.length && friendNum.length && carCardNum.length && cardNum.length && payNumber.length) {
+        
+        //            if (![XFTool validateMobile:friendNum])
+        //            {
+        //                XFAlertView *alert = [[XFAlertView alloc] initWithTitle:@"提示" message:@"手机号不正确" sureBtn:@"确定" cancleBtn:nil];
+        //                [alert showAlertView];
+        //                return;
+        //            }
+        
+        [SVProgressHUD show];
+        NSMutableDictionary *params = [XFTool baseParams];
+        XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
+        [params setObject:model.uid forKey:@"uid"];
+        [params setObject:model.token forKey:@"token"];
+        [params setObject:name forKey:@"name"];
+        //            [params setObject:sex forKey:@"sex"];
+        //            [params setObject:area forKey:@"area"];
+        //            [params setObject:address forKey:@"address"];
+        //            [params setObject:friend forKey:@"friend"];
+        [params setObject:friendNum forKey:@"friend_phone"];
 #pragma mark - 接口需要添加 驾驶证号 和 身份证号 接收字段
-            [params setObject:cardNum forKey:@"card_number"];
-            [params setObject:carCardNum forKey:@"driver_number"];
-            [params setObject:payNumber forKey:@"paynumber"];
-            // 头像 驾照 身份证1 身份证2
-            NSArray *images = @[icon,carCardImage,cardOne,cardTwo];
-            NSMutableArray *imageDataArr = [NSMutableArray array];
-            for (UIImage *image in images) {
-                NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
-                [imageDataArr addObject:imageData];
-            }
-            
-            AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-            [manager POST:[NSString stringWithFormat:@"%@/User/user_submit",BASE_URL] parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-                NSString *name = [NSString string];
-                for (int i = 0; i < imageDataArr.count; i++) {
-                    name=[NSString stringWithFormat:@"%d",i];
-                    NSString *filename = [NSString stringWithFormat:@"%@.png",name];
-                    [formData appendPartWithFileData:[imageDataArr objectAtIndex:i]
-                                                name:[NSString stringWithFormat:@"image%@", @(i)]
-                                            fileName:filename
-                                            mimeType:@"image/png"];
-                }
-            } progress:^(NSProgress * _Nonnull uploadProgress) {
-                
-            } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                [SVProgressHUD dismiss];
-                /*
-                 {
-                 islogin = 0,
-                 status = 1,
-                 info =
-                 }
-                 */
-                NSLog(@"succ:%@",responseObject);
-                if ([responseObject[@"status"] intValue] == 1) {
-                    [SVProgressHUD showSuccessWithStatus:@"提交成功"];
-                    [SVProgressHUD dismissWithDelay:1.2];
-                    [self.navigationController popViewControllerAnimated:YES];
-                    
-                }
-                else
-                {
-                    [SVProgressHUD showErrorWithStatus:responseObject[@"info"]];
-                }
-            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                [SVProgressHUD dismiss];
-                NSLog(@"error:%@",error);
-                [SVProgressHUD showErrorWithStatus:ServerError];
-            }];
-            
-        }else{
-            [SVProgressHUD dismiss];
-            XFAlertView *alert = [[XFAlertView alloc] initWithTitle:@"提示" message:@"信息不能留空" sureBtn:@"确定" cancleBtn:nil];
-            [alert showAlertView];
+        [params setObject:cardNum forKey:@"card_number"];
+        [params setObject:carCardNum forKey:@"driver_number"];
+        [params setObject:payNumber forKey:@"paynumber"];
+        // 头像 驾照 身份证1 身份证2
+        NSArray *images = @[icon,carCardImage,cardOne,cardTwo];
+        NSMutableArray *imageDataArr = [NSMutableArray array];
+        for (UIImage *image in images) {
+            NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+            [imageDataArr addObject:imageData];
         }
+        
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        [manager POST:[NSString stringWithFormat:@"%@/User/user_submit",BASE_URL] parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            NSString *name = [NSString string];
+            for (int i = 0; i < imageDataArr.count; i++) {
+                name=[NSString stringWithFormat:@"%d",i];
+                NSString *filename = [NSString stringWithFormat:@"%@.png",name];
+                [formData appendPartWithFileData:[imageDataArr objectAtIndex:i]
+                                            name:[NSString stringWithFormat:@"image%@", @(i)]
+                                        fileName:filename
+                                        mimeType:@"image/png"];
+            }
+        } progress:^(NSProgress * _Nonnull uploadProgress) {
+            
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            [SVProgressHUD dismiss];
+            /*
+             {
+             islogin = 0,
+             status = 1,
+             info =
+             }
+             */
+            NSLog(@"succ:%@",responseObject);
+            if ([responseObject[@"status"] intValue] == 1) {
+                [SVProgressHUD showSuccessWithStatus:@"提交成功"];
+                [SVProgressHUD dismissWithDelay:1.2];
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            }
+            else
+            {
+                [SVProgressHUD showErrorWithStatus:responseObject[@"info"]];
+            }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [SVProgressHUD dismiss];
+            NSLog(@"error:%@",error);
+            [SVProgressHUD showErrorWithStatus:ServerError];
+        }];
+        
+    }else{
+        [SVProgressHUD dismiss];
+        XFAlertView *alert = [[XFAlertView alloc] initWithTitle:@"提示" message:@"信息不能留空" sureBtn:@"确定" cancleBtn:nil];
+        [alert showAlertView];
     }
-    
+
 }
 
 
@@ -390,6 +396,17 @@
     
     UIAlertAction *recommend = [UIAlertAction actionWithTitle:@"选择推荐头像" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         XFRecommendIconViewController * vc = [XFRecommendIconViewController new];
+        vc.recommendIconBlock = ^(UIImage *img) {
+            [contentView.iconBtn setBackgroundImage:img forState:UIControlStateNormal];
+            
+            //单独修改头像时才调用接口
+            if(!self.isSubmit)
+            {
+                // 修改头像
+                [self uploadIcon:UIImageJPEGRepresentation(img, 0.3)];
+            }
+
+        };
 //        [contentView.iconBtn setBackgroundImage:photos[0] forState:UIControlStateNormal];
 
         [self.navigationController pushViewController:vc animated:YES];

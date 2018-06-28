@@ -10,6 +10,8 @@
 
 @interface XFRecommendIconCollectionViewCell : UICollectionViewCell
 @property(nonatomic,weak)UIImageView * icon;
+@property(nonatomic,weak)UIImageView * tik;
+
 @property(nonatomic,weak)UILabel * titleLabel;
 
 @end

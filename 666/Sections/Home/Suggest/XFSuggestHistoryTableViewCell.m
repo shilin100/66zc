@@ -16,12 +16,12 @@
     if (self) {
         UIView * garyTop = [[UIView alloc]init];
         garyTop.backgroundColor = HEXCOLOR(@"#eeeeee");
-        [self.contentView addSubview:garyTop];
-        garyTop.sd_layout
-        .topSpaceToView(self.contentView, 0)
-        .leftSpaceToView(self.contentView, 0)
-        .rightSpaceToView(self.contentView, 0)
-        .heightIs(27);
+        [self addSubview:garyTop];
+        
+        [garyTop mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.right.left.equalTo(self);
+            make.height.mas_equalTo(@30);
+        }];
         
         UILabel* replyDate = [UILabel new];
         replyDate.font = XFont(12);
@@ -34,6 +34,7 @@
         .widthIs(150)
         .leftSpaceToView(garyTop, 11)
         .heightIs(30);
+        
 
         UILabel* isReplySign = [UILabel new];
         isReplySign.font = XFont(10);
@@ -49,57 +50,53 @@
         .heightIs(30);
 
         
-        UIView * whiteContent = [[UIView alloc]init];
-        whiteContent.backgroundColor = WHITECOLOR;
-        [self.contentView addSubview:whiteContent];
-        whiteContent.sd_layout
-        .topSpaceToView(garyTop, 0)
-        .leftSpaceToView(self.contentView, 0)
-        .rightSpaceToView(self.contentView, 0)
-        .bottomSpaceToView(self.contentView, 0);
-        
         UILabel* uploadContent = [UILabel new];
-        uploadContent.numberOfLines = 2;
+        uploadContent.numberOfLines = 0;
         uploadContent.font = XBFont(12);
         uploadContent.textColor = BlACKTEXT;
-        [whiteContent addSubview:uploadContent];
+        [self addSubview:uploadContent];
         self.uploadContent = uploadContent;
         
-        uploadContent.sd_layout
-        .topSpaceToView(whiteContent, 13)
-        .leftSpaceToView(whiteContent, 10)
-        .rightSpaceToView(whiteContent, 22)
-        .heightIs(35);
+
+        [uploadContent mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(garyTop.mas_bottom).offset(13);
+            make.left.equalTo(self).offset(10);
+            make.right.equalTo(self).offset(-22);
+
+        }];
 
         
         UILabel* replyContent = [UILabel new];
-        replyContent.numberOfLines = 2;
+        replyContent.numberOfLines = 0;
         replyContent.font = XFont(9);
         replyContent.textColor = GRAYTEXT;
-        [whiteContent addSubview:replyContent];
+        [self addSubview:replyContent];
         self.replyContent = replyContent;
         
-        replyContent.sd_layout
-        .topSpaceToView(uploadContent, 0)
-        .leftSpaceToView(whiteContent, 10)
-        .rightSpaceToView(whiteContent, 22)
-        .heightIs(34);
+        [replyContent mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(uploadContent.mas_bottom).offset(16);
+            make.left.equalTo(self).offset(10);
+            make.right.equalTo(self).offset(-22);
+            
+        }];
 
         
         UILabel* uploadDate = [UILabel new];
         uploadDate.font = XFont(10);
         uploadDate.textColor = GRAYTEXT;
         uploadDate.textAlignment = NSTextAlignmentRight;
-        [whiteContent addSubview:uploadDate];
+        [self addSubview:uploadDate];
         self.uploadDate = uploadDate;
         
-        uploadDate.sd_layout
-        .bottomSpaceToView(whiteContent, 8)
-        .widthIs(150)
-        .rightSpaceToView(whiteContent, 10)
-        .heightIs(9);
 
-        
+        [uploadDate mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(replyContent.mas_bottom).offset(4);
+            make.bottom.equalTo(self).offset(-8);
+            make.right.equalTo(self).offset(-10);
+            make.width.mas_equalTo(@150);
+            make.height.mas_equalTo(@9);
+        }];
+
     }
     
     return self;
@@ -112,24 +109,8 @@
     self.uploadDate.text = model.usertime;
     self.uploadContent.text = model.usercontent;
     
-    self.replyContent.text = [NSString stringWithFormat:@"回复:%@",model.revertcontent];
-//    NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
-//    [paragraphStyle setLineSpacing:2];
-//    NSMutableParagraphStyle *style = [[NSMutableParagraphStyle alloc] init];
-//    style.firstLineHeadIndent = 1;
-//    style.lineSpacing = 1;
-//
-//    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[model.revertcontent  dataUsingEncoding:NSUnicodeStringEncoding] options:@{NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,NSFontAttributeName:[UIFont systemFontOfSize:9.0f],NSParagraphStyleAttributeName:style } documentAttributes:nil error:nil];
-//
-//    self.replyContent.attributedText = attrStr;
-//    self.replyContent.font = XFont(9);
-//    self.replyContent.numberOfLines = 2;
-//
-//    [self.replyContent sizeToFit];
+    self.replyContent.text = model.status ? [NSString stringWithFormat:@"回复:%@",model.revertcontent] : @"";
     
-
-    self.replyContent.sd_layout
-    .heightIs(model.status == 1 ? 29 : 0);
 }
 
 

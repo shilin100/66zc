@@ -76,7 +76,48 @@
     .centerXEqualToView(self.view)
     .widthIs(200)
     .heightIs(44);
+    
+    
+    
+//    UITextField * test = [UITextField new];
+//    [self.view addSubview:test];
+//
+//    UIButton *testBtn = [[UIButton alloc] init];
+//    //    logoutBtn.hidden=YES;
+//    testBtn.backgroundColor = MAINGREEN;
+//    [testBtn setTitle:@"TEST" forState:UIControlStateNormal];
+//    [testBtn setTitleColor:WHITECOLOR forState:UIControlStateNormal];
+//    testBtn.titleLabel.font = XFont(13);
+//    testBtn.layer.cornerRadius = 22;
+//    testBtn.clipsToBounds = YES;
+//    [self.view insertSubview:testBtn aboveSubview:self.tableView];
+//    [[testBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
+//        [JPUSHService addTags:[NSSet setWithObject:test.text] completion:^(NSInteger iResCode, NSSet *iTags, NSInteger seq) {
+//            [SVProgressHUD showWithStatus:[NSString stringWithFormat:@"%ld",(long)iResCode] ];
+//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//                [SVProgressHUD dismiss];
+//            });
+//        } seq:0];
+//    }];
+//
+//    testBtn.sd_layout
+//    .bottomSpaceToView(logoutBtn, 10)
+//    .centerXEqualToView(self.view)
+//    .widthIs(200)
+//    .heightIs(44);
+//
+//
+//
+//    test.sd_layout
+//    .bottomSpaceToView(testBtn, 10)
+//    .centerXEqualToView(self.view)
+//    .widthIs(200)
+//    .heightIs(44);
+//
 }
+
+
+
 - (void) doLogout {
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *info = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path exception:nil];
@@ -145,7 +186,7 @@
 
         float tmpSize = [SDImageCache.sharedImageCache getSize];
         
-        NSString * str = tmpSize/10240 >= 1 ? [NSString stringWithFormat:@"%.1fM",tmpSize/10240] : [NSString stringWithFormat:@"%.1fK",tmpSize];
+        NSString * str = (tmpSize/1024)/1024 >= 1 ? [NSString stringWithFormat:@"%.1fM",(tmpSize/1024)/1024] : [NSString stringWithFormat:@"%.1fK",tmpSize/1024];
         NSLog(@"%@",str);
         cellCache.selectionStyle = UITableViewCellStyleValue1;
         cellCache.detailTextLabel.text = str;

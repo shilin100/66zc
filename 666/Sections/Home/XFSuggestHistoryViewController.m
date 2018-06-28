@@ -34,12 +34,15 @@
     [tableView registerClass:[XFSuggestHistoryTableViewCell class] forCellReuseIdentifier:@"XFSuggestHistoryCell"];
     [self.view addSubview:tableView];
     self.tableView = tableView;
-    
+    self.tableView.backgroundColor = HEXCOLOR(@"eeeeee");
+
     tableView.sd_layout
     .topSpaceToView(self.view, 0)
     .leftSpaceToView(self.view, 0)
     .rightSpaceToView(self.view, 0)
     .bottomSpaceToView(self.view, 0);
+    self.tableView.estimatedRowHeight = 150;//估算高度
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 
     
     [self requestData];
@@ -81,17 +84,21 @@
     XFSuggestHistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"XFSuggestHistoryCell" forIndexPath:indexPath];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.model = self.dataArray[indexPath.row];
-    
-    
+    cell.height = UITableViewAutomaticDimension;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+
     return cell;
     
 }
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    XFSuggestModel * model = self.dataArray[indexPath.row];
-    
-    return model.status ? 139 : 98;
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(7_0){
+    return 150;
 }
+
+//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    XFSuggestModel * model = self.dataArray[indexPath.row];
+//
+//    return model.status ? 139 : 98;
+//}
 
 @end

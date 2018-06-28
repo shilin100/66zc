@@ -272,6 +272,9 @@
         cell.textLabel.text = @"客服电话";
         cell.textLabel.textColor = BlACKTEXT;
         cell.detailTextLabel.text = self.model.service;
+        cell.detailTextLabel.text = @"027-59762081";
+
+        
         cell.detailTextLabel.textColor = BlACKTEXT;
         cell.imageView.image = [UIImage imageNamed:@"serviceTel"];
         cell.imageView.contentMode = UIViewContentModeCenter;
@@ -287,7 +290,7 @@
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section == 2) {
-        NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",self.model.service];
+        NSMutableString *str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",cell.detailTextLabel.text];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
     }
 }

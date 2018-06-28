@@ -17,6 +17,7 @@
 @property(nonatomic,weak)UITableView * tableView;
 @property(nonatomic,weak)UITextView * reasonTextView;
 
+@property(nonatomic,assign)BOOL isAgressDisclaimer;
 
 @end
 
@@ -32,6 +33,7 @@
     self.view.backgroundColor = HEXCOLOR(@"eeeeee");
     dataArr = @[@"租车费用昂贵",@"可租车辆少，使用不方便",@"车况较差，车内环境不整洁，车内物品缺失",@"押金过高，体验感较差",@"选择使用其他汽车租赁APP",@"APP使用不稳定，服务网点过少",@"其他原因"];
     selectedData = [NSMutableArray array];
+    _isAgressDisclaimer = NO;
     
     [self setupUI];
     [self requestAccount];
@@ -58,7 +60,7 @@
     accountTitle.sd_layout
     .centerYEqualToView(accountContent)
     .leftSpaceToView(accountContent, 10)
-    .widthIs(100)
+    .widthIs(80)
     .heightIs(30);
     
     
@@ -120,7 +122,7 @@
     amountTitle.sd_layout
     .centerYEqualToView(amountContent)
     .leftSpaceToView(amountContent, 10)
-    .widthIs(100)
+    .widthIs(80)
     .heightIs(30);
 
     UILabel * amountMoney = [UILabel new];
@@ -206,6 +208,17 @@
     .heightIs(62);
 
     
+    UIButton *tikBtn = [[UIButton alloc] init];
+    [tikBtn setImage:IMAGENAME(@"tik_empty") forState:UIControlStateNormal];
+    [tikBtn setImage:IMAGENAME(@"tik") forState:UIControlStateSelected];
+    [self.view addSubview:tikBtn];
+    [tikBtn addTarget:self action:@selector(tikBtnClick:) forControlEvents:UIControlEventTouchUpInside];
+    tikBtn.sd_layout
+    .widthIs(30)
+    .topSpaceToView(reasonTextView, 2)
+    .leftSpaceToView(self.view, 15)
+    .heightIs(30);
+
 
     totalStr = @"我已阅读并同意《六六租车免责说明》";
     str = @"《六六租车免责说明》";
@@ -217,7 +230,6 @@
     UIButton *stateBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     stateBtn.titleLabel.font=XFont(14);
     [stateBtn setAttributedTitle:attributeString forState:UIControlStateNormal];
-    [stateBtn setImage:IMAGENAME(@"tik") forState:UIControlStateNormal];
     stateBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [stateBtn addTarget:self action:@selector(showDisclaimer) forControlEvents:UIControlEventTouchUpInside];
     
@@ -225,7 +237,7 @@
     stateBtn.sd_layout
     .rightSpaceToView(self.view, 15)
     .topSpaceToView(reasonTextView, 2)
-    .leftSpaceToView(self.view, 15)
+    .leftSpaceToView(tikBtn, 1)
     .heightIs(30);
 
     UIButton *loadBtn = [[UIButton alloc] init];
@@ -245,15 +257,28 @@
 
     
 }
+-(void)tikBtnClick:(UIButton*)sender{
+    sender.selected = !sender.selected;
+    _isAgressDisclaimer = sender.selected;
+}
+
 
 -(void)showDisclaimer{
     [XFDisclaimerView show];
 }
 
 -(void)loadBtnClick{
+    if (!_isAgressDisclaimer) {
+        [SVProgressHUD showErrorWithStatus:@"您需要同意免责声明再退款"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [SVProgressHUD dismiss];
+        });
+        return;
+    }
+    
     if (selectedData.count == 0) {
         [SVProgressHUD showErrorWithStatus:@"请选择至少一个退款原因"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [SVProgressHUD dismiss];
         });
         return;
@@ -299,7 +324,7 @@
 -(void)requestAccount{
     [XFTool PostRequestWithUrlString:[NSString stringWithFormat:@"%@%@",BASE_URL,@"/User/User"] withDic:nil Succeed:^(NSDictionary *responseObject) {
         
-        self.alipayAccount.text = responseObject[@"data"][@"paynumber"];
+        self.alipayAccount.text = [NSString stringWithFormat:@"%@ %@",responseObject[@"data"][@"username"],responseObject[@"data"][@"paynumber"]];
         
     } andFaild:^(NSError *error) {
         

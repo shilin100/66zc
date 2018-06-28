@@ -16,7 +16,7 @@
         UILabel *contentLabel = [[UILabel alloc] init];
         contentLabel.font = XFont(9);
         contentLabel.textAlignment = NSTextAlignmentCenter;
-        contentLabel.textColor = MAINGREEN;
+        contentLabel.textColor = BlACKTEXT;
         contentLabel.numberOfLines = 1;
         [self addSubview:contentLabel];
         contentLabel.sd_layout
@@ -31,8 +31,8 @@
         [self addSubview:icon];
         icon.sd_layout
         .heightIs(52)
-        .leftSpaceToView(self, 5)
-        .rightSpaceToView(self, 5)
+        .widthIs(52)
+        .centerXEqualToView(self)
         .topSpaceToView(self, 10);
         
         icon.layer.cornerRadius = 26;
@@ -41,6 +41,19 @@
         
         self.icon = icon;
         
+        
+        UIImageView * tik = [[UIImageView alloc]init];
+        tik.contentMode = UIViewContentModeScaleAspectFit;
+        tik.image = [UIImage imageNamed:@"选择"];
+        [self addSubview:tik];
+        tik.sd_layout
+        .heightIs(14)
+        .widthIs(14)
+        .rightEqualToView(icon)
+        .bottomEqualToView(icon);
+        tik.alpha = 0;
+        self.tik = tik;
+
     }
     return self;
 }
