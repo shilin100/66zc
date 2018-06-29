@@ -365,8 +365,7 @@
         [cell.checkBox setOn:!isSelected animated:YES];
         [selectedData addObject:@(indexPath.row)];
     }
-    
-    
+//    123
 }
 
 
