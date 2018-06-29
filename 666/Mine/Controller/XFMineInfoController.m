@@ -412,14 +412,103 @@
         [self.navigationController pushViewController:vc animated:YES];
     }];
 
+    UIAlertAction *chooseCamera= [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [self carmeraPhoto];
+    }];
+
+    
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
     
     [alert addAction:recommend];
+    [alert addAction:chooseCamera];
     [alert addAction:camera];
     [alert addAction:cancel];
     
     [self presentViewController:alert animated:YES completion:nil];
 }
+
+-(void)carmeraPhoto{
+    AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if (authStatus == AVAuthorizationStatusRestricted || authStatus ==AVAuthorizationStatusDenied)
+    {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"您未开启相机访问权限" message:@"请通过:“系统设置“--”隐私“--”相机”打开访问权限 " preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action1 = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
+        [alert addAction:action1];
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
+    UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    picker.allowsEditing = YES; //可编辑
+    
+    //判断是否可以打开照相机
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        //摄像头
+        //UIImagePickerControllerSourceTypeSavedPhotosAlbum:相机胶卷
+        picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    } else { //否则打开照片库
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    }
+    [self presentViewController:picker animated:YES completion:nil];
+    
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+//拍摄完成后要执行的代理方法
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+//    BOOL success;
+//    NSFileManager *fileManager = [NSFileManager defaultManager];
+    if ([mediaType isEqualToString:@"public.image"]) {
+        //得到照片
+        UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+        [self.contenView.iconBtn setBackgroundImage:image forState:UIControlStateNormal];
+        
+        //单独修改头像时才调用接口
+        if(!self.isSubmit)
+        {
+            // 修改头像
+            [self uploadIcon:UIImageJPEGRepresentation(image, 0.3)];
+        }
+
+//        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+//            //图片存入相册
+//            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+//        }
+        
+    }
+//    =====================拍视频内容暂时不需要=============================
+//    else if ([mediaType isEqualToString:@"public.movie"]) {
+//        NSString *videoPath = [GetFilePath getSavePathWithFileSuffix:@"mov"];
+//        success = [fileManager fileExistsAtPath:videoPath];
+//        if (success) {
+//            [fileManager removeItemAtPath:videoPath error:nil];
+//        }
+//
+//        NSURL *videoURL = [info objectForKey:UIImagePickerControllerMediaURL];
+//        NSData *videlData = [NSData dataWithContentsOfURL:videoURL];
+//
+//        [videlData writeToFile:videoPath atomically:YES]; //写入本地
+//        //存储数据
+//        success = [fileManager fileExistsAtPath:videoPath];
+//        if (success) {
+//            NSLog(@"media 写入成功,video路径:%@",videoPath);
+//            UISaveVideoAtPathToSavedPhotosAlbum(videoPath, self, nil, nil);
+//            [self getAlumbWithVideo:videoURL VideoImage:[GetFilePath getVideoThumbnailWithFilePath:videoPath] ThumbImage:[GetFilePath getImage:videoPath]];
+//        }
+//    }
+
+    [self dismissViewControllerAnimated:YES completion:^{
+        
+    }];
+}
+
+
 - (void) uploadIcon:(NSData *)iconData {
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];

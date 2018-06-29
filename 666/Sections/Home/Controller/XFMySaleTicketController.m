@@ -79,10 +79,10 @@
     [self.view insertSubview:unuseBtn aboveSubview:tableView];
     self.unuseBtn = unuseBtn;
     [[unuseBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-        [self loadNewDataWithType:1];
         unuseBtn.selected = YES;
         self.usedBtn.selected = NO;
         self.cardBagBtn.selected = NO;
+        [self.tableView.mj_header beginRefreshing];
     }];
     
     UIButton *usedBtn = [[UIButton alloc] init];
@@ -96,10 +96,11 @@
     [self.view insertSubview:usedBtn aboveSubview:tableView];
     self.usedBtn = usedBtn;
     [[usedBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-        [self loadNewDataWithType:2];
         unuseBtn.selected = NO;
         self.usedBtn.selected = YES;
         self.cardBagBtn.selected = NO;
+        [self.tableView.mj_header beginRefreshing];
+
     }];
     
     UIButton *cardBagBtn = [[UIButton alloc] init];
@@ -113,11 +114,10 @@
     [self.view insertSubview:cardBagBtn aboveSubview:tableView];
     self.cardBagBtn = cardBagBtn;
     [[cardBagBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(__kindof UIControl * _Nullable x) {
-        [self loadNewCardBag];
         unuseBtn.selected = NO;
         self.usedBtn.selected = NO;
         self.cardBagBtn.selected = YES;
-
+        [self.tableView.mj_header beginRefreshing];
     }];
 
     if (self.selectedIndex) {
@@ -235,13 +235,14 @@
     NSMutableDictionary *params = [XFTool getBaseRequestParams];
     [params setObject:[NSString stringWithFormat:@"%d",_page] forKey:@"page"];
 
+    [self.ticketModels removeAllObjects];
+    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager POST:[NSString stringWithFormat:@"%@/My/myPrizes",BASE_URL] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {
         [self endRefresh];
         if ([responseObject[@"status"] intValue] == 1) { //
-            [self.ticketModels removeAllObjects];
             [self.ticketModels addObjectsFromArray:[XFCardBagModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]]];
             if(self.ticketModels.count==0){
                 _noDataLabel.hidden=NO;
@@ -283,9 +284,9 @@
 
 
 - (void) loadNewDataWithType:(int)type {
-    
+    [self.ticketModels removeAllObjects];
+
     _page=1;
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES].minShowTime = 0.5;
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:model.uid forKey:@"uid"];
@@ -299,11 +300,9 @@
     [manager POST:[NSString stringWithFormat:@"%@/My/coupon",BASE_URL] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self endRefresh];
         NSLog(@"success:%@",responseObject);
         if ([responseObject[@"status"] intValue] == 1) { //
-            [self.ticketModels removeAllObjects];
             [self.ticketModels addObjectsFromArray:[XFUseTicketModel mj_objectArrayWithKeyValuesArray:responseObject[@"data"]]];
             for (XFUseTicketModel *model in self.ticketModels) {
                 model.isUsed = type == 1 ? NO : YES;
@@ -332,7 +331,6 @@
         [self.tableView reloadData];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self endRefresh];
         NSLog(@"error:%@",error);
         [SVProgressHUD showErrorWithStatus:ServerError];
@@ -343,7 +341,6 @@
 {
     
     _page++;
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES].minShowTime = 0.5;
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:model.uid forKey:@"uid"];
@@ -355,7 +352,6 @@
     [manager POST:[NSString stringWithFormat:@"%@/My/coupon",BASE_URL] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self endRefresh];
         NSLog(@"success:%@",responseObject);
         if ([responseObject[@"status"] intValue] == 1) { //
@@ -384,7 +380,6 @@
         [self.tableView reloadData];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self endRefresh];
         NSLog(@"error:%@",error);
         [SVProgressHUD showErrorWithStatus:ServerError];
