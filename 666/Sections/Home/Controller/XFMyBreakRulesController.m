@@ -94,7 +94,7 @@
 -(void)loadNewData
 {
     _page=1;
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:model.uid forKey:@"uid"];
@@ -142,7 +142,7 @@
 -(void)loadMoreData
 {
     _page++;
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:model.uid forKey:@"uid"];

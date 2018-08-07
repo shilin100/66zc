@@ -46,10 +46,16 @@ typedef void(^DownloadSucceed)(NSString * filePath);
 //post请求
 + (NSURLSessionDataTask *)PostRequestWithUrlString:(NSString *)urlString withDic:(NSDictionary *)dic Succeed:(Succeed)succeed andFaild:(Failed)falid;
 
+//无额外参数post
++ (NSURLSessionDataTask *)ClearPostRequestWithUrlString:(NSString *)urlString withDic:(NSDictionary *)dic Succeed:(Succeed)succeed andFaild:(Failed)falid;
+
 //无参请求
 + (void)GetRequestWithUrlString:(NSString *)urlString Succeed:(Succeed)succeed andFaild:(Failed)falid;
 
 //带参请求
 + (void)GetRequestWithUrlString:(NSString *)urlString withDic:(NSDictionary *)dic Succeed:(Succeed)succeed andFaild:(Failed)falid;
 
+
+//测试用
++ (NSURLSessionDataTask *)TestPostRequestWithUrlString:(NSString *)urlString withDic:(NSDictionary *)dic Succeed:(Succeed)succeed andFaild:(Failed)falid;
 @end

@@ -60,7 +60,7 @@
     UILabel * thankTitle = [UILabel new];
     thankTitle.font = XFont(12);
     thankTitle.textColor = BlACKTEXT;
-    thankTitle.text = @"您的建议或意见:";
+    thankTitle.text = @"我们会根据您的建议后期不断完善，再次感谢您的支持！";
     [self.view addSubview:thankTitle];
     
     thankTitle.sd_layout

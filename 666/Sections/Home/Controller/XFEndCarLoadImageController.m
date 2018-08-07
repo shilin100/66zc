@@ -162,7 +162,7 @@
         }
     }
     if (imgs.count == 5) {
-        [SVProgressHUD show];
+        [SVProgressHUD showInfoWithStatus:nil];
         NSMutableDictionary *params = [XFTool baseParams];
         XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
         [params setObject:model.uid forKey:@"uid"];

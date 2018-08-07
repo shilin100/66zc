@@ -37,6 +37,27 @@
 
 -(void)XFMyOrderDetailCompletedView:(XFMyOrderDetailCompletedView *)contentView didClickTripBtn:(UIButton *)button
 {
+    // 日期格式化类
+    
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    
+    // 设置日期格式 为了转换成功
+    
+    format.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    
+    // NSString * -> NSDate *
+    NSDate *startDate = [format dateFromString:self.model.start_time];
+    NSDate * now = [NSDate date];
+    NSTimeInterval timeBetween = [now timeIntervalSinceDate:startDate];
+    
+    if (timeBetween > 3600*24*90) {
+        XFAlertView *  alert = [[XFAlertView alloc] initWithTitle:@"提示" message:@"90天前的历史行程轨迹无法查看" sureBtn:@"确定" cancleBtn:nil];
+        [alert showAlertView];
+        return;
+
+    }
+
+    
      NSLog(@"我的行程");
     XFMyTripViewController *vc = [[XFMyTripViewController alloc] init];
     vc.model = self.model;

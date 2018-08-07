@@ -112,7 +112,7 @@
         return;
     }
     
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     [params setObject:remark forKey:@"cause"];
     [params setObject:location forKey:@"address"];

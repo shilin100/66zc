@@ -214,7 +214,7 @@
         return;
     }
 
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
         NSMutableDictionary *params = [XFTool getBaseRequestParams];
         [params setObject:self.model.de_id forKey:@"deid"];
         [params setObject:self.model.did forKey:@"did"];

@@ -145,7 +145,7 @@
 -(void)loadWalletNewData
 {
     _page=1;
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *info = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:info.uid forKey:@"uid"];
@@ -174,7 +174,7 @@
             
             if(_dataArr.count==0)
             {
-                [SVProgressHUD showInfoWithStatus:@"暂无数据"];
+                [SVProgressHUD showErrorWithStatus:@"暂无数据"];
                 [SVProgressHUD dismissWithDelay:1.2];
             }
             
@@ -194,7 +194,7 @@
 -(void)loadWalletMoreData
 {
     _page++;
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *info = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:info.uid forKey:@"uid"];
@@ -217,7 +217,7 @@
             
             if(_dataArr.count==0)
             {
-                [SVProgressHUD showInfoWithStatus:@"暂无数据"];
+                [SVProgressHUD showErrorWithStatus:@"暂无数据"];
                 [SVProgressHUD dismissWithDelay:1.2];
             }
             
@@ -238,7 +238,7 @@
 -(void)loadMoneyNewData
 {
     _page=1;
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *info = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:info.uid forKey:@"uid"];
@@ -261,7 +261,7 @@
             
             if(_dataArr.count==0)
             {
-                [SVProgressHUD showInfoWithStatus:@"暂无数据"];
+                [SVProgressHUD showErrorWithStatus:@"暂无数据"];
                 [SVProgressHUD dismissWithDelay:1.2];
             }
             
@@ -281,7 +281,7 @@
 -(void)loadMoneyMoreData
 {
     _page++;
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *info = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:info.uid forKey:@"uid"];
@@ -304,7 +304,7 @@
             
             if(_dataArr.count==0)
             {
-                [SVProgressHUD showInfoWithStatus:@"暂无数据"];
+                [SVProgressHUD showErrorWithStatus:@"暂无数据"];
                 [SVProgressHUD dismissWithDelay:1.2];
             }
             

@@ -48,7 +48,7 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)introduceBtnClick {
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager POST:[NSString stringWithFormat:@"%@/My/user_recomm",BASE_URL] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {

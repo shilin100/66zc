@@ -69,7 +69,7 @@
 -(void)loadMemberNewData
 {
     _page=1;
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:model.uid forKey:@"uid"];
@@ -91,7 +91,7 @@
             
             if(_dataArr.count==0)
             {
-                [SVProgressHUD showInfoWithStatus:@"暂无数据"];
+                [SVProgressHUD showErrorWithStatus:@"暂无数据"];
                 [SVProgressHUD dismissWithDelay:1.2];
             }
             
@@ -113,7 +113,7 @@
 -(void)loadMemberMoreData
 {
     _page++;
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:model.uid forKey:@"uid"];
@@ -134,7 +134,7 @@
             
             if(_dataArr.count==0)
             {
-                [SVProgressHUD showInfoWithStatus:@"暂无数据"];
+                [SVProgressHUD showErrorWithStatus:@"暂无数据"];
                 [SVProgressHUD dismissWithDelay:1.2];
             }
             

@@ -16,6 +16,8 @@
 #import "XFDoLoginController.h"
 #import <Bugly/Bugly.h>
 #import "Reachability.h"
+#import "UIImage+GIFImage.h"
+#import "SVProgressHUD_Extension.h"
 
 #define UMeng_APPKEY @"57f710b567e58edee7004937"//UMeng appkey
 
@@ -41,11 +43,9 @@
         // NSSet<UIUserNotificationCategory *> *categories for iOS8 and iOS9
     }
     [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
-
-    
     [JPUSHService setupWithOption:launchOptions appKey:@"28e3b952cdc37e0e5ade677d"
                           channel:@"0"
-                 apsForProduction:NO
+                 apsForProduction:YES
             advertisingIdentifier:nil];
 
     
@@ -76,8 +76,7 @@
         UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LoginSB" bundle:[NSBundle mainBundle]];
         
         if ([USERDEFAULT objectForKey:@"isFirstOpenApp"]) {
-            UIStoryboard *mainStory = [UIStoryboard storyboardWithName:@"LoginSB" bundle:nil];
-            XFDoLoginController *vc = [mainStory instantiateViewControllerWithIdentifier:@"DoLoginIdentity"];
+            XFDoLoginController *vc = [sb instantiateViewControllerWithIdentifier:@"DoLoginIdentity"];
             self.window.rootViewController = [[XFLoginNaviController alloc]initWithRootViewController:vc];
             
         }else{
@@ -96,9 +95,31 @@
     [reach startNotifier];
     self.reach = reach;
 
+//    自定义加载图
+    [self svPreferrenceConf];
     
     return YES;
 }
+
+- (void)svPreferrenceConf {
+    
+    [SVProgressHUD setDefaultStyle:SVProgressHUDStyleLight];
+    [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeBlack];
+    [SVProgressHUD setBackgroundColor:[UIColor whiteColor]];
+    [SVProgressHUD setMinimumDismissTimeInterval:1.0];
+    [SVProgressHUD setMaximumDismissTimeInterval:3.3];
+    [SVProgressHUD setInfoImage:[UIImage imageWithGIFNamed:@"loading_gif"]];
+    
+    
+    UIImageView *svImgView = [[SVProgressHUD sharedView] valueForKey:@"imageView"];
+    svImgView.contentMode = UIViewContentModeCenter;
+    CGRect imgFrame = svImgView.frame;
+
+    // 设置图片的显示大小
+    imgFrame.size = CGSizeMake(84, 84);
+    svImgView.frame = imgFrame;
+}
+
 
 - (void)reachabilityChanged:(NSNotification*)note {
     

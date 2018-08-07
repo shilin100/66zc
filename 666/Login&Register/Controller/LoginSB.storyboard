@@ -30,7 +30,6 @@
         <!--Pre Login Controller-->
         <scene sceneID="8MD-ta-YKj">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xBp-lZ-PQG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="kZp-vv-ENv" customClass="XFPreLoginController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3gG-LB-SUB"/>
@@ -131,6 +130,7 @@
                         <outlet property="registerBtn" destination="Ui4-fU-7ql" id="o2W-6d-Rhc"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xBp-lZ-PQG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="431.25" y="123.59154929577466"/>
         </scene>
@@ -910,7 +910,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J5O-1y-Uvd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1230" y="-336"/>
+            <point key="canvasLocation" x="1230" y="-336.97183098591552"/>
         </scene>
         <!--注册2-->
         <scene sceneID="iSn-gp-6WB">

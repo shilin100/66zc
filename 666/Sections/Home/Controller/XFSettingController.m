@@ -13,7 +13,7 @@
 #import "XFSettingCell.h"
 #import "XFHelpController.h"
 #import "XFSuggestViewController.h"
-
+#import "XFDoLoginController.h"
 
 @interface XFSettingController () <UITableViewDelegate,UITableViewDataSource>{
     NSArray * titlesArr;
@@ -123,7 +123,7 @@
     XFLoginInfoModel *info = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path exception:nil];
     [params setObject:info.uid forKey:@"uid"];
     [params setObject:info.token forKey:@"token"];
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager POST:[NSString stringWithFormat:@"%@%@",BASE_URL,@"/Login/Outlogin"] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -133,8 +133,8 @@
             [SVProgressHUD showSuccessWithStatus:@"退出成功"];
             [SVProgressHUD dismissWithDelay:1.0 completion:^{
                 UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LoginSB" bundle:[NSBundle mainBundle]];
-                XFLoginNaviController *loginNav = sb.instantiateInitialViewController;
-                [UIApplication sharedApplication].keyWindow.rootViewController = loginNav;
+                XFDoLoginController *vc = [sb instantiateViewControllerWithIdentifier:@"DoLoginIdentity"];
+                [UIApplication sharedApplication].keyWindow.rootViewController = vc;
                 
                 [USERDEFAULT setBool:NO forKey:@"isLogin"];
                 
@@ -230,6 +230,7 @@
     
     if (indexPath.row == 0) {
 //        [self checkVersion];
+//        [self testCyrptoy];//测试加密1870
     }
     if(indexPath.row==1)
     {
@@ -318,6 +319,27 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"err:%@",error);
     }];
+
+    
+    
+}
+
+-(void)testCyrptoy{
+//    NSData *encryptedData = [XTSecurityUtil encryptAESData:@"汪晨123123aa bb"];
+//    //再进行base64位编码，不能直接转成String输出
+//    NSString *encryptedString = [XTSecurityUtil encodeBase64Data:encryptedData];
+    
+
+    
+    NSMutableDictionary * param = [NSMutableDictionary dictionary];
+    [param setObject:@"汪晨123123aa bb" forKey:@"testStr"];
+
+    [XFTool TestPostRequestWithUrlString:[NSString stringWithFormat:@"%@%@",BASE_URL,@"/test/sign"] withDic:param Succeed:^(NSDictionary *responseObject) {
+        
+    } andFaild:^(NSError *error) {
+        
+    }];
+    
 
     
     

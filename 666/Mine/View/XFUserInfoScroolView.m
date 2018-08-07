@@ -533,7 +533,7 @@
         carCardImgTitle.font = XFont(13);
         carCardImgTitle.textColor = RGBCOLORe(51);
         self.carCardImgTitle = carCardImgTitle;
-        NSString * carCardImgStr = @"上传本人手持驾照图片(确保证件清晰无误才能通过审核)";
+        NSString * carCardImgStr = @"上传本人驾照图片(确保证件清晰无误才能通过审核)";
         NSMutableAttributedString *attributeString = [[NSMutableAttributedString alloc] initWithString:carCardImgStr];
         NSRange rang = [carCardImgStr rangeOfString:@"(确保证件清晰无误才能通过审核)"];
         //设置标签文字属性
@@ -639,7 +639,7 @@
         cardImgTitle.font = XFont(13);
         cardImgTitle.textColor = RGBCOLORe(51);
         self.cardImgTitle = cardImgTitle;
-        NSString * cardImgStr = @"上传手持身份证正反照(确保证件清晰无误才能通过审核)";
+        NSString * cardImgStr = @"上传本人身份证正反照(确保证件清晰无误才能通过审核)";
         NSMutableAttributedString *cardAttributeString = [[NSMutableAttributedString alloc] initWithString:cardImgStr];
         NSRange range = [cardImgStr rangeOfString:@"(确保证件清晰无误才能通过审核)"];
         //设置标签文字属性
@@ -735,9 +735,41 @@
         
         [contentScrollView setupAutoContentSizeWithBottomView:saveBtn bottomMargin:38*SCALE_HEIGHT];
         
+        [self.carCardTF addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        [self.cardTF addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+        [self.friendNumTF addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+
     }
     return self;
 }
+
+
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    int limit = 30;
+    if (textField == self.carCardTF) {
+        limit = 12;
+    }else if(textField == self.cardTF) {
+        limit = 18;
+    }else if(textField == self.friendNumTF) {
+        limit = 11;
+    }else {
+        return;
+    }
+    
+    if (textField.text.length > limit) {
+        UITextRange *markedRange = [textField markedTextRange];
+        if (markedRange) {
+            return;
+        }
+        //Emoji占2个字符，如果是超出了半个Emoji，用15位置来截取会出现Emoji截为2半
+        //超出最大长度的那个字符序列(Emoji算一个字符序列)的range
+        NSRange range = [textField.text rangeOfComposedCharacterSequenceAtIndex:limit];
+        textField.text = [textField.text substringToIndex:range.location];
+    }
+
+}
+
 - (void)setUserModel:(XFUserInfoModel *)userModel{
     _userModel = userModel;
     
@@ -884,7 +916,7 @@
 -(void)setEnableEdit:(BOOL)enableEdit{
     _enableEdit = enableEdit;
     
-//    self.iconBtn.userInteractionEnabled = enableEdit;
+    self.iconBtn.userInteractionEnabled = enableEdit;
     self.nameTF.userInteractionEnabled = enableEdit;
     self.phoneTF.userInteractionEnabled = enableEdit;
     self.areaBtn.userInteractionEnabled = enableEdit;

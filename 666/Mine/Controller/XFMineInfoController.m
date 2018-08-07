@@ -91,6 +91,7 @@
     }
     
 }
+
 /**提交审核*/
 - (void) submitToAudit {
     NSString *name = self.contenView.nameTF.text;
@@ -118,6 +119,19 @@
         return;
 
     }
+    if (cardNum.length != 18 && cardNum.length != 15) {
+        XFAlertView *alert = [[XFAlertView alloc] initWithTitle:@"提示" message:@"请正确输入18或15位身份证号" sureBtn:@"确定" cancleBtn:nil];
+        [alert showAlertView];
+        return;
+        
+    }
+    if (friendNum.length != 11) {
+        XFAlertView *alert = [[XFAlertView alloc] initWithTitle:@"提示" message:@"请正确输入11位手机号" sureBtn:@"确定" cancleBtn:nil];
+        [alert showAlertView];
+        return;
+        
+    }
+
     
     if(carCardImage == nil || cardOne == nil || cardTwo == nil)
     {
@@ -137,7 +151,7 @@
         //                return;
         //            }
         
-        [SVProgressHUD show];
+        [SVProgressHUD showInfoWithStatus:nil];
         NSMutableDictionary *params = [XFTool baseParams];
         XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
         [params setObject:model.uid forKey:@"uid"];
@@ -543,7 +557,7 @@
     [self submitToAudit];
     if (self.itemEnable) { // 保存信息
         /*
-        [SVProgressHUD show];
+        [SVProgressHUD showInfoWithStatus:nil];
         NSString *name = contentView.nameTF.text;
         NSString *sex = contentView.sexLbl.text;
         NSString *area = contentView.areaLbl.text;
@@ -586,7 +600,7 @@
 //        [alert showAlertView];
 #warning 下面的代码应该移到 上面的 ‘保存信息’中
         /*
-        [SVProgressHUD show];
+        [SVProgressHUD showInfoWithStatus:nil];
         NSString *name = contentView.nameTF.text;
         NSString *sex = contentView.sexLbl.text;
         NSString *area = contentView.areaLbl.text;

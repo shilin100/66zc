@@ -8,6 +8,7 @@
 
 #import "XFHomeSetPWDController.h"
 #import "XFLoginNaviController.h"
+#import "XFDoLoginController.h"
 
 @interface XFHomeSetPWDController ()
 @property (weak, nonatomic) IBOutlet UITextField *PWDTF;
@@ -59,7 +60,9 @@
                 [SVProgressHUD showSuccessWithStatus:responseObject[@"info"]];
                 [SVProgressHUD dismissWithDelay:1.6 completion:^{
                     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LoginSB" bundle:[NSBundle mainBundle]];
-                    XFLoginNaviController *loginNav = sb.instantiateInitialViewController;
+                    
+                    XFDoLoginController *loginNav = [sb instantiateViewControllerWithIdentifier:@"DoLoginIdentity"];
+
                     [UIApplication sharedApplication].keyWindow.rootViewController = loginNav;
                     
                     [USERDEFAULT setBool:NO forKey:@"isLogin"];

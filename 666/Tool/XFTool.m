@@ -118,9 +118,12 @@
 +(NSMutableDictionary *)getBaseRequestParams{
     
     NSMutableDictionary *params = [XFTool baseParams];
-    XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
-    [params setObject:model.uid forKey:@"uid"];
-    [params setObject:model.token forKey:@"token"];
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    if ([fileMgr fileExistsAtPath:LoginModel_Doc_path]) {
+        XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
+        [params setObject:model.uid forKey:@"uid"];
+        [params setObject:model.token forKey:@"token"];
+    }
 //    [params setObject:[XFTool getNetworkIPAddress ] forKey:@"getIP"];
     
     return params;
@@ -340,6 +343,26 @@ static AFHTTPSessionManager * sharedManager ;
     
     return urlSessionDataTask;
 }
+
++ (NSURLSessionDataTask *)ClearPostRequestWithUrlString:(NSString *)urlString withDic:(NSDictionary *)dic Succeed:(Succeed)succeed andFaild:(Failed)falid
+{
+    
+    //    MMLog(@"POST请求链接 == %@  %@",urlString,dic);
+    AFHTTPSessionManager *manager = [XFTool sharedHTTPSessionManager];
+    [manager.securityPolicy setAllowInvalidCertificates:YES];
+    manager.securityPolicy.validatesDomainName = NO;
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", @"text/json", @"text/javascript",@"text/plan",@"text/plain", nil];
+    NSURLSessionDataTask *urlSessionDataTask = [manager POST:urlString parameters:dic progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        succeed(responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        falid(error);
+        [SVProgressHUD showErrorWithStatus:ServerError];
+    }];
+    
+    return urlSessionDataTask;
+}
+
 #pragma mark - 下载文件
 + (NSURLSessionTask *)downloadWithURL:(NSString *)URL
                               fileDir:(NSString *)fileDir
@@ -379,6 +402,39 @@ static AFHTTPSessionManager * sharedManager ;
     // 添加sessionTask到数组
     
     return downloadTask;
+}
+
+
++ (NSURLSessionDataTask *)TestPostRequestWithUrlString:(NSString *)urlString withDic:(NSDictionary *)dic Succeed:(Succeed)succeed andFaild:(Failed)falid
+{
+    
+    NSMutableDictionary * params = [XFTool getBaseRequestParams];
+    [params addEntriesFromDictionary:dic];
+    
+    for (NSString * key in [params allKeys]) {
+        
+        NSData *encryptedData = [XTSecurityUtil encryptAESData:[NSString stringWithFormat:@"%@",params[key]]];
+        //再进行base64位编码，不能直接转成String输出
+        NSString *encryptedString = [XTSecurityUtil encodeBase64Data:encryptedData];
+
+        
+        [params setObject:encryptedString forKey:key];
+    }
+    
+    //    MMLog(@"POST请求链接 == %@  %@",urlString,dic);
+    AFHTTPSessionManager *manager = [XFTool sharedHTTPSessionManager];
+    [manager.securityPolicy setAllowInvalidCertificates:YES];
+    manager.securityPolicy.validatesDomainName = NO;
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", @"application/json", @"text/json", @"text/javascript",@"text/plan",@"text/plain", nil];
+    NSURLSessionDataTask *urlSessionDataTask = [manager POST:urlString parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        succeed(responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        falid(error);
+        [SVProgressHUD showErrorWithStatus:ServerError];
+    }];
+    
+    return urlSessionDataTask;
 }
 
 

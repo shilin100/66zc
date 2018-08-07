@@ -80,7 +80,7 @@
 
 -(void)getMyCarUse
 {
-//    [SVProgressHUD show];
+//    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:model.uid forKey:@"uid"];
@@ -214,7 +214,7 @@
 }
 
 - (void) openLock {
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:model.uid forKey:@"uid"];
@@ -270,7 +270,7 @@
     
 }
 - (void) doLockDoor {
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:model.uid forKey:@"uid"];
@@ -314,7 +314,7 @@
 }
 
 -(void)canEndTrip{
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:model.uid forKey:@"uid"];
@@ -481,7 +481,7 @@
 }
 - (void) endUseCar {
 
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:model.uid forKey:@"uid"];
@@ -501,7 +501,7 @@
             NSString *str=[NSString stringWithFormat:@"%@",responseObject[@"id"]];
             if(StrISEMPTY(str))
             {
-                [SVProgressHUD showInfoWithStatus:@"用车时间太短,无法创建订单"];
+                [SVProgressHUD showErrorWithStatus:@"用车时间太短,无法创建订单"];
                 [self.navigationController popViewControllerAnimated:YES];
             }
             else

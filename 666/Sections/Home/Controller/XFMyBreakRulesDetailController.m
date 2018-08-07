@@ -45,7 +45,7 @@
 
 //-(void)getDetail
 //{
-//    [SVProgressHUD show];
+//    [SVProgressHUD showInfoWithStatus:nil];
 //    NSMutableDictionary *params = [XFTool baseParams];
 //    XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
 //    [params setObject:model.uid forKey:@"uid"];
@@ -118,7 +118,7 @@
 
 - (void)XFMyBreakRulesDetailView:(XFMyBreakRulesDetailView *)contentView didClickCommitBtn:(UIButton *)button
 {
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     int type = self.selectedPayBtn == self.contentView.wxBtn ? 2:1;
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
@@ -148,7 +148,7 @@
                         NSLog(@"oid:%@",self.model.breakRule_id);
                         break;
                     case 8000 : case 6001:
-                        [SVProgressHUD showInfoWithStatus:memo];
+                        [SVProgressHUD showErrorWithStatus:memo];
                         break;
                     case 4000 : case 6002:
                         [SVProgressHUD showErrorWithStatus:memo];
@@ -202,7 +202,7 @@
             NSLog(@"oid:%@",self.model.breakRule_id);
             break;
         case 8000 : case 6001:
-            [SVProgressHUD showInfoWithStatus:memo];
+            [SVProgressHUD showErrorWithStatus:memo];
             break;
         case 4000 : case 6002:
             [SVProgressHUD showErrorWithStatus:memo];
@@ -229,7 +229,7 @@
             [SVProgressHUD showErrorWithStatus:@"支付失败"];
             break;
         case -2:
-            [SVProgressHUD showInfoWithStatus:@"支付已取消"];
+            [SVProgressHUD showErrorWithStatus:@"支付已取消"];
             break;
         case -3:
             [SVProgressHUD showErrorWithStatus:@"发起支付失败"];

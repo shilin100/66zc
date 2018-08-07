@@ -71,6 +71,7 @@
     [params setValue:@1 forKey:@"type"];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+
     [manager POST:[NSString stringWithFormat:@"%@%@",BASE_URL,@"/Index/GetCode?"] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *responseObject) {

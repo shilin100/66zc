@@ -16,6 +16,7 @@
 @property(nonatomic,weak)UILabel * alipayAccount;
 @property(nonatomic,weak)UITableView * tableView;
 @property(nonatomic,weak)UITextView * reasonTextView;
+@property(nonatomic,strong)NSMutableArray * selectedData;
 
 @property(nonatomic,assign)BOOL isAgressDisclaimer;
 
@@ -23,7 +24,6 @@
 
 @implementation XFRefundCashViewController{
     NSArray * dataArr;
-    NSMutableArray * selectedData;
 
 }
 
@@ -32,7 +32,7 @@
     self.navigationItem.title = @"押金退还";
     self.view.backgroundColor = HEXCOLOR(@"eeeeee");
     dataArr = @[@"租车费用昂贵",@"可租车辆少，使用不方便",@"车况较差，车内环境不整洁，车内物品缺失",@"押金过高，体验感较差",@"选择使用其他汽车租赁APP",@"APP使用不稳定，服务网点过少",@"其他原因"];
-    selectedData = [NSMutableArray array];
+    _selectedData = [NSMutableArray array];
     _isAgressDisclaimer = NO;
     
     [self setupUI];
@@ -178,8 +178,8 @@
     UILabel * detailLabel = [UILabel new];
     detailLabel.font = XFont(13);
     detailLabel.textColor = BlACKTEXT;
-    totalStr = @"备注以及反馈:*";
-    str = @"*";
+    totalStr = @"备注以及反馈:";
+    str = @"";
     attributeString = [[NSMutableAttributedString alloc] initWithString:totalStr];
     rang = [totalStr rangeOfString:str];
     attributeString.color = BlACKTEXT;
@@ -276,7 +276,7 @@
         return;
     }
     
-    if (selectedData.count == 0) {
+    if (_selectedData.count == 0) {
         [SVProgressHUD showErrorWithStatus:@"请选择至少一个退款原因"];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [SVProgressHUD dismiss];
@@ -284,15 +284,13 @@
         return;
     }
     NSMutableArray * temp = [NSMutableArray array];
-    for (NSNumber *index in selectedData) {
-        [temp addObject:dataArr[index.integerValue]];
-    }
-    if (self.reasonTextView.text.length > 0) {
-        [temp addObject:self.reasonTextView.text];
+    for (NSNumber *index in _selectedData) {
+        [temp addObject:index];
     }
     
     NSMutableDictionary * param = [NSMutableDictionary dictionary];
     [param setObject:temp forKey:@"refundReason"];
+    [param setObject:self.reasonTextView.text.length > 0 ? self.reasonTextView.text : @"" forKey:@"customReason"];
     [param setObject:@"1" forKey:@"user_type"];
     [param setObject:@"1" forKey:@"type"];
     [param setObject:@(self.amount) forKey:@"money"];
@@ -357,15 +355,15 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     XFRefundCashTableViewCell * cell = [tableView cellForRowAtIndexPath:indexPath];
-    BOOL isSelected = [selectedData containsObject:@(indexPath.row)];
+    BOOL isSelected = [_selectedData containsObject:@(indexPath.row)];
     if (isSelected) {
         [cell.checkBox setOn:!isSelected animated:YES];
-        [selectedData removeObject:@(indexPath.row)];
+        [_selectedData removeObject:@(indexPath.row)];
     }else{
         [cell.checkBox setOn:!isSelected animated:YES];
-        [selectedData addObject:@(indexPath.row)];
+        [_selectedData addObject:@(indexPath.row)];
     }
-//    123
+
 }
 
 

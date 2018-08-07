@@ -52,7 +52,7 @@
 
 -(void)getMoneyData
 {
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:model.uid forKey:@"uid"];
@@ -101,7 +101,7 @@
         {
             if([self.contentView.moneyTF.text floatValue] < 100)
             {
-                [SVProgressHUD showInfoWithStatus:@"低于最低提现额度100元"];
+                [SVProgressHUD showErrorWithStatus:@"低于最低提现额度100元"];
                 [SVProgressHUD dismissWithDelay:1.2];
                 return;
             }
@@ -112,7 +112,7 @@
             }
             else
             {
-                [SVProgressHUD showInfoWithStatus:@"超出可提现额度"];
+                [SVProgressHUD showErrorWithStatus:@"超出可提现额度"];
                 [SVProgressHUD dismissWithDelay:1.2];
                 
             }
@@ -120,7 +120,7 @@
         }
         else
         {
-            [SVProgressHUD showInfoWithStatus:@"请输入申请金额"];
+            [SVProgressHUD showErrorWithStatus:@"请输入申请金额"];
             [SVProgressHUD dismissWithDelay:1.2];
     
         }
@@ -130,7 +130,7 @@
 
 -(void)submitWithType:(NSString *)type money:(NSString *)money
 {
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:model.uid forKey:@"uid"];

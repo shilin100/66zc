@@ -117,7 +117,7 @@
         return;
     }
     
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     [params setObject:station forKey:@"stop_name"];
     [params setObject:stationDetail forKey:@"site"];

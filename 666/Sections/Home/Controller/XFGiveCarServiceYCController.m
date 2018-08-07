@@ -80,7 +80,7 @@
     NSString *name = self.contentView.peopleTF.text;
     NSString *phone = self.contentView.phoneTF.text;
     
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *user = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:user.uid forKey:@"uid"];
@@ -131,7 +131,7 @@
             {
                 //资料完善才能提交
             NSLog(@"area=%@,address=%@,cartype=%@,time=%@,name=%@,phone=%@",area,address,carType,time,name,phone);
-                [SVProgressHUD show];
+                [SVProgressHUD showInfoWithStatus:nil];
                 NSMutableDictionary *params = [XFTool baseParams];
                 XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
                 [params setObject:model.uid forKey:@"uid"];
@@ -194,7 +194,7 @@
 }
 
 -(void)requestCarType{
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:model.uid forKey:@"uid"];

@@ -279,14 +279,14 @@
 
 -(void)requestData
 {
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:model.uid forKey:@"uid"];
     [params setObject:model.token forKey:@"token"];
     [params setObject:self.sid forKey:@"sid"];
 
-    
+
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager POST:[NSString stringWithFormat:@"%@/car/serveinfo",BASE_URL] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         

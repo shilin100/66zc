@@ -29,6 +29,7 @@
         myCheckBox.onAnimationType =  BEMAnimationTypeOneStroke;
         myCheckBox.offAnimationType =  BEMAnimationTypeOneStroke;
         self.checkBox = myCheckBox;
+        myCheckBox.userInteractionEnabled = NO;
         
         myCheckBox.sd_layout
         .centerYEqualToView(self.contentView)

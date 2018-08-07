@@ -399,7 +399,7 @@
 
 
 - (void) requestData {
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool getBaseRequestParams];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];

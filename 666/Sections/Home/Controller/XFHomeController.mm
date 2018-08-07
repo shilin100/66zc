@@ -63,7 +63,7 @@
 #import "XFCustomAnnotationView.h"
 #import "XFUserInCarView.h"
 #import "DHGuidePageHUD.h"
-
+#import "XFDoLoginController.h"
 
 @interface XFHomeController () <XFHomeLeftViewDelegate,BMKMapViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate,BMKRouteSearchDelegate,UIGestureRecognizerDelegate,XFHomeUseCarInfoViewDelegate,XFSelectHCPointViewPassValueDelegate,VierticalScrollViewDelegate>
 
@@ -185,8 +185,6 @@
     self.view.backgroundColor = WHITECOLOR;
     
     
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"ishowGuild"];
-
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"ishowGuild"]) {
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"ishowGuild"];
         // 在这里写初始化图片数组和DHGuidePageHUD库引导页的代码
@@ -292,8 +290,8 @@
                 [SVProgressHUD showErrorWithStatus:responseObject[@"info"]];
                 
                 UIStoryboard *sb = [UIStoryboard storyboardWithName:@"LoginSB" bundle:[NSBundle mainBundle]];
-                XFLoginNaviController *loginNav = sb.instantiateInitialViewController;
-                [UIApplication sharedApplication].keyWindow.rootViewController = loginNav;
+                XFDoLoginController *vc = [sb instantiateViewControllerWithIdentifier:@"DoLoginIdentity"];
+                [UIApplication sharedApplication].keyWindow.rootViewController = vc;
             }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             
@@ -307,14 +305,15 @@
 }
 
 - (void) getUsingCarStatus {
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
+
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:model.uid forKey:@"uid"];
     [params setObject:model.token forKey:@"token"];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager POST:[NSString stringWithFormat:@"%@/Car/myuse",BASE_URL] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
-        
+
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [SVProgressHUD dismiss];
         NSLog(@"responseObject&&&===%@",responseObject);
@@ -330,16 +329,16 @@
                 [alert showAlertView];
             }
         }else{
-            
+
             [SVProgressHUD showErrorWithStatus:responseObject[@"info"]];
-            
+
         }
-        
+
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error:%@",error);
         [SVProgressHUD dismiss];
         [SVProgressHUD showErrorWithStatus:ServerError];
-        
+
     }];
 }
 - (void) setupSubs {
@@ -790,7 +789,7 @@
     }
         
     
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:model.uid forKey:@"uid"];
@@ -876,7 +875,7 @@
     
 }
 - (void) getCarData {
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     NSString *uid = model.uid;
     NSString *token = model.token;
@@ -906,7 +905,7 @@
             
         }else{
             
-            [SVProgressHUD showInfoWithStatus:responseObject[@"info"]];
+            [SVProgressHUD showErrorWithStatus:responseObject[@"info"]];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
@@ -1128,8 +1127,8 @@
     XFLoginInfoModel *info = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path exception:nil];
     [params setObject:info.uid forKey:@"uid"];
     [params setObject:info.token forKey:@"token"];
-    [SVProgressHUD show];
-    
+    [SVProgressHUD showInfoWithStatus:nil];
+
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     [manager POST:[NSString stringWithFormat:@"%@%@",BASE_URL,@"/Login/Outlogin"] parameters:params progress:^(NSProgress * _Nonnull uploadProgress) {
         
@@ -1149,6 +1148,7 @@
                 NSFileManager *fileMgr = [NSFileManager defaultManager];
                 if ([fileMgr fileExistsAtPath:LoginModel_Doc_path]) {
                     [fileMgr removeItemAtPath:LoginModel_Doc_path error:nil];
+                    [self.locService stopUserLocationService];
                 }
             }];
             [SVProgressHUD dismiss];
@@ -1331,8 +1331,8 @@
 
 -(void)verifyUserInfo
 {
-    [SVProgressHUD show];
-    
+    [SVProgressHUD showInfoWithStatus:nil];
+
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *user = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:user.uid forKey:@"uid"];
@@ -1407,8 +1407,8 @@
 
 -(void)verifyUserInfo:(XFCarModel *)carModel
 {
-    [SVProgressHUD show];
-    
+    [SVProgressHUD showInfoWithStatus:nil];
+
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *user = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     if (carModel.cid) {
@@ -1650,7 +1650,7 @@
 }
 
 - (void) requestDailySignIn {
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool getBaseRequestParams];
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -2089,7 +2089,7 @@
 
 -(void)addUserCarId:(XFCarModel *)carModel
 {
-    [SVProgressHUD show];
+    [SVProgressHUD showInfoWithStatus:nil];
     NSMutableDictionary *params = [XFTool baseParams];
     XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
     [params setObject:model.uid forKey:@"uid"];

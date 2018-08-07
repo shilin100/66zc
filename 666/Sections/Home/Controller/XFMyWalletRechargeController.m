@@ -80,7 +80,7 @@
                             [SVProgressHUD showSuccessWithStatus:@"支付成功"];
                             break;
                         case 8000 : case 6001:
-                            [SVProgressHUD showInfoWithStatus:memo];
+                            [SVProgressHUD showErrorWithStatus:memo];
                             break;
                         case 4000 : case 6002:
                             [SVProgressHUD showErrorWithStatus:memo];
@@ -138,7 +138,7 @@
             [SVProgressHUD showSuccessWithStatus:@"支付成功"];
             break;
         case 8000 : case 6001:
-            [SVProgressHUD showInfoWithStatus:memo];
+            [SVProgressHUD showErrorWithStatus:memo];
             break;
         case 4000 : case 6002:
             [SVProgressHUD showErrorWithStatus:memo];
@@ -161,7 +161,7 @@
             [SVProgressHUD showErrorWithStatus:@"支付失败"];
             break;
         case -2:
-            [SVProgressHUD showInfoWithStatus:@"支付已取消"];
+            [SVProgressHUD showErrorWithStatus:@"支付已取消"];
             break;
         case -3:
             [SVProgressHUD showErrorWithStatus:@"发起支付失败"];

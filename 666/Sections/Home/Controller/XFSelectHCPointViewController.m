@@ -229,11 +229,11 @@
             [self setupAnnotations];
             
         }else{
-            [SVProgressHUD showInfoWithStatus:@"获取数据失败"];
+            [SVProgressHUD showErrorWithStatus:@"获取数据失败"];
             [SVProgressHUD dismissWithDelay:1.6];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        [SVProgressHUD showInfoWithStatus:@"连接超时"];
+        [SVProgressHUD showErrorWithStatus:@"连接超时"];
         [SVProgressHUD dismissWithDelay:1.6];
     }];
 }

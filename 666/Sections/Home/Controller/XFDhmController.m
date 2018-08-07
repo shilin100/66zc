@@ -253,7 +253,7 @@
     if(_textField.text.length==10)
     {
         NSLog(@"number===%@",_textField.text);
-        [SVProgressHUD show];
+        [SVProgressHUD showInfoWithStatus:nil];
         NSMutableDictionary *params = [XFTool baseParams];
         XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
         [params setObject:model.uid forKey:@"uid"];

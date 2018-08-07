@@ -221,6 +221,15 @@
 		9D0069E820E4D46F00CF9415 /* GuideImage.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9D0069E320E4D46E00CF9415 /* GuideImage.bundle */; };
 		9D0069E920E4D46F00CF9415 /* DHGifImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0069E420E4D46E00CF9415 /* DHGifImageOperation.m */; };
 		9D0069EA20E4D46F00CF9415 /* DHGuidePageHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D0069E720E4D46E00CF9415 /* DHGuidePageHUD.m */; };
+		9D006A1320EA125A00CF9415 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D006A0D20EA125900CF9415 /* GTMBase64.m */; };
+		9D006A1420EA125A00CF9415 /* NSData+AES.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D006A1020EA125900CF9415 /* NSData+AES.m */; };
+		9D006A1520EA125A00CF9415 /* NSData+DES.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D006A1120EA125900CF9415 /* NSData+DES.m */; };
+		9D006A1620EA125A00CF9415 /* XTSecurityUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D006A1220EA125900CF9415 /* XTSecurityUtil.m */; };
+		9D006A1A20ECB49F00CF9415 /* UIImage+GIFImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D006A1920ECB49F00CF9415 /* UIImage+GIFImage.m */; };
+		9D006A1F20ECB94100CF9415 /* SVProgressHUD+XFDismiss.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D006A1E20ECB94100CF9415 /* SVProgressHUD+XFDismiss.m */; };
+		9D006A2320ECC01400CF9415 /* loading_gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9D006A2220ECC01400CF9415 /* loading_gif.gif */; };
+		9D06BFFF20EF422400A68350 /* XFPhoneVerifyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D06BFFE20EF422400A68350 /* XFPhoneVerifyView.m */; };
+		9D06C00220EF66B100A68350 /* UIView+ZFAddRectangBorder.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D06C00020EF66B000A68350 /* UIView+ZFAddRectangBorder.m */; };
 		9D13DA5020917A760057DD20 /* XFCarTypeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D13DA4F20917A760057DD20 /* XFCarTypeModel.m */; };
 		9D1613F620C1228700CC58B5 /* XFQRCodePopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1613F520C1228700CC58B5 /* XFQRCodePopView.m */; };
 		9D1AAE7620DA5A97006F5A06 /* XFSuggestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D1AAE7520DA5A97006F5A06 /* XFSuggestViewController.m */; };
@@ -739,6 +748,25 @@
 		9D0069E520E4D46E00CF9415 /* DHGuidePageHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHGuidePageHUD.h; sourceTree = "<group>"; };
 		9D0069E620E4D46E00CF9415 /* DHGifImageOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DHGifImageOperation.h; sourceTree = "<group>"; };
 		9D0069E720E4D46E00CF9415 /* DHGuidePageHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DHGuidePageHUD.m; sourceTree = "<group>"; };
+		9D006A0920EA125900CF9415 /* NSData+AES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES.h"; sourceTree = "<group>"; };
+		9D006A0B20EA125900CF9415 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		9D006A0C20EA125900CF9415 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		9D006A0D20EA125900CF9415 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		9D006A0E20EA125900CF9415 /* NSData+DES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+DES.h"; sourceTree = "<group>"; };
+		9D006A0F20EA125900CF9415 /* XTSecurityUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XTSecurityUtil.h; sourceTree = "<group>"; };
+		9D006A1020EA125900CF9415 /* NSData+AES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES.m"; sourceTree = "<group>"; };
+		9D006A1120EA125900CF9415 /* NSData+DES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+DES.m"; sourceTree = "<group>"; };
+		9D006A1220EA125900CF9415 /* XTSecurityUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XTSecurityUtil.m; sourceTree = "<group>"; };
+		9D006A1820ECB49F00CF9415 /* UIImage+GIFImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+GIFImage.h"; sourceTree = "<group>"; };
+		9D006A1920ECB49F00CF9415 /* UIImage+GIFImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+GIFImage.m"; sourceTree = "<group>"; };
+		9D006A1B20ECB8CF00CF9415 /* SVProgressHUD_Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD_Extension.h; sourceTree = "<group>"; };
+		9D006A1D20ECB94100CF9415 /* SVProgressHUD+XFDismiss.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD+XFDismiss.h"; sourceTree = "<group>"; };
+		9D006A1E20ECB94100CF9415 /* SVProgressHUD+XFDismiss.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "SVProgressHUD+XFDismiss.m"; sourceTree = "<group>"; };
+		9D006A2220ECC01400CF9415 /* loading_gif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = loading_gif.gif; sourceTree = "<group>"; };
+		9D06BFFD20EF422400A68350 /* XFPhoneVerifyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFPhoneVerifyView.h; sourceTree = "<group>"; };
+		9D06BFFE20EF422400A68350 /* XFPhoneVerifyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFPhoneVerifyView.m; sourceTree = "<group>"; };
+		9D06C00020EF66B000A68350 /* UIView+ZFAddRectangBorder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ZFAddRectangBorder.m"; sourceTree = "<group>"; };
+		9D06C00120EF66B100A68350 /* UIView+ZFAddRectangBorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ZFAddRectangBorder.h"; sourceTree = "<group>"; };
 		9D13DA4E20917A760057DD20 /* XFCarTypeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFCarTypeModel.h; sourceTree = "<group>"; };
 		9D13DA4F20917A760057DD20 /* XFCarTypeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XFCarTypeModel.m; sourceTree = "<group>"; };
 		9D1613F420C1228700CC58B5 /* XFQRCodePopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XFQRCodePopView.h; sourceTree = "<group>"; };
@@ -928,6 +956,7 @@
 		02058E331F7CE5E300E994C3 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9D006A2220ECC01400CF9415 /* loading_gif.gif */,
 				9DF0BCCC20AC356800C052AC /* 方正综艺简体.ttf */,
 				9D25507920A6DFD70007175E /* fzse.OTF */,
 			);
@@ -982,6 +1011,8 @@
 		02058E681F7CED4100E994C3 /* Libs */ = {
 			isa = PBXGroup;
 			children = (
+				9D006A1720ECB48800CF9415 /* GIFImage */,
+				9D006A0820EA125900CF9415 /* XTSecurityUtil */,
 				9D0069E220E4D46E00CF9415 /* DHGuidePageHUD */,
 				9D25507320A6DAED0007175E /* MDScratchImageView */,
 				9D25505920A67E6E0007175E /* VierticalScrollView */,
@@ -1090,6 +1121,8 @@
 		024DEC4C1F7E22D7008A4D80 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				9D06BFFD20EF422400A68350 /* XFPhoneVerifyView.h */,
+				9D06BFFE20EF422400A68350 /* XFPhoneVerifyView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1610,6 +1643,42 @@
 			path = DHGuidePageHUD;
 			sourceTree = "<group>";
 		};
+		9D006A0820EA125900CF9415 /* XTSecurityUtil */ = {
+			isa = PBXGroup;
+			children = (
+				9D006A0920EA125900CF9415 /* NSData+AES.h */,
+				9D006A0A20EA125900CF9415 /* GTMBase64 */,
+				9D006A0E20EA125900CF9415 /* NSData+DES.h */,
+				9D006A0F20EA125900CF9415 /* XTSecurityUtil.h */,
+				9D006A1020EA125900CF9415 /* NSData+AES.m */,
+				9D006A1120EA125900CF9415 /* NSData+DES.m */,
+				9D006A1220EA125900CF9415 /* XTSecurityUtil.m */,
+			);
+			path = XTSecurityUtil;
+			sourceTree = "<group>";
+		};
+		9D006A0A20EA125900CF9415 /* GTMBase64 */ = {
+			isa = PBXGroup;
+			children = (
+				9D006A0B20EA125900CF9415 /* GTMBase64.h */,
+				9D006A0C20EA125900CF9415 /* GTMDefines.h */,
+				9D006A0D20EA125900CF9415 /* GTMBase64.m */,
+			);
+			path = GTMBase64;
+			sourceTree = "<group>";
+		};
+		9D006A1720ECB48800CF9415 /* GIFImage */ = {
+			isa = PBXGroup;
+			children = (
+				9D006A1820ECB49F00CF9415 /* UIImage+GIFImage.h */,
+				9D006A1920ECB49F00CF9415 /* UIImage+GIFImage.m */,
+				9D006A1B20ECB8CF00CF9415 /* SVProgressHUD_Extension.h */,
+				9D006A1D20ECB94100CF9415 /* SVProgressHUD+XFDismiss.h */,
+				9D006A1E20ECB94100CF9415 /* SVProgressHUD+XFDismiss.m */,
+			);
+			path = GIFImage;
+			sourceTree = "<group>";
+		};
 		9D1AAE6B20DA3B06006F5A06 /* Suggest */ = {
 			isa = PBXGroup;
 			children = (
@@ -1687,6 +1756,8 @@
 		9D25502D209D4C860007175E /* Venders */ = {
 			isa = PBXGroup;
 			children = (
+				9D06C00120EF66B100A68350 /* UIView+ZFAddRectangBorder.h */,
+				9D06C00020EF66B000A68350 /* UIView+ZFAddRectangBorder.m */,
 				9D7FCD9C20BBEC9300F45F79 /* Reachability.h */,
 				9D7FCD9D20BBEC9400F45F79 /* Reachability.m */,
 				9D255026209BF8FA0007175E /* JZLocationConverter.h */,
@@ -1978,6 +2049,7 @@
 				023E0D841FA99B13003F1FD7 /* XFMyBreakRuleCell.xib in Resources */,
 				02A18F121F7F82D900CE9490 /* XFWebViewController.storyboard in Resources */,
 				02FAE9981F95FD910048900F /* XFMySaleController.xib in Resources */,
+				9D006A2320ECC01400CF9415 /* loading_gif.gif in Resources */,
 				02FAE99D1F9617B10048900F /* XFMyScoreController.xib in Resources */,
 				024DEC4E1F7E22F5008A4D80 /* LoginSB.storyboard in Resources */,
 				9D0069E820E4D46F00CF9415 /* GuideImage.bundle in Resources */,
@@ -2080,6 +2152,7 @@
 				02A18E891F7F20AA00CE9490 /* XFSetPWDController.m in Sources */,
 				02CA2E3E1F82385800C7D3C1 /* XFLoginInfoModel.m in Sources */,
 				7B12EF301FC9064E0047C9DB /* XFCleanScoreController.m in Sources */,
+				9D06C00220EF66B100A68350 /* UIView+ZFAddRectangBorder.m in Sources */,
 				028C89A51F8CA28500DAD44E /* XFBMKPinAnnotationView.m in Sources */,
 				0297BFA81F94C3E000886369 /* XFMyInviteController.m in Sources */,
 				0286E7A31F9F202C000C7692 /* HZLocation.m in Sources */,
@@ -2133,6 +2206,7 @@
 				7B3775FD1FC7FBA3007CB9FF /* XFMyOrderDetailCompletedView.m in Sources */,
 				023E0D871FA9AA4B003F1FD7 /* XFBreakRuleModel.m in Sources */,
 				02ABDDFD1F9DD5EE00F4197F /* XFUserInfoScroolView.m in Sources */,
+				9D006A1F20ECB94100CF9415 /* SVProgressHUD+XFDismiss.m in Sources */,
 				0297BF8D1F9457E900886369 /* XFContactUsController.m in Sources */,
 				9D25504020A041430007175E /* XFApplyOrderModel.m in Sources */,
 				02D741781FA45A8E0046E070 /* RSADataSigner.m in Sources */,
@@ -2166,9 +2240,12 @@
 				0297BF8A1F944D6300886369 /* XFMyOrderController.m in Sources */,
 				9D25505E20A67E970007175E /* UIView+FrameExtension.m in Sources */,
 				7BCD2AAF1FD8D3BC0096A662 /* XFMySaleMoneyGetView.m in Sources */,
+				9D06BFFF20EF422400A68350 /* XFPhoneVerifyView.m in Sources */,
 				02ABDDF61F9DCDA000F4197F /* XFMineInfoController.m in Sources */,
 				0227C5151FA1DDAC00B1A38D /* XFUseCarLoadImageController.m in Sources */,
+				9D006A1620EA125A00CF9415 /* XTSecurityUtil.m in Sources */,
 				9D1B87DE20B00C7900115E9F /* XFCustomAnnotationView.m in Sources */,
+				9D006A1A20ECB49F00CF9415 /* UIImage+GIFImage.m in Sources */,
 				7B298F891FCBF151002E9D21 /* XFGiveCarServiceDetailController.m in Sources */,
 				0297BF901F94599500886369 /* XFContactUsCell.m in Sources */,
 				02FAE9931F95F37A0048900F /* XFCustomSharePlatform.m in Sources */,
@@ -2213,6 +2290,7 @@
 				7B12EF331FC906A20047C9DB /* XFCleanScoreView.m in Sources */,
 				02FD55891F8B8AF900A65D98 /* XFButton.m in Sources */,
 				7B2B3DA81FCCF48900DA40FE /* XFIWantPLModel.m in Sources */,
+				9D006A1420EA125A00CF9415 /* NSData+AES.m in Sources */,
 				0297BFA11F949DD500886369 /* XFHomeSetPWDController.m in Sources */,
 				0227C4F41FA02B4800B1A38D /* XFMyBreakRulesController.m in Sources */,
 				028C89991F8C593000DAD44E /* XFCarModel.m in Sources */,
@@ -2237,12 +2315,14 @@
 				028C89A81F8CC62600DAD44E /* XFHomeCarInfoView.m in Sources */,
 				02FACC101F91E04D00F404D3 /* XFMyWalletController.m in Sources */,
 				02AFFBB81F9071FC00B66F77 /* XFHomeChooseContent.m in Sources */,
+				9D006A1320EA125A00CF9415 /* GTMBase64.m in Sources */,
 				7B29B54D202FDF5900EAE372 /* XFDhmController.m in Sources */,
 				022A11E21F9724E100482E7A /* XFMySaleFriendController.m in Sources */,
 				0286E7C51F9F2B9C000C7692 /* CDZPicker.m in Sources */,
 				0286E7A11F9F202C000C7692 /* HZAreaPickerView.m in Sources */,
 				9D25508320A6F7190007175E /* MDMatrix.m in Sources */,
 				9D1BEE2720930B3C00D84E54 /* XFGuildServicePointViewController.m in Sources */,
+				9D006A1520EA125A00CF9415 /* NSData+DES.m in Sources */,
 				0233F85F1FAB120A0078AE28 /* UIControl+XF.m in Sources */,
 				9D1AAE7D20DE210A006F5A06 /* XFRefundCashTableViewCell.m in Sources */,
 				9D2550192099A4490007175E /* XFDriveApplyVC.m in Sources */,

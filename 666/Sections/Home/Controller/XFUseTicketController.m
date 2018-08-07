@@ -96,7 +96,7 @@
             
             if(self.ticketModels.count==0)
             {
-                [SVProgressHUD showInfoWithStatus:@"暂无优惠券"];
+                [SVProgressHUD showErrorWithStatus:@"暂无优惠券"];
                 [SVProgressHUD dismissWithDelay:1.2];
             }
         }
@@ -104,7 +104,7 @@
         else
         {
            
-            [SVProgressHUD showInfoWithStatus:@"暂无优惠券"];
+            [SVProgressHUD showErrorWithStatus:@"暂无优惠券"];
             [SVProgressHUD dismissWithDelay:1.2];
         }
         
@@ -143,7 +143,7 @@
             
             if(self.ticketModels.count==0)
             {
-                [SVProgressHUD showInfoWithStatus:@"暂无优惠券"];
+                [SVProgressHUD showErrorWithStatus:@"暂无优惠券"];
                 [SVProgressHUD dismissWithDelay:1.2];
             }
         }
@@ -151,7 +151,7 @@
         else
         {
     
-            [SVProgressHUD showInfoWithStatus:@"暂无优惠券"];
+            [SVProgressHUD showErrorWithStatus:@"暂无优惠券"];
             [SVProgressHUD dismissWithDelay:1.2];
         }
         
@@ -186,7 +186,7 @@
     
     if(_orderMoney<self.ticketModels[indexPath.row].fullmoney)
     {
-        [SVProgressHUD showInfoWithStatus:@"您的消费总额还没达到该优惠券的使用条件,请重新选择"];
+        [SVProgressHUD showErrorWithStatus:@"您的消费总额还没达到该优惠券的使用条件,请重新选择"];
     }
     else
     {

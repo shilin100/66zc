@@ -9,6 +9,7 @@
 #import "XFDoLoginController.h"
 #import "XFHomeNavController.h"
 #import "XFHomeController.h"
+#import "XFPhoneVerifyView.h"
 
 @interface XFDoLoginController ()
 @property (weak, nonatomic) IBOutlet UITextField *numberTF;
@@ -171,9 +172,11 @@
             [UIApplication sharedApplication].keyWindow.rootViewController = homeNav;
         }];
         }else{ // 登录失败
+            NSString * info = responseObject[@"info"];
             [SVProgressHUD showErrorWithStatus:responseObject[@"info"]];
-//            [SVProgressHUD dismissWithDelay:1.2];
-            
+            if ([info containsString:@"当前帐号正在其它设备上登录"]) {
+                [XFPhoneVerifyView show];
+            }
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error:%@",error);

@@ -324,7 +324,7 @@
         {
             [self.ticketModels removeAllObjects];
             //            [SVProgressHUD showErrorWithStatus:responseObject[@"info"]];
-//            [SVProgressHUD showInfoWithStatus:@"暂无优惠券"];
+//            [SVProgressHUD showErrorWithStatus:@"暂无优惠券"];
 //            [SVProgressHUD dismissWithDelay:1.2];
         }
         
@@ -364,7 +364,7 @@
             //            [self.tableView reloadData];
             if(self.ticketModels.count==0)
             {
-                [SVProgressHUD showInfoWithStatus:@"没有更多了"];
+                [SVProgressHUD showErrorWithStatus:@"没有更多了"];
                 [SVProgressHUD dismissWithDelay:1.2];
             }
         }
@@ -373,7 +373,7 @@
         {
 //            [self.ticketModels removeAllObjects];
             //            [SVProgressHUD showErrorWithStatus:responseObject[@"info"]];
-//            [SVProgressHUD showInfoWithStatus:@"暂无优惠券"];
+//            [SVProgressHUD showErrorWithStatus:@"暂无优惠券"];
 //            [SVProgressHUD dismissWithDelay:1.2];
         }
         

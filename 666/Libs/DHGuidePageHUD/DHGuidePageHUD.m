@@ -43,16 +43,16 @@
         [self addSubview:guidePageView];
         
         // 设置引导页上的跳过按钮
-        UIButton *skipButton = [[UIButton alloc]initWithFrame:CGRectMake(DDScreenW*0.8, DDScreenW*0.1, 50, 25)];
-        [skipButton setTitle:@"跳过" forState:UIControlStateNormal];
-        [skipButton.titleLabel setFont:[UIFont systemFontOfSize:14.0]];
-        [skipButton setBackgroundColor:[UIColor grayColor]];
-        // [skipButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-        [skipButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        // [skipButton.layer setCornerRadius:5.0];
-        [skipButton.layer setCornerRadius:(skipButton.frame.size.height * 0.5)];
-        [skipButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:skipButton];
+//        UIButton *skipButton = [[UIButton alloc]initWithFrame:CGRectMake(DDScreenW*0.8, DDScreenW*0.1, 50, 25)];
+//        [skipButton setTitle:@"跳过" forState:UIControlStateNormal];
+//        [skipButton.titleLabel setFont:[UIFont systemFontOfSize:14.0]];
+//        [skipButton setBackgroundColor:[UIColor grayColor]];
+//        // [skipButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+//        [skipButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        // [skipButton.layer setCornerRadius:5.0];
+//        [skipButton.layer setCornerRadius:(skipButton.frame.size.height * 0.5)];
+//        [skipButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+//        [self addSubview:skipButton];
         
         // 添加在引导视图上的多张引导图片
         for (int i=0; i<imageNameArray.count; i++) {
@@ -69,11 +69,14 @@
             // 设置在最后一张图片上显示进入体验按钮
             if (i == imageNameArray.count-1 && isHidden == NO) {
                 [imageView setUserInteractionEnabled:YES];
-                UIButton *startButton = [[UIButton alloc]initWithFrame:CGRectMake(DDScreenW*0.3, DDScreenH*0.85, DDScreenW*0.4, DDScreenH*0.08)];
+                UIButton *startButton = [[UIButton alloc]initWithFrame:CGRectMake(DDScreenW*0.3, DDScreenH - 100 , DDScreenW*0.4, 44)];
                 [startButton setTitle:@"我知道了" forState:UIControlStateNormal];
-                [startButton setTitleColor:[UIColor colorWithRed:164/255.0 green:201/255.0 blue:67/255.0 alpha:1.0] forState:UIControlStateNormal];
+                [startButton setTitleColor:MAINGREEN forState:UIControlStateNormal];
                 [startButton.titleLabel setFont:[UIFont systemFontOfSize:21]];
-                [startButton setBackgroundImage:[UIImage imageNamed:@"GuideImage.bundle/guideImage_button_backgound"] forState:UIControlStateNormal];
+//                [startButton setBackgroundImage:[UIImage imageNamed:@"GuideImage.bundle/guideImage_button_backgound"] forState:UIControlStateNormal];
+                [startButton setBackgroundColor:WHITECOLOR];
+                startButton.layer.cornerRadius = 5;
+                startButton.clipsToBounds = YES;
                 [startButton addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
                 [imageView addSubview:startButton];
             }
@@ -86,6 +89,7 @@
         self.imagePageControl.pageIndicatorTintColor = [UIColor grayColor];
         self.imagePageControl.currentPageIndicatorTintColor = [UIColor whiteColor];
         [self addSubview:self.imagePageControl];
+        self.imagePageControl.userInteractionEnabled = NO;
         
     }
     return self;

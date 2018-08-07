@@ -94,7 +94,7 @@
             {
                 NSLog(@"fpttStr=%@,sbhStr=%@,fpMoneyStr=%@,moreInfoStr=%@,receivePersonStr=%@,phoneStr=%@,area=%@,address=%@,fpContent=%@,head_style=%@",fpttStr,sbhStr,fpMoneyStr,moreInfoStr,receivePersonStr,phoneStr,area,address,fpContent,head_style);
                 
-                [SVProgressHUD show];
+                [SVProgressHUD showInfoWithStatus:nil];
                 NSMutableDictionary *params = [XFTool baseParams];
                 XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
                 NSLog(@"id===%@",model.uid);
@@ -204,7 +204,7 @@
             {
                 NSLog(@"fpMoneyStr=%@,moreInfoStr=%@,receivePersonStr=%@,phoneStr=%@,area=%@,address=%@,fpContent=%@,head_style=%@",fpMoneyStr,moreInfoStr,receivePersonStr,phoneStr,area,address,fpContent,head_style);
                 
-                [SVProgressHUD show];
+                [SVProgressHUD showInfoWithStatus:nil];
                 NSMutableDictionary *params = [XFTool baseParams];
                 XFLoginInfoModel *model = [NSKeyedUnarchiver unarchiveObjectWithFile:LoginModel_Doc_path];
                 NSLog(@"id===%@",model.uid);
